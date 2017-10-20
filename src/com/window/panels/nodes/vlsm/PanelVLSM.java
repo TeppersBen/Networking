@@ -32,7 +32,7 @@ public class PanelVLSM extends PanelProtocol {
 	
 	private JScrollPane scroll;
 	
-	private VLSMConverter converter;
+	private VLSMTable converter;
 
 	@Override
 	protected void initComponents() {
@@ -51,7 +51,7 @@ public class PanelVLSM extends PanelProtocol {
 		
 		scroll = new JScrollPane();
 		
-		converter = new VLSMConverter();
+		converter = new VLSMTable();
 	}
 
 	@Override

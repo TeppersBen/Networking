@@ -2,8 +2,6 @@ package com.window.panels.nodes.vlsm;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,11 +18,10 @@ import javax.swing.table.TableModel;
 
 import com.Settings;
 
-public class VLSMConverter extends JFrame {
+public class VLSMTable extends JFrame {
 
 	private static final long serialVersionUID = -4010383195907305739L;
-
-	private int x;
+	
 	private Table table;
 	private JTextField[][] data;
 	
@@ -44,29 +41,10 @@ public class VLSMConverter extends JFrame {
 		setVisible(true);
 	}
 	
-	private void addListener() {
-		addWindowListener(new WindowListener() {
-			public void windowOpened(WindowEvent e) {}
-			public void windowIconified(WindowEvent e) {}
-			public void windowDeiconified(WindowEvent e) {}
-			public void windowDeactivated(WindowEvent e) {}
-			public void windowClosing(WindowEvent e) {}
-			public void windowClosed(WindowEvent e) { x = 0; }
-			public void windowActivated(WindowEvent e) {
-				if (x >= 1) {
-					return;
-				}
-				table.refreshTable();
-				x++;
-			}
-		});
-	}
-	
 	private void initScreen() {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setResizable(false);
 		initLookAndFeel();
-		addListener();
 	}
 	
 	private void initLookAndFeel() {
@@ -129,6 +107,7 @@ class Table extends JPanel {
 	
 	public void refreshTable() {
 		table.repaint();
+		table.revalidate();
 	}
 	
 	public String[][] createDataHolder(JTextField[][] data) {
@@ -143,8 +122,8 @@ class Table extends JPanel {
 					result[i][x] = (data[i][1].getText().isEmpty()) ? "0" : data[i][1].getText();
 					break;
 				case 2: //Allocated size
-					result[i][x] = VLSMSpecializedCalculator.getValidHost(Integer.parseInt(result[i][(x-1)]));
-					break;
+					//result[i][x] = VLSMSpecializedCalculator.getValidHost(Integer.parseInt(result[i][(x-1)]));
+					//break;
 				case 3: //Address
 				case 4: //Mask CIDR
 				case 5: //Decimal mask
