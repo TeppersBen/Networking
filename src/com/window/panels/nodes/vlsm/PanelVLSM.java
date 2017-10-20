@@ -132,7 +132,7 @@ class SubnetPanelCreator extends JPanel {
 	
 	public void build(int subnets) {
 		setLayout(new GridLayout(subnets+1, 2));
-		character = (int) new Character('A');
+		character = (int) 'A';
 		add(new JLabel("Name", SwingConstants.CENTER));
 		add(new JLabel("Size", SwingConstants.CENTER));
 		data = new JTextField[subnets][2];
