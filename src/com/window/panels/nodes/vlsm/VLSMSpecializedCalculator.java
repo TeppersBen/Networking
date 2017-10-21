@@ -95,19 +95,19 @@ public class VLSMSpecializedCalculator extends NetworkConverter {
 			values[i] = Integer.parseInt(net[i]);
 		}
 		values[3] += amount;
-		if (values[3] >= 255) {
-			values[2] += values[3] % 255;
-			values[3] %= 255;
+		if (values[3] > 255) {
+			values[2] += values[3] / 256;
+			values[3] %= 256;
 		} 
-		if (values[2] >= 255) {
-			values[1] += values[2] % 255;
-			values[2] %= 255;
+		if (values[2] > 255) {
+			values[1] += values[2] / 256;
+			values[2] %= 256;
 		}
-		if (values[1] >= 255) {
-			values[0] += values[1] % 255;
-			values[1] %= 255;
+		if (values[1] > 255) {
+			values[0] += values[1] / 256;
+			values[1] %= 256;
 		} 
-		if (values[0] >= 255) {
+		if (values[0] > 255) {
 			values[0] = 255;
 		}
 		return "" + values[0] + "." + values[1] + "." + values[2] + "." + values[3];
