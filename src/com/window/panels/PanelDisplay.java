@@ -6,10 +6,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import com.development.PanelConsole;
-import com.window.panels.nodes.PanelConverter;
 import com.window.panels.nodes.PanelLanguage;
 import com.window.panels.nodes.PanelLogging;
 import com.window.panels.nodes.PanelWelcome;
+import com.window.panels.nodes.converter.PanelConverter;
 import com.window.panels.nodes.vlsm.PanelVLSM;
 
 public class PanelDisplay extends  PanelProtocol{

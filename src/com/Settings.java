@@ -5,8 +5,8 @@ import com.utils.VersionCreator;
 public class Settings {
 
 	private static final int MAJOR = 0;
-	private static final int MINOR = 1;
-	private static final int BUGS = 0;
+	private static final int MINOR = 7;
+	private static final int BUGS = 12;
 	
 	public static final String VERSION = new VersionCreator(MAJOR, MINOR, BUGS).toString();
 	

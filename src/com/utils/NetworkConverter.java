@@ -74,5 +74,19 @@ public class NetworkConverter extends Convert {
 		int cidr = result.toString().split("0")[0].length();
 		return String.valueOf(cidr);
 	}
+	
+	public static String operatorAND(String a, String b) {
+		StringBuilder result = new StringBuilder();
+		for (int i = 0; i < 32; i++) {
+			if (a.charAt(i) == '.' && b.charAt(i) == '.') {
+				result.append(".");
+			} else if (a.charAt(i) == '1' && b.charAt(i) == '1') {
+				result.append("1");
+			} else {
+				result.append("0");
+			}
+		}
+		return result.toString();
+	}
 
 }

@@ -112,7 +112,7 @@ public class PanelVLSM extends PanelProtocol {
 		buttonSubmit.addActionListener(e -> {
 			SwingUtilities.invokeLater(() -> {
 				converter.dispatchEvent(new WindowEvent(converter, WindowEvent.WINDOW_CLOSING));
-				converter.build(panelSubnetTable.getData());
+				converter.build(textMajorNetwork.getText(), panelSubnetTable.getData());
 			});
 		});
 	}
