@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.utils.Formatter;
-import com.utils.Logger;
 import com.utils.NetworkConverter;
 import com.window.panels.PanelProtocol;
 
@@ -76,7 +75,6 @@ public class PanelConverterNetmask extends PanelProtocol {
 				labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(NetworkConverter.netmaskIntegerToIP(netmask)));
 				labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(netmask)));
 				labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(netmask)));
-				sendNetmaskConvertionMessage(inputField, netmask, NetworkConverter.getNetmaskClass(NetworkConverter.netmaskIntegerToIP(netmask)), NetworkConverter.getTotalValidSubnets(netmask), NetworkConverter.getTotalValidHosts(netmask));
 			} else if (length == 8) {
 				if (MaxLength != 4 || inputField.length() < 35) {
 					System.out.println("Netmask is not complete.");
@@ -88,29 +86,9 @@ public class PanelConverterNetmask extends PanelProtocol {
 				labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(NetworkConverter.netmaskIntegerToIP(netmask)));
 				labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(netmask)));
 				labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(netmask)));
-				sendCIDRConvertionMessage(inputField, NetworkConverter.netmaskIntegerToIP(netmask), NetworkConverter.getNetmaskClass(NetworkConverter.netmaskIntegerToIP(netmask)), NetworkConverter.getTotalValidSubnets(netmask), NetworkConverter.getTotalValidHosts(netmask));
 			} else {
 				System.out.println("Netmask is not complete.");
 			}
 		});
 	}
-	
-	private void sendNetmaskConvertionMessage(String netInput, int cidr, String netClass, int subnets, int hosts) {
-		Logger.log("Convert Netmask: " + netInput + " {\n"
-					+ "   " + String.format("%s %d %n", "CIDR:", cidr)
-					+ "   " + String.format("%s %s %n", "Class:", netClass)
-					+ "   " + String.format("%s %s %n", "Subnets:", Formatter.formatInteger(subnets))
-					+ "   " + String.format("%s %s %n", "Hosts:", Formatter.formatInteger(hosts))
-					+ "}");
-	}
-	
-	private void sendCIDRConvertionMessage(String netInput, String netmask, String netClass, int subnets, int hosts) {
-		Logger.log("Convert CIDR: " + netInput + " {\n"
-					+ "   " + String.format("%s %s %n", "Netmask:", netmask)
-					+ "   " + String.format("%s %s %n", "Class:", netClass)
-					+ "   " + String.format("%s %s %n", "Subnets:", Formatter.formatInteger(subnets))
-					+ "   " + String.format("%s %s %n", "Hosts:", Formatter.formatInteger(hosts))
-					+ "}");
-	}	
-	
 }
