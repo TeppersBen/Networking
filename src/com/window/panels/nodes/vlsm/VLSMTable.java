@@ -28,7 +28,7 @@ public class VLSMTable extends JFrame {
 	private JTextField[][] data;
 	
 	public void build(String majorNetwork, JTextField[][] data) {
-		setTitle(Settings.TITLE + " - VLSM table");
+		setTitle(Settings.title + " - VLSM table");
 		initScreen();
 		table = new Table(majorNetwork, data);
 		add(table);

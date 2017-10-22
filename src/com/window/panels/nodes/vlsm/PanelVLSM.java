@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import com.utils.OptionPane;
 import com.window.panels.PanelProtocol;
 
 public class PanelVLSM extends PanelProtocol {
@@ -102,21 +103,86 @@ public class PanelVLSM extends PanelProtocol {
 		buttonChangeNumberofSubnets.addActionListener(e -> {
 			try {
 				int subnets = Integer.parseInt(textNumberofSubnets.getText());
-				subnets = (subnets >= 20) ? 20 : (subnets < 0) ? 0 : subnets;
-				panelSubnetTable.updateTable(subnets);
+				if (subnets > 20) {
+					OptionPane.showErrorMessage("Subnets limited to 20!");
+				} else if (subnets < 1) {
+					OptionPane.showErrorMessage("CIDR Notation Too Low!");
+				} else {
+					panelSubnetTable.updateTable(subnets);
+				}
 			} catch (NumberFormatException ex) {
-				ex.printStackTrace();
+				OptionPane.showErrorMessage("Invalid Subnet Input!<br>Valid Subnets: 1 - 20");
 			}
 		});
 		
 		buttonSubmit.addActionListener(e -> {
 			SwingUtilities.invokeLater(() -> {
+				if (!isReadyToCreateTable())	
+					return;
 				converter.dispatchEvent(new WindowEvent(converter, WindowEvent.WINDOW_CLOSING));
+				converter = new VLSMTable();
 				converter.build(textMajorNetwork.getText(), panelSubnetTable.getData());
 			});
 		});
 	}
-
+	
+	private boolean isValidMajorNetwork() {
+		String ip = textMajorNetwork.getText().split("/")[0];
+		int ipValue = 0;
+		if (textMajorNetwork.getText().split("/").length != 2) {
+			OptionPane.showErrorMessage("Invalid Major Network.<br>Example: 192.168.0.0/24");
+			return false;
+		}
+		if (ip.split("\\.").length != 4) {
+			OptionPane.showErrorMessage("Invalid Major Network.<br>Example: 192.168.0.0/24");
+			return false;
+		}
+		try {
+			int CIDR = Integer.parseInt(textMajorNetwork.getText().split("/")[1]);
+			if (CIDR < 0 || CIDR > 32) {
+				OptionPane.showErrorMessage("Invalid CIDR!");
+				return false;
+			}
+		} catch (NumberFormatException ex) {
+			OptionPane.showErrorMessage("Invalid CIDR Notation!<br>Valid CIDR Notations: 0 - 32");
+			return false;
+		}
+		for (int i = 0; i < 4; i++) {
+			ipValue = Integer.parseInt(ip.split("\\.")[i]);
+			if (ipValue < 0 || ipValue > 255) {
+				OptionPane.showErrorMessage("Invalid Major Network Segment Range.<br>Valid Segment range: 0 - 255");
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private boolean isPossibleToCreateVLSM() {
+		int totalHosts = Integer.parseInt(textMajorNetwork.getText().split("/")[1]);
+		totalHosts = VLSMSpecializedCalculator.getTotalValidHosts(totalHosts);
+		if (panelSubnetTable.getTotalRequestedHostSize() > totalHosts) {
+			OptionPane.showErrorMessage("Impossible To Make VLSM With Given Values!<br>"
+					+ "Major Network Only Allows " + totalHosts + " Hosts.");
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean isReadyToCreateTable() {
+		if (textMajorNetwork.getText().isEmpty() || !panelSubnetTable.isReadyToCreateTable()) {
+			OptionPane.showErrorMessage("Empty Fields Detected!");
+			return false;
+		}
+		if (!panelSubnetTable.isSubnetSizesValid()) {
+			return false;
+		}
+		if (!isValidMajorNetwork()) {
+			return false;
+		}
+		if (!isPossibleToCreateVLSM())
+			return false;
+		return true;
+	}
 }
 
 class SubnetPanelCreator extends JPanel {
@@ -146,6 +212,37 @@ class SubnetPanelCreator extends JPanel {
 			add(data[i][0]);
 			add(data[i][1]);
 		}
+	}
+	
+	public int getTotalRequestedHostSize() {
+		int value = 0;
+		for (int i = 0; i < data.length; i++) {
+			value += Integer.parseInt(data[i][1].getText());
+		}
+		return value;
+	}
+	
+	public boolean isSubnetSizesValid() {
+		for (int i = 0; i < data.length; i++) {
+			try {
+				Integer.parseInt(data[i][1].getText());
+			} catch (NumberFormatException ex) {
+				OptionPane.showErrorMessage("Invalid Subnet Size Detected!");
+				return false;
+			}
+			
+		}
+		return true;
+	}
+	
+	public boolean isReadyToCreateTable() {
+		for (int i = 0; i < data.length; i++) {
+			for (int x = 0; x < data[0].length; x++) {
+				if (data[i][x].getText().isEmpty())
+					return false;
+			}
+		}
+		return true;
 	}
 	
 	public void updateTable(int subnets) {

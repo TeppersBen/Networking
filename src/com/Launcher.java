@@ -5,8 +5,8 @@ import com.window.WindowBuilder;
 public class Launcher {
 
 	public static void main(String[] args) {
-		Settings.debug = true;
-		new WindowBuilder();
+		Settings.debug = false;
+		new WindowBuilder(0, 3, 80);
 	}
 	
 }

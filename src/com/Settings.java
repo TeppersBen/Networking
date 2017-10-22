@@ -1,18 +1,17 @@
 package com;
 
-import com.utils.VersionCreator;
-
 public class Settings {
 
-	private static final int MAJOR = 0;
-	private static final int MINOR = 7;
-	private static final int BUGS = 12;
+	public static boolean debug;
 	
-	public static final String VERSION = new VersionCreator(MAJOR, MINOR, BUGS).toString();
-	
-	public static final String TITLE = "Networking - [Version: " + VERSION + "]";
 	public static final int MAX_WIDTH = 520;
 	public static final int MAX_HEIGHT = 520;
+
+	public static final String VERSION_RELEASE = "0.03.0022.050";
 	
-	public static boolean debug;
+	public static String title;
+	
+	public static String getMainTitle(String version) {
+		return "Networking - [Version: " + version + "]";
+	}
 }

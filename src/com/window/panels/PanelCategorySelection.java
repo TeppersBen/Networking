@@ -1,6 +1,7 @@
 package com.window.panels;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
@@ -31,6 +32,7 @@ public class PanelCategorySelection extends PanelProtocol {
 
 		expandNodes();
 		removeDefaultNodeImages();
+		setPreferredSize(new Dimension(110, 0));
 	}
 
 	@Override
@@ -50,7 +52,6 @@ public class PanelCategorySelection extends PanelProtocol {
 	private void createTree() {
 		createNode("Session", Arrays.asList("Logging", "Language"));
 		createNode("Calculators", Arrays.asList("Converter", "VLSM"));
-		createNode("Guides", Arrays.asList("Coming soon..."));
 		if (Settings.debug) {
 			createNode("Development", Arrays.asList("Console"));
 		}

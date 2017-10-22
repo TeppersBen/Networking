@@ -1,6 +1,8 @@
 # Networking
 Deze software moet de gebruiker aspecten van "Networking" makkelijker maken. Dit gaat van Console simulaties tot Converters.
 
+Deze software maakt gebruik van **Java 9.0.1**.
+
 # Versie code
 standaard prefix: **major.minor[.build[.revision]]**
 

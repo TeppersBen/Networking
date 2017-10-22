@@ -1,6 +1,0 @@
-Steps: [Make sure to start with the highest amount of hosts and work your way down].
-	- Collect the subnet's name and put it into the current row's column [Subnet Name].
-	- Collect the requested amount of hosts and put it into the current row's column [Needed size].
-	- Use the value of [Needed size] to get the best CIDR's total host and put them into [Allocated size].
-	- Use the value of [Allocated size] to get the CIDR notation and put them into [Mask].
-	- Use the value of [Mask] to get the subnet mask address and put them into [Decimal mask].

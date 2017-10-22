@@ -12,6 +12,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import com.Settings;
+import com.utils.VersionCreator;
 import com.window.panels.PanelCategorySelection;
 import com.window.panels.PanelDisplay;
 
@@ -21,17 +22,25 @@ public class WindowBuilder extends JFrame {
 
 	private JLabel labelCategory;
 	
-	public WindowBuilder() {
-		super(Settings.TITLE);
+	public WindowBuilder(int major, int minor, int bugs) {
 		SwingUtilities.invokeLater(new Runnable() {
 	        @Override
 	        public void run() {
 	        	initScreen();
+	        	createWindowTitle(major, minor, bugs);
 	    		layoutComponents();
 	    		validate();
 	    		setVisible(true);
 	        }
 	    });
+	}
+	
+	private void createWindowTitle(int major, int minor, int bugs) {
+		if (Settings.debug == true)
+			Settings.title = Settings.getMainTitle(new VersionCreator(major, minor, bugs).toString());
+		else 
+			Settings.title = Settings.getMainTitle(Settings.VERSION_RELEASE);
+		setTitle(Settings.title);
 	}
 	
 	private void initScreen() {
