@@ -39,7 +39,7 @@ public class WindowBuilder extends JFrame {
 		if (Settings.debug == true)
 			Settings.title = Settings.getMainTitle(new VersionCreator(major, minor, bugs).toString());
 		else 
-			Settings.title = Settings.getMainTitle(Settings.VERSION_RELEASE);
+			Settings.title = Settings.getMainTitle(Settings.versionRelease);
 		setTitle(Settings.title);
 	}
 	

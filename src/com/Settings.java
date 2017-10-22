@@ -7,7 +7,7 @@ public class Settings {
 	public static final int MAX_WIDTH = 520;
 	public static final int MAX_HEIGHT = 520;
 
-	public static final String VERSION_RELEASE = "0.03.0022.050";
+	public static String versionRelease;
 	
 	public static String title;
 	
