@@ -1,16 +1,15 @@
 package com.utils;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public class Convert {
 
-	protected static List<Integer> maxBitList = createMaxBitList();
-	protected static List<Integer> ipv4BitList = createIPv4BitList();
+	public static List<Integer> maxBitList = createMaxBitList();
+	public static List<Integer> ipv4BitList = createIPv4BitList();
 	
 	/* PRIVATE UTILS */
-	protected static String netmaskIntegerToBinary(int netmask) {
+	public static String netmaskIntegerToBinary(int netmask) {
 		StringBuilder result = new StringBuilder();
 		for (int i = 0; i < netmask; i++) {
 			result.append("1" + ((i != 0 && (i + 1) % 8 == 0) ? "." : ""));
@@ -23,7 +22,7 @@ public class Convert {
 		return result.toString();
 	}
 	
-	protected static String binaryToDecimal(String binary) {
+	public static String binaryToDecimal(String binary) {
 		StringBuilder result = new StringBuilder(binary);
 		int value = 0;
 
@@ -37,7 +36,7 @@ public class Convert {
 		return result.toString();
 	}
 	
-	protected static String decimalToBinary(int decimal) {
+	public static String decimalToBinary(int decimal) {
 		StringBuilder result = new StringBuilder();
 
 		int aantal_bits = 0;
@@ -59,31 +58,12 @@ public class Convert {
 		return result.toString();
 	}
 	
-	protected static List<Integer> createIPv4BitList() {
-		List<Integer> list = new ArrayList<>();
-		int value = 1;
-		for (int i = 0; i < 8; i++) {
-			list.add(value);
-			value *= 2;
-		}
-		Collections.reverse(list);
-		return list;
+	public static List<Integer> createIPv4BitList() {
+		return Arrays.asList(128, 64, 32, 16, 8, 4, 2, 1);
 	}
 	
-	protected static List<Integer> createMaxBitList() {
-		int max_bit_value = 1;
-		int step = 1;
-		List<Integer> max_bits = new ArrayList<Integer>();
-
-		while (max_bit_value < 8 || step % 4 != 0) {
-			max_bits.add((step == 1) ? max_bit_value : max_bit_value + 1);
-			max_bit_value *= 2;
-			step++;
-		}
-		max_bits.add(max_bit_value + 1);
-
-		Collections.reverse(max_bits);
-		return max_bits;
+	public static List<Integer> createMaxBitList() {
+		return Arrays.asList(15, 7, 3, 1);
 	}
 	
 }

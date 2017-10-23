@@ -77,7 +77,7 @@ public class NetworkConverter extends Convert {
 	
 	public static String operatorAND(String a, String b) {
 		StringBuilder result = new StringBuilder();
-		for (int i = 0; i < 32; i++) {
+		for (int i = 0; i < 35; i++) {
 			if (a.charAt(i) == '.' && b.charAt(i) == '.') {
 				result.append(".");
 			} else if (a.charAt(i) == '1' && b.charAt(i) == '1') {
