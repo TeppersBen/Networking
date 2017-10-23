@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 import com.utils.Formatter;
 import com.utils.NetworkConverter;
+import com.utils.OptionPane;
 import com.window.panels.PanelProtocol;
 
 public class PanelConverterNetmask extends PanelProtocol {
@@ -57,38 +58,120 @@ public class PanelConverterNetmask extends PanelProtocol {
 	@Override
 	protected void initListeners() {
 		buttonNetmask.addActionListener(e -> {
-			String inputField = textfieldNetmask.getText();
-			int length = inputField.split("\\.")[0].length();
-			int MaxLength = inputField.split("\\.").length;
-			int netmask = 0;
-			if (!inputField.isEmpty())
-				netmask = Integer.parseInt(inputField.split("\\.")[0]);
-			if (inputField.length() > 35) {
-				System.out.println("Netmask is too long.");
-			} else if (length == 3) {
-				if (MaxLength != 4) {
-					System.out.println("Netmask is not complete.");
+			if (isCIDRNotation()) {
+				if (!isValidCIDRNotation()) {
+					sendErrorMessage();
 					return;
 				}
-				netmask = Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(inputField));
-				labelNetmaskResult.setText(" CIDR: " + netmask);
-				labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(NetworkConverter.netmaskIntegerToIP(netmask)));
-				labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(netmask)));
-				labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(netmask)));
-			} else if (length == 8) {
-				if (MaxLength != 4 || inputField.length() < 35) {
-					System.out.println("Netmask is not complete.");
+				sendOutput(true, false);
+			} else if (isBinary()) {
+				if (!isValidBinaryInput()) {
+					sendErrorMessage();
 					return;
 				}
-				System.out.println("This is a binary input");
-			} else if (netmask > 0 && netmask <= 32) {
-				labelNetmaskResult.setText(" Netmask: " + NetworkConverter.netmaskIntegerToIP(netmask));
-				labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(NetworkConverter.netmaskIntegerToIP(netmask)));
-				labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(netmask)));
-				labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(netmask)));
+				sendOutput(false, true);
 			} else {
-				System.out.println("Netmask is not complete.");
+				if (!isValidDecimalInput()) {
+					sendErrorMessage();
+					return;
+				}
+				sendOutput(false, false);
 			}
 		});
+	}
+	private boolean isCIDRNotation() {
+		if (textfieldNetmask.getText().split("\\.").length != 1)
+			return false;
+		return true;
+	}
+	
+	private boolean isValidCIDRNotation() {
+		try {
+			int cidr = Integer.parseInt(textfieldNetmask.getText());
+			if (!(cidr >= 0 && cidr <= 32))
+				return false;
+		} catch (NumberFormatException ex) {
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean isBinary() {
+		String[] splitter = textfieldNetmask.getText().split("\\.");
+		for (int i = 0; i < 4; i++) {
+			if (splitter[i].length() != 8)
+				return false;
+		}
+		return true;
+	}
+	
+	private boolean isValidBinaryInput() {
+		String[] splitter = textfieldNetmask.getText().split("\\.");
+		if (splitter.length != 4)
+			return false;
+		for (int i = 0; i < 4; i++) {
+			try {
+				Integer.parseInt(splitter[i]);
+			} catch (NumberFormatException ex) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private boolean isValidDecimalInput() {
+		String[] splitter = textfieldNetmask.getText().split("\\.");
+		if (splitter.length != 4)
+			return false;
+		for (int i = 0; i < 4; i++) {
+			try {
+				Integer.parseInt(splitter[i]);
+			} catch (NumberFormatException ex) {
+				return false;
+			}
+			if (!(splitter[i].length() >= 1 && splitter[i].length() <= 3))
+				return false;
+		}
+		return true;
+	}
+	
+	private void sendErrorMessage() {
+		OptionPane.showErrorMessage("Invalid Netmask Detected!<br>" 
+				+ "Example: (decimal) 255.255.0.0<br>" 
+				+ "Example: (binary) 11111111.11111111.00000000.00000000<br>"
+				+ "Example: (CIDR) 16 [range: (0 - 32)]");
+	}
+	
+	private void sendOutput(boolean isCIDR, boolean isBinary) {
+		if (isCIDR) {
+			int netmask = Integer.parseInt(textfieldNetmask.getText());
+			labelNetmaskResult.setText(" Netmask: " + NetworkConverter.netmaskIntegerToIP(netmask));
+			labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(NetworkConverter.netmaskIntegerToIP(netmask)));
+			labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(netmask)));
+			labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(netmask)));
+		} else {
+			if (isBinary) {
+				String netmask = NetworkConverter.binaryIPv4ToDecimal(textfieldNetmask.getText());
+				if (!NetworkConverter.isValidNetmask(netmask)) {
+					OptionPane.showErrorMessage("Invalid Netmask Detected!<br>"
+							+ "Your Netmask is not a valid Netmask.");
+					return;
+				}
+				labelNetmaskResult.setText(" Netmask: " + NetworkConverter.netmaskDecimalToCIDR(netmask));
+				labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(netmask));
+				labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
+				labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
+			} else {
+				String netmask = textfieldNetmask.getText();
+				if (!NetworkConverter.isValidNetmask(netmask)) {
+					OptionPane.showErrorMessage(netmask + " is not a valid netmask!");
+					return;
+				}
+				labelNetmaskResult.setText(" Netmask: " + NetworkConverter.netmaskDecimalToCIDR(netmask));
+				labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(netmask));
+				labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
+				labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
+			}
+		}
 	}
 }
