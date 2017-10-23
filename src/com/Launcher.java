@@ -5,9 +5,9 @@ import com.window.WindowBuilder;
 public class Launcher {
 
 	public static void main(String[] args) {
-		Settings.debug = true;
-		Settings.versionRelease = "0.04.0023.053";
-		new WindowBuilder(0, 4, 53);
+		Settings.debug = false;
+		Settings.versionRelease = "0.04.0024.054";
+		new WindowBuilder(0, 4, 54);
 	}
 	
 }

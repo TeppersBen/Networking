@@ -153,8 +153,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 			if (isBinary) {
 				String netmask = NetworkConverter.binaryIPv4ToDecimal(textfieldNetmask.getText());
 				if (!NetworkConverter.isValidNetmask(netmask)) {
-					OptionPane.showErrorMessage("Invalid Netmask Detected!<br>"
-							+ "Your Netmask is not a valid Netmask.");
+					OptionPane.showErrorMessage(netmask + " is not a valid netmask!");
 					return;
 				}
 				labelNetmaskResult.setText(" Netmask: " + NetworkConverter.netmaskDecimalToCIDR(netmask));
