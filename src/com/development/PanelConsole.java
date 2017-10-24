@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.text.JTextComponent;
 
+import com.Settings;
 import com.devices.Router;
 import com.window.panels.PanelProtocol;
 
@@ -28,9 +29,9 @@ public class PanelConsole extends PanelProtocol {
 
 	private String title;
 
-	public PanelConsole(String windowTitle) {
+	public PanelConsole() {
 		super();
-		title = windowTitle;
+		title = Settings.title;
 		consoleHandler = new ConsoleHandler(consoleField);
 		consoleField.addKeyListener(consoleHandler.getKeyListener());
 		add(setTitle(title), BorderLayout.NORTH);

@@ -25,6 +25,15 @@ public class PanelDisplay extends  PanelProtocol{
 	private PanelLanguage panelLanguage;
 	private PanelConsole panelConsole;
 	
+	public void init(PanelWelcome welcome, PanelConverter converter, PanelVLSM vlsm, PanelLogging logging, PanelLanguage language, PanelConsole console) {
+		panelWelcome = welcome;
+		panelConverter = converter;
+		panelVLSM = vlsm;
+		panelLogging = logging;
+		panelLanguage = language;
+		panelConsole = console;
+	}
+	
 	@Override
 	protected void initComponents() {
 		cards = new JPanel(new CardLayout());
@@ -61,7 +70,7 @@ public class PanelDisplay extends  PanelProtocol{
 	protected void initDebug() {
 		if (!isDebug())
 			return;
-		panelConsole = new PanelConsole("DEVELOPMENT");
+		panelConsole = new PanelConsole();
 		cards.add(panelConsole, "panelConsole");
 	}
 

@@ -7,11 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import com.Settings;
+import com.utils.LookAndFeelManager;
 import com.utils.VersionCreator;
 import com.window.panels.PanelCategorySelection;
 import com.window.panels.PanelDisplay;
@@ -22,17 +20,25 @@ public class WindowBuilder extends JFrame {
 
 	private JLabel labelCategory;
 	
+	private PanelCategorySelection panelCategorySelection;
+	private PanelDisplay panelDisplay;
+	
 	public WindowBuilder(int major, int minor, int bugs) {
-		SwingUtilities.invokeLater(new Runnable() {
-	        @Override
-	        public void run() {
-	        	initScreen();
-	        	createWindowTitle(major, minor, bugs);
-	    		layoutComponents();
-	    		validate();
-	    		setVisible(true);
-	        }
-	    });
+	   	initScreen();
+	   	createWindowTitle(major, minor, bugs);
+	}
+	
+	public void build(PanelCategorySelection panelCategorySelection, PanelDisplay panelDisplay) {
+		setPanelCategorySelection(panelCategorySelection);
+		setPanelDisplay(panelDisplay);
+		layoutComponents();
+	}
+	
+	public void finish() {
+		SwingUtilities.invokeLater(() -> {
+			validate();
+			setVisible(true);
+		});
 	}
 	
 	private void createWindowTitle(int major, int minor, int bugs) {
@@ -48,37 +54,32 @@ public class WindowBuilder extends JFrame {
 		setSize(Settings.MAX_WIDTH, Settings.MAX_HEIGHT);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		initLookAndFeel();
+		LookAndFeelManager.initLookAndFeel();
 	}
 	
 	private void layoutComponents() {
 		labelCategory = new JLabel("Category:");
 		JPanel panel = new JPanel(new BorderLayout());
 		panel.add(labelCategory, BorderLayout.NORTH);
-		panel.add(new PanelCategorySelection(), BorderLayout.WEST);
-		panel.add(new PanelDisplay(), BorderLayout.CENTER);
+		panel.add(panelCategorySelection, BorderLayout.WEST);
+		panel.add(panelDisplay, BorderLayout.CENTER);
 		panel.setBorder(BorderFactory.createEmptyBorder(7,7,7,7));
 		add(panel);
 	}
 	
-	private void initLookAndFeel() {
-		try {
-			String className = getLookAndFeelClassName("Windows");
-			UIManager.setLookAndFeel(className);
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
-			e.printStackTrace();
-		} 
+	public PanelCategorySelection getPanelCategorySelection() {
+		return panelCategorySelection;
 	}
 	
-	private String getLookAndFeelClassName(String nameSnippet) {
-	    LookAndFeelInfo[] plafs = UIManager.getInstalledLookAndFeels();
-	    for (LookAndFeelInfo info : plafs) {
-	        if (info.getName().contains(nameSnippet)) {
-	            return info.getClassName();
-	        }
-	    }
-	    return null;
+	public PanelDisplay getPanelDisplay() {
+		return panelDisplay;
 	}
 	
+	public void setPanelCategorySelection(PanelCategorySelection panelCategorySelection) {
+		this.panelCategorySelection = panelCategorySelection;
+	}
+	
+	public void setPanelDisplay(PanelDisplay panelDisplay) {
+		this.panelDisplay = panelDisplay;
+	}
 }
