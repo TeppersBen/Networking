@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.Settings;
+import com.utils.LookAndFeelManager;
 
 public abstract class PanelProtocol extends JPanel {
 
@@ -15,6 +16,7 @@ public abstract class PanelProtocol extends JPanel {
 	
 	public PanelProtocol() {
 		setLayout(new BorderLayout());
+		LookAndFeelManager.initLookAndFeel();
 		initComponents();
 		initDebug();
 		layoutComponents();

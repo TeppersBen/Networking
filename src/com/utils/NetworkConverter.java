@@ -5,6 +5,11 @@ import java.util.List;
 
 public class NetworkConverter extends Convert {
 
+	private static final String[] KNOWN_NETMASKS = { "0.0.0.0", "128.0.0.0", "192.0.0.0", "224.0.0.0", "240.0.0.0", "248.0.0.0", "252.0.0.0", "254.0.0.0",
+			"255.0.0.0", "255.128.0.0", "255.192.0.0", "255.224.0.0", "255.240.0.0", "255.248.0.0", "255.252.0.0", "255.254.0.0",
+			"255.255.0.0", "255.255.128.0", "255.255.192.0", "255.255.224.0", "255.255.240.0", "255.255.248.0", "255.255.252.0", "255.255.254.0",
+			"255.255.255.0", "255.255.255.128", "255.255.255.192", "255.255.255.224", "255.255.255.240", "255.255.255.248", "255.255.255.252" ,"255.255.255.254", "255.255.255.255"};
+	
 	public static String getNetmaskClass(String netmaskIP) {
 		int x = 0;
 		String[] splitter = netmaskIP.split("\\.");
@@ -77,7 +82,7 @@ public class NetworkConverter extends Convert {
 	
 	public static String operatorAND(String a, String b) {
 		StringBuilder result = new StringBuilder();
-		for (int i = 0; i < 32; i++) {
+		for (int i = 0; i < 35; i++) {
 			if (a.charAt(i) == '.' && b.charAt(i) == '.') {
 				result.append(".");
 			} else if (a.charAt(i) == '1' && b.charAt(i) == '1') {
@@ -87,6 +92,16 @@ public class NetworkConverter extends Convert {
 			}
 		}
 		return result.toString();
+	}
+	
+	public static boolean isValidNetmask(String netmask) {
+		boolean valid = false;
+		for (int i = 0; i < KNOWN_NETMASKS.length; i++) {
+			if (valid == false)
+				if (KNOWN_NETMASKS[i].equalsIgnoreCase(netmask))
+					valid = true;
+		}
+		return valid;
 	}
 
 }

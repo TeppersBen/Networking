@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.utils.NetworkConverter;
+import com.utils.OptionPane;
 import com.window.panels.PanelProtocol;
 import com.window.panels.nodes.vlsm.VLSMSpecializedCalculator;
 
@@ -60,6 +61,8 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 	@Override
 	protected void initListeners() {
 		buttonHosts.addActionListener(e -> {
+			if (!isValidInput())
+				return;
 			int value = Integer.parseInt(textfieldHosts.getText());
 			labelHostsTotalHosts.setText(" Hosts: " + VLSMSpecializedCalculator.getValidHost(value));
 			labelHostsResultCIDR.setText(" CIDR: " + VLSMSpecializedCalculator.getCIDR(value));
@@ -67,6 +70,21 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 			labelHostsClass.setText(" Class: " + NetworkConverter.getNetmaskClass(VLSMSpecializedCalculator.getNetmask(value)));
 			labelHostsTotalSubnets.setText(" Subnets: " + NetworkConverter.getTotalValidSubnets(Integer.parseInt(VLSMSpecializedCalculator.getCIDR(value))));
 		});
+	}
+	
+	private boolean isValidInput() {
+		int value = 0;
+		try {
+			value = Integer.parseInt(textfieldHosts.getText());
+		} catch (NumberFormatException ex) {
+			OptionPane.showErrorMessage("Invalid Host Request Input");
+			return false;
+		}
+		if (value < 0) {
+			OptionPane.showErrorMessage("Invalid Host Request Input");
+			return false;
+		}
+		return true;
 	}
 
 }
