@@ -28,15 +28,15 @@ public class WindowBuilder extends JFrame {
 	   	createWindowTitle(major, minor, bugs);
 	}
 	
-	public void build(PanelCategorySelection panelCategorySelection, PanelDisplay panelDisplay) {
+	public void init(PanelCategorySelection panelCategorySelection, PanelDisplay panelDisplay) {
 		setPanelCategorySelection(panelCategorySelection);
 		setPanelDisplay(panelDisplay);
-		layoutComponents();
 	}
 	
-	public void finish() {
+	public void build() {
 		SwingUtilities.invokeLater(() -> {
-			validate();
+			layoutComponents();
+			revalidate();
 			setVisible(true);
 		});
 	}

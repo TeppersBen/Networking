@@ -25,29 +25,14 @@ public class PanelDisplay extends  PanelProtocol{
 	private PanelLanguage panelLanguage;
 	private PanelConsole panelConsole;
 	
-	public void init(PanelWelcome welcome, PanelConverter converter, PanelVLSM vlsm, PanelLogging logging, PanelLanguage language, PanelConsole console) {
+	private void init(PanelWelcome welcome, PanelConverter converter, PanelVLSM vlsm, PanelLogging logging, PanelLanguage language, PanelConsole console) {
 		panelWelcome = welcome;
 		panelConverter = converter;
 		panelVLSM = vlsm;
 		panelLogging = logging;
 		panelLanguage = language;
 		panelConsole = console;
-	}
-	
-	@Override
-	protected void initComponents() {
-		cards = new JPanel(new CardLayout());
-		cards.setBorder(BorderFactory.createEmptyBorder(0, 7, 0, 0));
 		
-		panelWelcome = new PanelWelcome();
-		panelConverter = new PanelConverter();
-		panelVLSM = new PanelVLSM();
-		panelLogging = new PanelLogging();
-		panelLanguage = new PanelLanguage();
-	}
-
-	@Override
-	protected void layoutComponents() {
 		cards.add(panelWelcome, "panelWelcome");
 		cards.add(panelConverter, "panelConverter");
 		cards.add(panelVLSM, "panelVLSM");
@@ -55,6 +40,19 @@ public class PanelDisplay extends  PanelProtocol{
 		cards.add(panelLanguage, "panelLanguage");
 		add(cards);
 	}
+	
+	public PanelDisplay(PanelWelcome welcome, PanelConverter converter, PanelVLSM vlsm, PanelLogging logging, PanelLanguage language, PanelConsole console) {
+		super();
+		init(welcome, converter, vlsm, logging, language, console);
+	}
+	
+	@Override
+	protected void initComponents() {
+		cards = new JPanel(new CardLayout());
+		cards.setBorder(BorderFactory.createEmptyBorder(0, 7, 0, 0));
+	}
+
+	protected void layoutComponents() {}
 
 	@Override
 	protected void initListeners() {

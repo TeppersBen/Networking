@@ -31,11 +31,9 @@ public class Launcher {
 	}
 	
 	private static void init() {
-		Splash splash = new Splash(10);
+		Splash splash = new Splash(7);
 		splash.nextProgress("Init category panel...");
 		panelCategorySelection = new PanelCategorySelection();
-		splash.nextProgress("Init display panel...");
-		panelDisplay = new PanelDisplay();
 		splash.nextProgress("Init language panel...");
 		panelLanguage = new PanelLanguage();
 		splash.nextProgress("Init logging panel...");
@@ -50,11 +48,12 @@ public class Launcher {
 		panelConsole = new PanelConsole();
 		splash.nextProgress("Init window-builder utility...");
 		windowBuilder = new WindowBuilder(0, 4, 53);
-		splash.offer(windowBuilder);
-		splash.nextProgress("Assemble display panel...");
-		panelDisplay.init(panelWelcome, panelConverter, panelVLSM, panelLogging, panelLanguage, panelConsole);
-		splash.nextProgress("Assemble window-builder...");
-		windowBuilder.build(panelCategorySelection, panelDisplay);
+		splash.nextProgress("Init display panel...");
+		panelDisplay = new PanelDisplay(panelWelcome, panelConverter, panelVLSM, panelLogging, panelLanguage, panelConsole);
+		splash.nextProgress("Merge main-frames...");
+		windowBuilder.init(panelCategorySelection, panelDisplay);
+		splash.nextProgress("Starting SwingUtilities...");
+		splash.setWindowBuilder(windowBuilder);
 		splash.finishProgress();
 	}
 }

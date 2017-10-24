@@ -10,16 +10,17 @@ public class Splash extends JFrame {
 	private static final long serialVersionUID = 6434098313007678321L;
 
 	private JProgressBar progressBar;
-	private WindowBuilder windowBuilder;
 	
 	private boolean running = true;
 	
+	private WindowBuilder windowBuilder;
+	
 	private int step;
 	
-	private Thread thread = new Thread(() -> {
+	public Thread thread = new Thread(() -> {
 		while (running) {
-			if (getValue() >= 100) {
-				windowBuilder.finish();
+			if (getValue() >= 100 && windowBuilder != null) {
+				windowBuilder.build();
 				running = false;
 				dispose();
 			}
@@ -35,10 +36,6 @@ public class Splash extends JFrame {
 		add(progressBar);
 		setVisible(true);
 		thread.start();
-	}
-	
-	public void offer(WindowBuilder windowBuilder) {
-		this.windowBuilder = windowBuilder;
 	}
 	
 	private void initScreen() {
@@ -61,10 +58,14 @@ public class Splash extends JFrame {
 	
 	public void finishProgress() {
 		progressBar.setValue(100);
-		progressBar.setString("Starting, Please Wait...");
+		progressBar.setString("Launching Application...");
 	}
 	
 	public synchronized int getValue() {
 		return progressBar.getValue();
+	}
+	
+	public synchronized void setWindowBuilder(WindowBuilder windowBuilder) {
+		this.windowBuilder = windowBuilder;
 	}
 }
