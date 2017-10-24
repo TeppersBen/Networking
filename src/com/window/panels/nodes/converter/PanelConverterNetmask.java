@@ -156,7 +156,8 @@ public class PanelConverterNetmask extends PanelProtocol {
 					OptionPane.showErrorMessage(netmask + " is not a valid netmask!");
 					return;
 				}
-				labelNetmaskResult.setText(" Netmask: " + NetworkConverter.netmaskDecimalToCIDR(netmask));
+				labelNetmaskResult.setText("<html>&#160;Netmask: " + NetworkConverter.netmaskIntegerToIP(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask))) + "<br>"
+											+ "&#160;CIDR: " + NetworkConverter.netmaskDecimalToCIDR(netmask) + "</html>");
 				labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(netmask));
 				labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
 				labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
@@ -166,7 +167,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 					OptionPane.showErrorMessage(netmask + " is not a valid netmask!");
 					return;
 				}
-				labelNetmaskResult.setText(" Netmask: " + NetworkConverter.netmaskDecimalToCIDR(netmask));
+				labelNetmaskResult.setText(" CIDR: " + NetworkConverter.netmaskDecimalToCIDR(netmask));
 				labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(netmask));
 				labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
 				labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));

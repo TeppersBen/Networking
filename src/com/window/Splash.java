@@ -51,9 +51,17 @@ public class Splash extends JFrame {
 		progressBar.setString(message);
 	}
 	
-	public void nextProgress(String message) {
-		progressBar.setValue(progressBar.getValue() + step);
+	public void nextProgressMessage(String message) {
 		progressBar.setString(message + "...");
+	}
+	
+	public void nextProgress() {
+		progressBar.setValue(progressBar.getValue() + step);
+		try {
+			Thread.sleep(65);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void finishProgress() {

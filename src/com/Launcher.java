@@ -1,6 +1,7 @@
 package com;
 
 import com.development.PanelConsole;
+import com.utils.Logger;
 import com.window.Splash;
 import com.window.WindowBuilder;
 import com.window.panels.PanelCategorySelection;
@@ -26,58 +27,63 @@ public class Launcher {
 	
 	public static void main(String[] args) {
 		Settings.debug = false;
-		Settings.versionRelease = "0.04.0024.059";
-		init(0, 4, 59);
+		Settings.versionRelease = "0.04.0024.060";
+		init(0, 4, 60);
 	}
 	
 	private static void init(int major, int minor, int bugfixes) {
 		Splash splash = new Splash(20);
 		
 		//main frames
-		splash.nextProgress("Init category panel");
+		splash.nextProgressMessage("Creating main-frames");
 		panelCategorySelection = new PanelCategorySelection();
-		splash.nextProgress("Init window-builder utility");
+		splash.nextProgress();
 		windowBuilder = new WindowBuilder(major, minor, bugfixes);
-		splash.nextProgress("Init display panel");
+		splash.nextProgress();
 		panelDisplay = new PanelDisplay();
 		
 		//nodes
-		splash.nextProgress("Init node language");
+		splash.nextProgressMessage("Creating nodes");
+		splash.nextProgress();
 		panelLanguage = new PanelLanguage();
-		splash.nextProgress("Init node logging");
+		splash.nextProgress();
 		panelLogging = new PanelLogging();
-		splash.nextProgress("Init node welcome");
+		splash.nextProgress();
 		panelWelcome = new PanelWelcome();
-		splash.nextProgress("Init node converter");
+		splash.nextProgress();
 		panelConverter = new PanelConverter();
-		splash.nextProgress("Init node VLSM");
+		splash.nextProgress();
 		panelVLSM = new PanelVLSM();
-		splash.nextProgress("Init node Console");
+		splash.nextProgress();
 		panelConsole = new PanelConsole();
 		
 		//adding nodes to display
-		splash.nextProgress("Add node language");
+		splash.nextProgressMessage("Adding nodes to NodeManager");
+		splash.nextProgress();
 		panelDisplay.addNodePanel(panelLanguage);
-		splash.nextProgress("Add node Logging");
+		splash.nextProgress();
 		panelDisplay.addNodePanel(panelLogging);
-		splash.nextProgress("Add node Welcome");
+		splash.nextProgress();
 		panelDisplay.addNodePanel(panelWelcome);
-		splash.nextProgress("Add node Converter");
+		splash.nextProgress();
 		panelDisplay.addNodePanel(panelConverter);
-		splash.nextProgress("Add node VLSM");
+		splash.nextProgress();
 		panelDisplay.addNodePanel(panelVLSM);
-		splash.nextProgress("Add node Console");
+		splash.nextProgress();
 		panelDisplay.addNodePanel(panelConsole);
 		
 		//merge the nodes into the panel itself
-		splash.nextProgress("Activating display panel");
+		splash.nextProgressMessage("Getting nodes ready to be displayed");
+		splash.nextProgress();
 		panelDisplay.build();
 		
 		//preparing for launch
-		splash.nextProgress("Merge main-frames");
+		splash.nextProgressMessage("Almost done, Preparing for launch");
+		splash.nextProgress();
 		windowBuilder.init(panelCategorySelection, panelDisplay);
-		splash.nextProgress("Starting SwingUtilities");
+		splash.nextProgress();
 		splash.setWindowBuilder(windowBuilder);
 		splash.finishProgress();
+		Logger.log("Done...");
 	}
 }
