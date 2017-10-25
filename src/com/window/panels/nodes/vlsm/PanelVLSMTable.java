@@ -19,8 +19,9 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import com.Settings;
+import com.utils.calculators.VLSMSpecializedCalculator;
 
-public class VLSMTable extends JFrame {
+public class PanelVLSMTable extends JFrame {
 
 	private static final long serialVersionUID = -4010383195907305739L;
 	

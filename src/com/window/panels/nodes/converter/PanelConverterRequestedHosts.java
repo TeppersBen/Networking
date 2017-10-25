@@ -7,10 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.utils.NetworkConverter;
 import com.utils.OptionPane;
+import com.utils.calculators.NetworkConverter;
+import com.utils.calculators.VLSMSpecializedCalculator;
 import com.window.panels.PanelProtocol;
-import com.window.panels.nodes.vlsm.VLSMSpecializedCalculator;
 
 public class PanelConverterRequestedHosts extends PanelProtocol {
 

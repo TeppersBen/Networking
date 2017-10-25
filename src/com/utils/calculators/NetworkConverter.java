@@ -1,4 +1,4 @@
-package com.utils;
+package com.utils.calculators;
 
 import java.util.Arrays;
 import java.util.List;

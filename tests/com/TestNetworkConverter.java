@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.utils.NetworkConverter;
+import com.utils.calculators.NetworkConverter;
 
 class TestNetworkConverter {
 

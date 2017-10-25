@@ -7,8 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.utils.NetworkConverter;
 import com.utils.OptionPane;
+import com.utils.calculators.NetworkConverter;
 import com.window.panels.PanelProtocol;
 
 public class PanelConverterAddress extends PanelProtocol {

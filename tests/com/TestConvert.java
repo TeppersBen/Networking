@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.utils.Convert;
+import com.utils.calculators.Convert;
 
 class TestConvert {
 

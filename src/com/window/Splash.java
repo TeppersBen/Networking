@@ -73,7 +73,7 @@ public class Splash extends JFrame {
 		return progressBar.getValue();
 	}
 	
-	public synchronized void setWindowBuilder(WindowBuilder windowBuilder) {
+	public void setWindowBuilder(WindowBuilder windowBuilder) {
 		this.windowBuilder = windowBuilder;
 	}
 }

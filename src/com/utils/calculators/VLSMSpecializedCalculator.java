@@ -1,6 +1,4 @@
-package com.window.panels.nodes.vlsm;
-
-import com.utils.NetworkConverter;
+package com.utils.calculators;
 
 public class VLSMSpecializedCalculator extends NetworkConverter {
 	

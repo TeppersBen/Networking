@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.utils.Formatter;
-import com.utils.NetworkConverter;
 import com.utils.OptionPane;
+import com.utils.calculators.NetworkConverter;
 import com.window.panels.PanelProtocol;
 
 public class PanelConverterNetmask extends PanelProtocol {

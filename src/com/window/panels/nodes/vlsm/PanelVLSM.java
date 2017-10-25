@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import com.utils.OptionPane;
+import com.utils.calculators.VLSMSpecializedCalculator;
 import com.window.panels.PanelProtocol;
 
 public class PanelVLSM extends PanelProtocol {
@@ -33,7 +34,7 @@ public class PanelVLSM extends PanelProtocol {
 	
 	private JScrollPane scroll;
 	
-	private VLSMTable converter;
+	private PanelVLSMTable converter;
 
 	@Override
 	protected void initComponents() {
@@ -52,7 +53,7 @@ public class PanelVLSM extends PanelProtocol {
 		
 		scroll = new JScrollPane();
 		
-		converter = new VLSMTable();
+		converter = new PanelVLSMTable();
 	}
 
 	@Override
@@ -120,7 +121,7 @@ public class PanelVLSM extends PanelProtocol {
 				if (!isReadyToCreateTable())	
 					return;
 				converter.dispatchEvent(new WindowEvent(converter, WindowEvent.WINDOW_CLOSING));
-				converter = new VLSMTable();
+				converter = new PanelVLSMTable();
 				converter.build(textMajorNetwork.getText(), panelSubnetTable.getData());
 			});
 		});
