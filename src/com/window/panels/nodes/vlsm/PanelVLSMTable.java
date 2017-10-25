@@ -134,14 +134,16 @@ class Table extends JPanel {
 	public String[][] createDataHolder(String majorNetwork, JTextField[][] data) {
 		String[][] result = new String[data.length][8];
 		data = sortArrayDependingOnRequestedSize(data);
-		String[] net = VLSMSpecializedCalculator.calculateNetwork(majorNetwork, 0);
+		String network = majorNetwork.split("/")[0];
+		int mask = Integer.parseInt(majorNetwork.split("/")[1]);
+		String[] net = VLSMSpecializedCalculator.calculateNetwork(network, mask);
 		int cidr = 0;
 		for (int i = 0; i < data.length; i++) {
 			cidr = Integer.parseInt(VLSMSpecializedCalculator.getCIDR(Integer.parseInt(VLSMSpecializedCalculator.getValidHost(Integer.parseInt(data[i][1].getText())))));
 			if (i != 0) 
 				net = VLSMSpecializedCalculator.calculateNetwork(VLSMSpecializedCalculator.ipAdd(net[3], 1), cidr);
 			else
-				net = VLSMSpecializedCalculator.calculateNetwork(majorNetwork, cidr);
+				net = VLSMSpecializedCalculator.calculateNetwork(network, cidr);
 			for (int x = 0; x < result[0].length; x++) {
 				switch(x) {
 				case 0: //subnet name

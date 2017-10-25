@@ -145,8 +145,8 @@ public class PanelConverterNetmask extends PanelProtocol {
 	private void sendOutput(boolean isCIDR, boolean isBinary) {
 		if (isCIDR) {
 			int netmask = Integer.parseInt(textfieldNetmask.getText());
-			labelNetmaskResult.setText(" Netmask: " + NetworkConverter.netmaskIntegerToIP(netmask));
-			labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(NetworkConverter.netmaskIntegerToIP(netmask)));
+			labelNetmaskResult.setText(" Netmask: " + NetworkConverter.netmaskCIDRtoDecimal(netmask));
+			labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(NetworkConverter.netmaskCIDRtoDecimal(netmask)));
 			labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(netmask)));
 			labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(netmask)));
 		} else {
@@ -156,7 +156,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 					OptionPane.showErrorMessage(netmask + " is not a valid netmask!");
 					return;
 				}
-				labelNetmaskResult.setText("<html>&#160;Netmask: " + NetworkConverter.netmaskIntegerToIP(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask))) + "<br>"
+				labelNetmaskResult.setText("<html>&#160;Netmask: " + NetworkConverter.netmaskCIDRtoDecimal(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask))) + "<br>"
 											+ "&#160;CIDR: " + NetworkConverter.netmaskDecimalToCIDR(netmask) + "</html>");
 				labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(netmask));
 				labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));

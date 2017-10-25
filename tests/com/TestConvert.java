@@ -12,11 +12,6 @@ import com.utils.calculators.Convert;
 class TestConvert {
 
 	@Test
-	void checkNetmaskIntegerToBinary() {
-		assertEquals("11111111.11111111.11110000.00000000", Convert.netmaskIntegerToBinary(20));
-	}
-
-	@Test
 	void checkBinaryToDecimal() {
 		assertEquals("192", Convert.binaryToDecimal("11000000"));
 		assertEquals("1", Convert.binaryToDecimal("00000001"));
