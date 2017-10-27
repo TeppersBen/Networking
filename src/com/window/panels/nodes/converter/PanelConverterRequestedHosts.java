@@ -7,7 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.utils.OptionPane;
+import com.Settings;
+import com.utils.Popup;
 import com.utils.calculators.NetworkConverter;
 import com.utils.calculators.VLSMSpecializedCalculator;
 import com.window.panels.PanelProtocol;
@@ -24,6 +25,7 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 	private JLabel labelHostsTotalSubnets;
 	private JTextField textfieldHosts;
 	private JButton buttonHosts;
+	private JButton buttonHelp;
 	
 	@Override
 	protected void initComponents() {
@@ -35,6 +37,7 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 		labelHostsTotalHosts = new JLabel(" Hosts: ");
 		textfieldHosts = new JTextField(11);
 		buttonHosts = new JButton("Convert hosts");
+		buttonHelp = new JButton("?");
 	}
 
 	@Override
@@ -43,6 +46,9 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 		JPanel panelHostsSub = new JPanel(new BorderLayout());
 		JPanel panelHostsResult = new JPanel(new BorderLayout());
 		JPanel panelHostsResult1 = new JPanel(new BorderLayout());
+		JPanel panelButtons = new JPanel(new BorderLayout());
+		panelButtons.add(buttonHosts, BorderLayout.CENTER);
+		panelButtons.add(buttonHelp, BorderLayout.EAST);
 		setEmptyFieldSet(panelHosts);
 		panelHostsSub.add(labelHosts, BorderLayout.WEST);
 		panelHostsSub.add(textfieldHosts, BorderLayout.CENTER);
@@ -51,7 +57,7 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 		panelHostsResult.add(labelHostsClass, BorderLayout.SOUTH);
 		panelHostsResult1.add(labelHostsTotalSubnets, BorderLayout.NORTH);
 		panelHostsResult1.add(labelHostsTotalHosts, BorderLayout.CENTER);
-		panelHostsResult1.add(buttonHosts, BorderLayout.SOUTH);
+		panelHostsResult1.add(panelButtons, BorderLayout.SOUTH);
 		panelHosts.add(panelHostsSub, BorderLayout.NORTH);
 		panelHosts.add(panelHostsResult, BorderLayout.CENTER);
 		panelHosts.add(panelHostsResult1, BorderLayout.SOUTH);
@@ -70,6 +76,12 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 			labelHostsClass.setText(" Class: " + NetworkConverter.getNetmaskClass(VLSMSpecializedCalculator.getNetmask(value)));
 			labelHostsTotalSubnets.setText(" Subnets: " + NetworkConverter.getTotalValidSubnets(Integer.parseInt(VLSMSpecializedCalculator.getCIDR(value))));
 		});
+		buttonHelp.addActionListener(e -> {
+			if (Settings.debug)
+				showHelp();
+			else
+				Popup.showMaintenanceMessage();
+		});
 	}
 	
 	private boolean isValidInput() {
@@ -77,14 +89,20 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 		try {
 			value = Integer.parseInt(textfieldHosts.getText());
 		} catch (NumberFormatException ex) {
-			OptionPane.showErrorMessage("Invalid Host Request Input");
+			Popup.showErrorMessage("Invalid Host Request Input");
 			return false;
 		}
 		if (value < 0) {
-			OptionPane.showErrorMessage("Invalid Host Request Input");
+			Popup.showErrorMessage("Invalid Host Request Input");
 			return false;
 		}
 		return true;
 	}
 
+	private void showHelp() {
+		String whatIsIt = "";
+		String howDoesItWork = "";
+		String example = "";
+		Popup.showHelpMessage(whatIsIt, howDoesItWork, example);
+	}
 }

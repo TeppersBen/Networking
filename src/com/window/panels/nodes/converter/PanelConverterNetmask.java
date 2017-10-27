@@ -7,8 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.Settings;
 import com.utils.Formatter;
-import com.utils.OptionPane;
+import com.utils.Popup;
 import com.utils.calculators.NetworkConverter;
 import com.window.panels.PanelProtocol;
 
@@ -23,6 +24,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 	private JLabel labelNetmaskTotalSubnets;
 	private JTextField textfieldNetmask;
 	private JButton buttonNetmask;
+	private JButton buttonHelp;
 	
 	@Override
 	protected void initComponents() {
@@ -33,6 +35,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 		labelNetmaskTotalHosts = new JLabel(" Hosts: ");
 		textfieldNetmask = new JTextField(11);
 		buttonNetmask = new JButton("Convert Netmask");
+		buttonHelp = new JButton("?");
 	}
 	
 	@Override
@@ -41,14 +44,17 @@ public class PanelConverterNetmask extends PanelProtocol {
 		JPanel panelNetmaskSub = new JPanel(new BorderLayout());
 		JPanel panelNetmaskResult = new JPanel(new BorderLayout());
 		JPanel panelNetmaskResult1 = new JPanel(new BorderLayout());
+		JPanel panelButtons = new JPanel(new BorderLayout());
 		setEmptyFieldSet(panelNetmask);
+		panelButtons.add(buttonNetmask, BorderLayout.CENTER);
+		panelButtons.add(buttonHelp, BorderLayout.EAST);
 		panelNetmaskSub.add(labelNetmask, BorderLayout.WEST);
 		panelNetmaskSub.add(textfieldNetmask, BorderLayout.CENTER);
 		panelNetmaskResult.add(labelNetmaskResult, BorderLayout.NORTH);
 		panelNetmaskResult.add(labelNetmaskClass, BorderLayout.CENTER);
 		panelNetmaskResult.add(labelNetmaskTotalSubnets, BorderLayout.SOUTH);
 		panelNetmaskResult1.add(labelNetmaskTotalHosts, BorderLayout.NORTH);
-		panelNetmaskResult1.add(buttonNetmask, BorderLayout.CENTER);
+		panelNetmaskResult1.add(panelButtons, BorderLayout.CENTER);
 		panelNetmask.add(panelNetmaskSub, BorderLayout.NORTH);
 		panelNetmask.add(panelNetmaskResult, BorderLayout.CENTER);
 		panelNetmask.add(panelNetmaskResult1, BorderLayout.SOUTH);
@@ -77,6 +83,12 @@ public class PanelConverterNetmask extends PanelProtocol {
 				}
 				sendOutput(false, false);
 			}
+		});
+		buttonHelp.addActionListener(e -> {
+			if (Settings.debug)
+				showHelp();
+			else
+				Popup.showMaintenanceMessage();
 		});
 	}
 	private boolean isCIDRNotation() {
@@ -136,7 +148,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 	}
 	
 	private void sendErrorMessage() {
-		OptionPane.showErrorMessage("Invalid Netmask Detected!<br>" 
+		Popup.showErrorMessage("Invalid Netmask Detected!<br>" 
 				+ "Example: (decimal) 255.255.0.0<br>" 
 				+ "Example: (binary) 11111111.11111111.00000000.00000000<br>"
 				+ "Example: (CIDR) 16 [range: (0 - 32)]");
@@ -153,7 +165,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 			if (isBinary) {
 				String netmask = NetworkConverter.binaryIPv4ToDecimal(textfieldNetmask.getText());
 				if (!NetworkConverter.isValidNetmask(netmask)) {
-					OptionPane.showErrorMessage(netmask + " is not a valid netmask!");
+					Popup.showErrorMessage(netmask + " is not a valid netmask!");
 					return;
 				}
 				labelNetmaskResult.setText("<html>&#160;Netmask: " + NetworkConverter.netmaskCIDRtoDecimal(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask))) + "<br>"
@@ -164,7 +176,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 			} else {
 				String netmask = textfieldNetmask.getText();
 				if (!NetworkConverter.isValidNetmask(netmask)) {
-					OptionPane.showErrorMessage(netmask + " is not a valid netmask!");
+					Popup.showErrorMessage(netmask + " is not a valid netmask!");
 					return;
 				}
 				labelNetmaskResult.setText(" CIDR: " + NetworkConverter.netmaskDecimalToCIDR(netmask));
@@ -173,5 +185,30 @@ public class PanelConverterNetmask extends PanelProtocol {
 				labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
 			}
 		}
+	}
+	
+	private void showHelp() {
+		final String SPACE = "&nbsp;&nbsp;&nbsp;&nbsp;";
+		String whatIsIt = "A subnetwork or subnet is a logical subdivision of an IP network.<br>"
+				+ "The practice of dividing a network into two or more networks is called subnetting.<br>"
+				+ "Computers that belong to a subnet are addressed with a common, identical,<br>"
+				+ "most-significant bit-group in their IP address.<br>"
+				+ "This results in the logical division of an IP address into two fields,<br>"
+				+ "a network number or routing prefix and the rest field or host identifier.<br>"
+				+ "The rest field is an identifier for a specific host or network interface.";
+		String howDoesItWork = "This converter allows you following convertions:<br>"
+				+ SPACE + ">>-> netmask (decimal) -> [CIDR;Class;Subnets;UsableHosts]<br>"
+				+ SPACE + ">>-> netmask (binary) -> [Netmask(decimal);CIDR;Class;Subnets;UsableHosts]<br>"
+				+ SPACE + ">>-> CIDR -> [netmask(decimal);Class;Subnets;UsableHosts]";
+		String example = "Netmask (decimal):<br>"
+				+ SPACE + ">>-> Input: 255.255.255.0<br>"
+				+ SPACE + ">>-> Output: [CIDR: 24; Class: C; Subnets: 1; UsableHosts: 254]<br>"
+				+ "Netmask (binary)<br>"
+				+ SPACE + ">>-> Input: 11111111.11111111.11111111.00000000<br>"
+				+ SPACE + ">>-> Output: [Netmask(decimal): 255.255.255.0; CIDR: 24; Class: C; Subnets: 1; UsableHosts: 254]<br>"
+				+ "CIDR:<br>"
+				+ SPACE + ">>-> Input: 24<br>"
+				+ SPACE + ">>-> Output: [netmask(decimal): 255.255.255.0; Class: C; Subnets: 1; UsableHosts: 254]";
+		Popup.showHelpMessage(whatIsIt, howDoesItWork, example);
 	}
 }

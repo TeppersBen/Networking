@@ -58,7 +58,7 @@ public class Splash extends JFrame {
 	public void nextProgress() {
 		progressBar.setValue(progressBar.getValue() + step);
 		try {
-			Thread.sleep(65);
+			Thread.sleep(10);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

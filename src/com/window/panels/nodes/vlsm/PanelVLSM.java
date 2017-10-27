@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import com.utils.OptionPane;
+import com.utils.Popup;
 import com.utils.calculators.VLSMSpecializedCalculator;
 import com.window.panels.PanelProtocol;
 
@@ -105,14 +105,14 @@ public class PanelVLSM extends PanelProtocol {
 			try {
 				int subnets = Integer.parseInt(textNumberofSubnets.getText());
 				if (subnets > 20) {
-					OptionPane.showErrorMessage("Subnets limited to 20!");
+					Popup.showErrorMessage("Subnets limited to 20!");
 				} else if (subnets < 1) {
-					OptionPane.showErrorMessage("CIDR Notation Too Low!");
+					Popup.showErrorMessage("CIDR Notation Too Low!");
 				} else {
 					panelSubnetTable.updateTable(subnets);
 				}
 			} catch (NumberFormatException ex) {
-				OptionPane.showErrorMessage("Invalid Subnet Input!<br>Valid Subnets: 1 - 20");
+				Popup.showErrorMessage("Invalid Subnet Input!<br>Valid Subnets: 1 - 20");
 			}
 		});
 		
@@ -131,27 +131,27 @@ public class PanelVLSM extends PanelProtocol {
 		String ip = textMajorNetwork.getText().split("/")[0];
 		int ipValue = 0;
 		if (textMajorNetwork.getText().split("/").length != 2) {
-			OptionPane.showErrorMessage("Invalid Major Network.<br>Example: 192.168.0.0/24");
+			Popup.showErrorMessage("Invalid Major Network.<br>Example: 192.168.0.0/24");
 			return false;
 		}
 		if (ip.split("\\.").length != 4) {
-			OptionPane.showErrorMessage("Invalid Major Network.<br>Example: 192.168.0.0/24");
+			Popup.showErrorMessage("Invalid Major Network.<br>Example: 192.168.0.0/24");
 			return false;
 		}
 		try {
 			int CIDR = Integer.parseInt(textMajorNetwork.getText().split("/")[1]);
 			if (CIDR < 0 || CIDR > 32) {
-				OptionPane.showErrorMessage("Invalid CIDR!");
+				Popup.showErrorMessage("Invalid CIDR!");
 				return false;
 			}
 		} catch (NumberFormatException ex) {
-			OptionPane.showErrorMessage("Invalid CIDR Notation!<br>Valid CIDR Notations: 0 - 32");
+			Popup.showErrorMessage("Invalid CIDR Notation!<br>Valid CIDR Notations: 0 - 32");
 			return false;
 		}
 		for (int i = 0; i < 4; i++) {
 			ipValue = Integer.parseInt(ip.split("\\.")[i]);
 			if (ipValue < 0 || ipValue > 255) {
-				OptionPane.showErrorMessage("Invalid Major Network Segment Range.<br>Valid Segment range: 0 - 255");
+				Popup.showErrorMessage("Invalid Major Network Segment Range.<br>Valid Segment range: 0 - 255");
 				return false;
 			}
 		}
@@ -162,7 +162,7 @@ public class PanelVLSM extends PanelProtocol {
 		int totalHosts = Integer.parseInt(textMajorNetwork.getText().split("/")[1]);
 		totalHosts = VLSMSpecializedCalculator.getTotalValidHosts(totalHosts);
 		if (panelSubnetTable.getTotalRequestedHostSize() > totalHosts) {
-			OptionPane.showErrorMessage("Impossible To Make VLSM With Given Values!<br>"
+			Popup.showErrorMessage("Impossible To Make VLSM With Given Values!<br>"
 					+ "Major Network Only Allows " + totalHosts + " Hosts.");
 			return false;
 		}
@@ -171,7 +171,7 @@ public class PanelVLSM extends PanelProtocol {
 	
 	private boolean isReadyToCreateTable() {
 		if (textMajorNetwork.getText().isEmpty() || !panelSubnetTable.isReadyToCreateTable()) {
-			OptionPane.showErrorMessage("Empty Fields Detected!");
+			Popup.showErrorMessage("Empty Fields Detected!");
 			return false;
 		}
 		if (!panelSubnetTable.isSubnetSizesValid()) {
@@ -228,7 +228,7 @@ class SubnetPanelCreator extends JPanel {
 			try {
 				Integer.parseInt(data[i][1].getText());
 			} catch (NumberFormatException ex) {
-				OptionPane.showErrorMessage("Invalid Subnet Size Detected!");
+				Popup.showErrorMessage("Invalid Subnet Size Detected!");
 				return false;
 			}
 			
