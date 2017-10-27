@@ -26,7 +26,7 @@ public class Launcher {
 	private static PanelConsole panelConsole;
 	
 	public static void main(String[] args) {
-		Settings.debug = false;
+		Settings.debug = true;
 		Settings.versionRelease = "0.04.0024.060";
 		init(0, 4, 60);
 	}

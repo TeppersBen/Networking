@@ -100,9 +100,13 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 	}
 
 	private void showHelp() {
-		String whatIsIt = "";
-		String howDoesItWork = "";
-		String example = "";
+		final String SPACE = "&nbsp;&nbsp;&nbsp;&nbsp;";
+		String whatIsIt = "Each subnet has a limited amount of usable hosts.<br>"
+				+ "This converter will help you figure out what netmask you should<br>"
+				+ "use for your requested host size.";
+		String howDoesItWork = SPACE + ">>-> Integer value -> [CIDR;Netmask(decimal);Class;Subnets;UsableHosts]";
+		String example = SPACE + ">>-> Input: 50<br>"
+				+ SPACE + ">>-> Output: [CIDR: 26; Netmask(decimal): 255.255.255.192; Class: C; Subnets: 4; UsableHosts: 62]";
 		Popup.showHelpMessage(whatIsIt, howDoesItWork, example);
 	}
 }
