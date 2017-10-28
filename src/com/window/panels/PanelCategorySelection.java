@@ -50,10 +50,10 @@ public class PanelCategorySelection extends PanelProtocol {
 	}
 
 	private void createTree() {
-		createNode("Session", Arrays.asList("Logging", "Settings"));
+		createNode("Session", Arrays.asList("Logging"));
 		createNode("Calculators", Arrays.asList("Converter", "VLSM"));
 		if (Settings.debug) {
-			createNode("Development", Arrays.asList("Console"));
+			createNode("Development", Arrays.asList("Console", "Settings"));
 		}
 	}
 
