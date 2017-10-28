@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 
 import com.window.panels.PanelProtocol;
 
-public class PanelLanguage extends PanelProtocol {
+public class PanelSettings extends PanelProtocol {
 
 	private static final long serialVersionUID = 4641275705589733896L;
 
@@ -15,7 +15,7 @@ public class PanelLanguage extends PanelProtocol {
 
 	@Override
 	protected void layoutComponents() {
-		add(setTitle("Language"), BorderLayout.NORTH);
+		add(setTitle("Settings"), BorderLayout.NORTH);
 	}
 
 	@Override

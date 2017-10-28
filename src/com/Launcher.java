@@ -6,7 +6,7 @@ import com.window.Splash;
 import com.window.WindowBuilder;
 import com.window.panels.PanelCategorySelection;
 import com.window.panels.PanelDisplay;
-import com.window.panels.nodes.PanelLanguage;
+import com.window.panels.nodes.PanelSettings;
 import com.window.panels.nodes.PanelLogging;
 import com.window.panels.nodes.PanelWelcome;
 import com.window.panels.nodes.converter.PanelConverter;
@@ -18,7 +18,7 @@ public class Launcher {
 	
 	private static PanelCategorySelection panelCategorySelection;
 	private static PanelDisplay panelDisplay;	
-	private static PanelLanguage panelLanguage;	
+	private static PanelSettings panelSettings;	
 	private static PanelLogging panelLogging;
 	private static PanelWelcome panelWelcome;	
 	private static PanelConverter panelConverter;
@@ -45,7 +45,7 @@ public class Launcher {
 		//nodes
 		splash.nextProgressMessage("Creating nodes");
 		splash.nextProgress();
-		panelLanguage = new PanelLanguage();
+		panelSettings = new PanelSettings();
 		splash.nextProgress();
 		panelLogging = new PanelLogging();
 		splash.nextProgress();
@@ -60,7 +60,7 @@ public class Launcher {
 		//adding nodes to display
 		splash.nextProgressMessage("Adding nodes to NodeManager");
 		splash.nextProgress();
-		panelDisplay.addNodePanel(panelLanguage);
+		panelDisplay.addNodePanel(panelSettings);
 		splash.nextProgress();
 		panelDisplay.addNodePanel(panelLogging);
 		splash.nextProgress();
