@@ -13,11 +13,16 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import com.handlers.LanguageHandler;
 import com.utils.Popup;
 import com.utils.calculators.VLSMSpecializedCalculator;
 import com.window.panels.PanelProtocol;
 
 public class PanelVLSM extends PanelProtocol {
+
+	public PanelVLSM(LanguageHandler languageHandler) {
+		super(languageHandler);
+	}
 
 	private static final long serialVersionUID = -4200773632900692796L;
 

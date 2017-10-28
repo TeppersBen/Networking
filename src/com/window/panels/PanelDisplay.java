@@ -6,8 +6,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import com.development.PanelConsole;
+import com.handlers.LanguageHandler;
 
 public class PanelDisplay extends PanelProtocol {
+
+	public PanelDisplay(LanguageHandler languageHandler) {
+		super(languageHandler);
+	}
 
 	private static final long serialVersionUID = 7990656968647138863L;
 	
@@ -43,7 +48,7 @@ public class PanelDisplay extends PanelProtocol {
 	protected void initDebug() {
 		if (!isDebug())
 			return;
-		panelConsole = new PanelConsole();
+		panelConsole = new PanelConsole(languageHandler);
 		cards.add(panelConsole, "panelConsole");
 	}
 

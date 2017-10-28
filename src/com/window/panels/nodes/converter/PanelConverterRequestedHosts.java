@@ -8,12 +8,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.Settings;
+import com.handlers.LanguageHandler;
 import com.utils.Popup;
 import com.utils.calculators.NetworkConverter;
 import com.utils.calculators.VLSMSpecializedCalculator;
 import com.window.panels.PanelProtocol;
 
 public class PanelConverterRequestedHosts extends PanelProtocol {
+
+	public PanelConverterRequestedHosts(LanguageHandler languageHandler) {
+		super(languageHandler);
+	}
 
 	private static final long serialVersionUID = 2371930704559590937L;
 

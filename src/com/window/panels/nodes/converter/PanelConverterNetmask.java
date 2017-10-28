@@ -8,12 +8,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.Settings;
+import com.handlers.LanguageHandler;
 import com.utils.Formatter;
 import com.utils.Popup;
 import com.utils.calculators.NetworkConverter;
 import com.window.panels.PanelProtocol;
 
 public class PanelConverterNetmask extends PanelProtocol {
+
+	public PanelConverterNetmask(LanguageHandler languageHandler) {
+		super(languageHandler);
+	}
 
 	private static final long serialVersionUID = 8395957340899010044L;
 	

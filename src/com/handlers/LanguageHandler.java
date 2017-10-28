@@ -1,26 +1,25 @@
 package com.handlers;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class LanguageHandler {
 
-	/*
-	 * TODO, implement class
-	 * 
-	 * This class is supposed to be initialized on startup.
-	 * Holds a method to change language and refresh all tabs whenever the system changes language.
-	 * Location: Resources >> Language >> ...
-	 */
+	private Locale locale;
+	private ResourceBundle bundle;
 	
 	public LanguageHandler() {
-		//TODO, initialize resourcebundle with its locale.
+		Locale locale = new Locale("en", "GB");
+		bundle = ResourceBundle.getBundle("resources.language.language", locale);
 	}
 	
 	public String getKey(String key) {
-		//TODO, return key value.
-		return null;
+		return bundle.getString(key);
 	}
 	
-	public void changeLanguage() {
-		//TODO, change language and refresh all frames.
+	public void changeLanguage(String language, String country) {
+		locale = new Locale(language, country);
+		bundle = ResourceBundle.getBundle("resources.language.language", locale);
 	}
 	
 }

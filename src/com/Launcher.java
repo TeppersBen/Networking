@@ -1,6 +1,7 @@
 package com;
 
 import com.development.PanelConsole;
+import com.handlers.LanguageHandler;
 import com.utils.Logger;
 import com.window.Splash;
 import com.window.WindowBuilder;
@@ -15,6 +16,7 @@ import com.window.panels.nodes.vlsm.PanelVLSM;
 public class Launcher {
 
 	private static WindowBuilder windowBuilder;
+	private static LanguageHandler languageHandler;
 	
 	private static PanelCategorySelection panelCategorySelection;
 	private static PanelDisplay panelDisplay;	
@@ -32,30 +34,35 @@ public class Launcher {
 	}
 	
 	private static void init(int major, int minor, int bugfixes) {
-		Splash splash = new Splash(20);
+		Splash splash = new Splash(21);
+		
+		//handlers
+		splash.nextProgressMessage("Initializing handlers");
+		languageHandler = new LanguageHandler();
+		splash.nextProgress();
 		
 		//main frames
 		splash.nextProgressMessage("Creating main-frames");
-		panelCategorySelection = new PanelCategorySelection();
+		panelCategorySelection = new PanelCategorySelection(languageHandler);
 		splash.nextProgress();
 		windowBuilder = new WindowBuilder(major, minor, bugfixes);
 		splash.nextProgress();
-		panelDisplay = new PanelDisplay();
+		panelDisplay = new PanelDisplay(languageHandler);
 		
 		//nodes
 		splash.nextProgressMessage("Creating nodes");
 		splash.nextProgress();
-		panelSettings = new PanelSettings();
+		panelSettings = new PanelSettings(languageHandler);
 		splash.nextProgress();
-		panelLogging = new PanelLogging();
+		panelLogging = new PanelLogging(languageHandler);
 		splash.nextProgress();
-		panelWelcome = new PanelWelcome();
+		panelWelcome = new PanelWelcome(languageHandler);
 		splash.nextProgress();
-		panelConverter = new PanelConverter();
+		panelConverter = new PanelConverter(languageHandler);
 		splash.nextProgress();
-		panelVLSM = new PanelVLSM();
+		panelVLSM = new PanelVLSM(languageHandler);
 		splash.nextProgress();
-		panelConsole = new PanelConsole();
+		panelConsole = new PanelConsole(languageHandler);
 		
 		//adding nodes to display
 		splash.nextProgressMessage("Adding nodes to NodeManager");

@@ -8,14 +8,18 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.Settings;
+import com.handlers.LanguageHandler;
 import com.utils.LookAndFeelManager;
 
 public abstract class PanelProtocol extends JPanel {
 
 	private static final long serialVersionUID = 3246826528396342033L;
 	
-	public PanelProtocol() {
+	protected LanguageHandler languageHandler;
+	
+	public PanelProtocol(LanguageHandler languageHandler) {
 		setLayout(new BorderLayout());
+		this.languageHandler = languageHandler;
 		LookAndFeelManager.initLookAndFeel();
 		initComponents();
 		initDebug();
