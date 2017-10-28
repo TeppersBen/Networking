@@ -28,11 +28,11 @@ public class PanelConverterAddress extends PanelProtocol {
 	
 	@Override
 	protected void initComponents() {
-		labelAddress = new JLabel(" IPv4 Address: ");
-		labelAddressResult = new JLabel(" Address: ");
+		labelAddress = new JLabel(" " + languageHandler.getKey("converter_IPv4_label_IPv4_Address") + ": ");
+		labelAddressResult = new JLabel(" " + languageHandler.getKey("converter_IPv4_label_Address") + ": ");
 		textfieldAddress = new JTextField(11);
-		buttonAddress = new JButton("Convert Address");
-		buttonHelp = new JButton("?");
+		buttonAddress = new JButton(languageHandler.getKey("converter_IPv4_button_ConvertAddress"));
+		buttonHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 	}
 
 	@Override
@@ -54,9 +54,7 @@ public class PanelConverterAddress extends PanelProtocol {
 	}
 
 	private void sendErrorMessage() {
-		Popup.showErrorMessage("Invalid IPv4 Address Detected!<br>" 
-				+ "Example: (decimal) 192.168.0.0<br>" 
-				+ "Example: (binary) 11000000.10101000.00000000.00000000");
+		Popup.showErrorMessage(languageHandler.getKey("converter_IPv4_error_invalidIPv4Address"));
 	}
 	
 	@Override
@@ -117,9 +115,9 @@ public class PanelConverterAddress extends PanelProtocol {
 	
 	private void sendOutput(boolean isBinary) {
 		if (isBinary) {
-			labelAddressResult.setText(" Address: " + NetworkConverter.binaryIPv4ToDecimal(textfieldAddress.getText()));
+			labelAddressResult.setText(" " + languageHandler.getKey("converter_IPv4_label_Address") + ": " + NetworkConverter.binaryIPv4ToDecimal(textfieldAddress.getText()));
 		} else {
-			labelAddressResult.setText(" Address: " + NetworkConverter.decimalIPv4ToBinary(textfieldAddress.getText()));
+			labelAddressResult.setText(" " + languageHandler.getKey("converter_IPv4_label_Address") + ": " + NetworkConverter.decimalIPv4ToBinary(textfieldAddress.getText()));
 		}
 	}
 	
@@ -138,20 +136,8 @@ public class PanelConverterAddress extends PanelProtocol {
 	}
 	
 	private void showHelp() {
-		final String SPACE = "&nbsp;&nbsp;&nbsp;&nbsp;";
-		String whatIsIt = "Internet Protocol version 4 (IPv4) is the fourth version of the Internet Protocol (IP).<br>"
-				+ "It is one of the core protocols of standards-based internetworking methods in the Internet.<br>" 
-				+ "It still routes most Internet traffic today, despite the ongoing deployment of a successor protocol, IPv6.<br>"
-				+ "IPv4 is a connectionless protocol for use on packet-switched networks";
-		String howDoesItWork = "This converter allows you to use following convertions:<br>"
-				+ SPACE + ">>-> Binary -> Decimal<br>"
-				+ SPACE + ">>-> Decimal -> Binary";
-		String example = "Decimal:<br>"
-				+ SPACE + ">>-> Input: 192.168.0.1<br>"
-				+ SPACE + ">>-> Output: 11000000.10101000.00000000.00000001<br>"
-				+ "Binary:<br>"
-				+ SPACE + ">>-> Input: 11000000.10101000.00001001.00000111<br>"
-				+ SPACE + ">>-> Output: 192.168.5.7";
-		Popup.showHelpMessage(whatIsIt, howDoesItWork, example);
+		Popup.showHelpMessage(languageHandler.getKey("converter_IPv4_help_WhatIsIt"), 
+				languageHandler.getKey("converter_IPv4_help_HowDoesItWork"),
+				languageHandler.getKey("converter_IPv4_help_Example"));
 	}
 }

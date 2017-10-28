@@ -34,15 +34,15 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 	
 	@Override
 	protected void initComponents() {
-		labelHosts = new JLabel(" Requested hosts: ");
-		labelHostsResultCIDR = new JLabel(" CIDR: ");
-		labelHostsResultNetmask = new JLabel(" Netmask: ");
-		labelHostsClass = new JLabel(" Class: ");
-		labelHostsTotalSubnets = new JLabel(" Subnets: ");
-		labelHostsTotalHosts = new JLabel(" Hosts: ");
+		labelHosts = new JLabel(" " + languageHandler.getKey("converter_hosts_label_RequestedHosts") + ": ");
+		labelHostsResultCIDR = new JLabel(" " + languageHandler.getKey("converter_hosts_label_CIDR") + ": ");
+		labelHostsResultNetmask = new JLabel(" " + languageHandler.getKey("converter_hosts_label_Netmask") + ": ");
+		labelHostsClass = new JLabel(" " + languageHandler.getKey("converter_hosts_label_Class") + ": ");
+		labelHostsTotalSubnets = new JLabel(" " + languageHandler.getKey("converter_hosts_label_Subnets") + ": ");
+		labelHostsTotalHosts = new JLabel(" " + languageHandler.getKey("converter_hosts_label_Hosts") + ": ");
 		textfieldHosts = new JTextField(11);
-		buttonHosts = new JButton("Convert hosts");
-		buttonHelp = new JButton("?");
+		buttonHosts = new JButton(languageHandler.getKey("converter_hosts_button_ConvertHosts"));
+		buttonHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 	}
 
 	@Override
@@ -75,11 +75,11 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 			if (!isValidInput())
 				return;
 			int value = Integer.parseInt(textfieldHosts.getText());
-			labelHostsTotalHosts.setText(" Hosts: " + VLSMSpecializedCalculator.getValidHost(value));
-			labelHostsResultCIDR.setText(" CIDR: " + VLSMSpecializedCalculator.getCIDR(value));
-			labelHostsResultNetmask.setText(" Netmask: " + VLSMSpecializedCalculator.getNetmask(value));
-			labelHostsClass.setText(" Class: " + NetworkConverter.getNetmaskClass(VLSMSpecializedCalculator.getNetmask(value)));
-			labelHostsTotalSubnets.setText(" Subnets: " + NetworkConverter.getTotalValidSubnets(Integer.parseInt(VLSMSpecializedCalculator.getCIDR(value))));
+			labelHostsTotalHosts.setText(" " + languageHandler.getKey("converter_hosts_label_Hosts") + ": " + VLSMSpecializedCalculator.getValidHost(value));
+			labelHostsResultCIDR.setText(" " + languageHandler.getKey("converter_hosts_label_CIDR") + ": " + VLSMSpecializedCalculator.getCIDR(value));
+			labelHostsResultNetmask.setText(" " + languageHandler.getKey("converter_hosts_label_Netmask") + ": " + VLSMSpecializedCalculator.getNetmask(value));
+			labelHostsClass.setText(" " + languageHandler.getKey("converter_hosts_label_Class") + ": " + NetworkConverter.getNetmaskClass(VLSMSpecializedCalculator.getNetmask(value)));
+			labelHostsTotalSubnets.setText(" " + languageHandler.getKey("converter_hosts_label_Subnets") + ": " + NetworkConverter.getTotalValidSubnets(Integer.parseInt(VLSMSpecializedCalculator.getCIDR(value))));
 		});
 		buttonHelp.addActionListener(e -> {
 			if (Settings.debug)
@@ -94,24 +94,19 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 		try {
 			value = Integer.parseInt(textfieldHosts.getText());
 		} catch (NumberFormatException ex) {
-			Popup.showErrorMessage("Invalid Host Request Input");
+			Popup.showErrorMessage(languageHandler.getKey("converter_hosts_error_invalidHosts"));
 			return false;
 		}
 		if (value < 0) {
-			Popup.showErrorMessage("Invalid Host Request Input");
+			Popup.showErrorMessage(languageHandler.getKey("converter_hosts_error_invalidHosts"));
 			return false;
 		}
 		return true;
 	}
 
 	private void showHelp() {
-		final String SPACE = "&nbsp;&nbsp;&nbsp;&nbsp;";
-		String whatIsIt = "Each subnet has a limited amount of usable hosts.<br>"
-				+ "This converter will help you figure out what netmask you should<br>"
-				+ "use for your requested host size.";
-		String howDoesItWork = SPACE + ">>-> Integer value -> [CIDR;Netmask(decimal);Class;Subnets;UsableHosts]";
-		String example = SPACE + ">>-> Input: 50<br>"
-				+ SPACE + ">>-> Output: [CIDR: 26; Netmask(decimal): 255.255.255.192; Class: C; Subnets: 4; UsableHosts: 62]";
-		Popup.showHelpMessage(whatIsIt, howDoesItWork, example);
+		Popup.showHelpMessage(languageHandler.getKey("converter_hosts_help_WhatIsIt"), 
+				languageHandler.getKey("converter_hosts_help_HowDoesItWork"),
+				languageHandler.getKey("converter_hosts_help_Example"));
 	}
 }

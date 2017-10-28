@@ -33,14 +33,14 @@ public class PanelConverterNetmask extends PanelProtocol {
 	
 	@Override
 	protected void initComponents() {
-		labelNetmask = new JLabel(" Netmask/CIDR: ");
-		labelNetmaskResult = new JLabel(" Netmask|CIDR: ");
-		labelNetmaskClass = new JLabel(" Class: ");
-		labelNetmaskTotalSubnets = new JLabel(" Subnets: ");
-		labelNetmaskTotalHosts = new JLabel(" Hosts: ");
+		labelNetmask = new JLabel(" " + languageHandler.getKey("converter_netmask_label_NetmaskCIDR") + ": ");
+		labelNetmaskResult = new JLabel(" " + languageHandler.getKey("converter_netmask_label_NetmaskCIDR") + ": ");
+		labelNetmaskClass = new JLabel(" " + languageHandler.getKey("converter_netmask_label_Class") + ": ");
+		labelNetmaskTotalSubnets = new JLabel(" " + languageHandler.getKey("converter_netmask_label_Subnets") + ": ");
+		labelNetmaskTotalHosts = new JLabel(" " + languageHandler.getKey("converter_netmask_label_Hosts") + ": ");
 		textfieldNetmask = new JTextField(11);
-		buttonNetmask = new JButton("Convert Netmask");
-		buttonHelp = new JButton("?");
+		buttonNetmask = new JButton(languageHandler.getKey("converter_netmask_button_ConverterNetmask"));
+		buttonHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 	}
 	
 	@Override
@@ -153,67 +153,45 @@ public class PanelConverterNetmask extends PanelProtocol {
 	}
 	
 	private void sendErrorMessage() {
-		Popup.showErrorMessage("Invalid Netmask Detected!<br>" 
-				+ "Example: (decimal) 255.255.0.0<br>" 
-				+ "Example: (binary) 11111111.11111111.00000000.00000000<br>"
-				+ "Example: (CIDR) 16 [range: (0 - 32)]");
+		Popup.showErrorMessage(languageHandler.getKey("converter_netmask_error_invalidNetmask"));
 	}
 	
 	private void sendOutput(boolean isCIDR, boolean isBinary) {
 		if (isCIDR) {
 			int netmask = Integer.parseInt(textfieldNetmask.getText());
-			labelNetmaskResult.setText(" Netmask: " + NetworkConverter.netmaskCIDRtoDecimal(netmask));
-			labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(NetworkConverter.netmaskCIDRtoDecimal(netmask)));
-			labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(netmask)));
-			labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(netmask)));
+			labelNetmaskResult.setText(" " + languageHandler.getKey("converter_netmask_label_Netmask") + ": " + NetworkConverter.netmaskCIDRtoDecimal(netmask));
+			labelNetmaskClass.setText(" " + languageHandler.getKey("converter_netmask_label_Class") + ": " + NetworkConverter.getNetmaskClass(NetworkConverter.netmaskCIDRtoDecimal(netmask)));
+			labelNetmaskTotalSubnets.setText(" " + languageHandler.getKey("converter_netmask_label_Subnets") + ": " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(netmask)));
+			labelNetmaskTotalHosts.setText(" " + languageHandler.getKey("converter_netmask_label_Hosts") + ": " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(netmask)));
 		} else {
 			if (isBinary) {
 				String netmask = NetworkConverter.binaryIPv4ToDecimal(textfieldNetmask.getText());
 				if (!NetworkConverter.isValidNetmask(netmask)) {
-					Popup.showErrorMessage(netmask + " is not a valid netmask!");
+					Popup.showErrorMessage(languageHandler.getKey("converter_netmask_error_invalidNetmask"));
 					return;
 				}
-				labelNetmaskResult.setText("<html>&#160;Netmask: " + NetworkConverter.netmaskCIDRtoDecimal(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask))) + "<br>"
-											+ "&#160;CIDR: " + NetworkConverter.netmaskDecimalToCIDR(netmask) + "</html>");
-				labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(netmask));
-				labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
-				labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
+				labelNetmaskResult.setText("<html>&#160;" + languageHandler.getKey("converter_netmask_label_Netmask") + ": " + NetworkConverter.netmaskCIDRtoDecimal(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask))) + "<br>"
+											+ "&#160;" + languageHandler.getKey("converter_netmask_label_CIDR") + ": " + NetworkConverter.netmaskDecimalToCIDR(netmask) + "</html>");
+				labelNetmaskClass.setText(" " + languageHandler.getKey("converter_netmask_label_Class") + ": " + NetworkConverter.getNetmaskClass(netmask));
+				labelNetmaskTotalSubnets.setText(" " + languageHandler.getKey("converter_netmask_label_Subnets") + ": " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
+				labelNetmaskTotalHosts.setText(" " + languageHandler.getKey("converter_netmask_label_Hosts") + ": " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
 			} else {
 				String netmask = textfieldNetmask.getText();
 				if (!NetworkConverter.isValidNetmask(netmask)) {
-					Popup.showErrorMessage(netmask + " is not a valid netmask!");
+					Popup.showErrorMessage(languageHandler.getKey("converter_netmask_error_invalidNetmask"));
 					return;
 				}
-				labelNetmaskResult.setText(" CIDR: " + NetworkConverter.netmaskDecimalToCIDR(netmask));
-				labelNetmaskClass.setText(" Class: " + NetworkConverter.getNetmaskClass(netmask));
-				labelNetmaskTotalSubnets.setText(" Subnets: " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
-				labelNetmaskTotalHosts.setText(" Hosts: " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
+				labelNetmaskResult.setText(" " + languageHandler.getKey("converter_netmask_label_CIDR") + ": " + NetworkConverter.netmaskDecimalToCIDR(netmask));
+				labelNetmaskClass.setText(" " + languageHandler.getKey("converter_netmask_label_Class") + ": " + NetworkConverter.getNetmaskClass(netmask));
+				labelNetmaskTotalSubnets.setText(" " + languageHandler.getKey("converter_netmask_label_Subnets") + ": " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
+				labelNetmaskTotalHosts.setText(" " + languageHandler.getKey("converter_netmask_label_Hosts") + ": " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
 			}
 		}
 	}
 	
 	private void showHelp() {
-		final String SPACE = "&nbsp;&nbsp;&nbsp;&nbsp;";
-		String whatIsIt = "A subnetwork or subnet is a logical subdivision of an IP network.<br>"
-				+ "The practice of dividing a network into two or more networks is called subnetting.<br>"
-				+ "Computers that belong to a subnet are addressed with a common, identical,<br>"
-				+ "most-significant bit-group in their IP address.<br>"
-				+ "This results in the logical division of an IP address into two fields,<br>"
-				+ "a network number or routing prefix and the rest field or host identifier.<br>"
-				+ "The rest field is an identifier for a specific host or network interface.";
-		String howDoesItWork = "This converter allows you following convertions:<br>"
-				+ SPACE + ">>-> netmask (decimal) -> [CIDR;Class;Subnets;UsableHosts]<br>"
-				+ SPACE + ">>-> netmask (binary) -> [Netmask(decimal);CIDR;Class;Subnets;UsableHosts]<br>"
-				+ SPACE + ">>-> CIDR -> [netmask(decimal);Class;Subnets;UsableHosts]";
-		String example = "Netmask (decimal):<br>"
-				+ SPACE + ">>-> Input: 255.255.255.0<br>"
-				+ SPACE + ">>-> Output: [CIDR: 24; Class: C; Subnets: 1; UsableHosts: 254]<br>"
-				+ "Netmask (binary)<br>"
-				+ SPACE + ">>-> Input: 11111111.11111111.11111111.00000000<br>"
-				+ SPACE + ">>-> Output: [Netmask(decimal): 255.255.255.0; CIDR: 24; Class: C; Subnets: 1; UsableHosts: 254]<br>"
-				+ "CIDR:<br>"
-				+ SPACE + ">>-> Input: 24<br>"
-				+ SPACE + ">>-> Output: [netmask(decimal): 255.255.255.0; Class: C; Subnets: 1; UsableHosts: 254]";
-		Popup.showHelpMessage(whatIsIt, howDoesItWork, example);
+		Popup.showHelpMessage(languageHandler.getKey("converter_netmask_help_WhatIsIt"), 
+				languageHandler.getKey("converter_netmask_help_HowDoesItWork"), 
+				languageHandler.getKey("converter_netmask_help_Example"));
 	}
 }
