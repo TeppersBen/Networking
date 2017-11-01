@@ -128,7 +128,7 @@ public class PanelVLSM extends PanelProtocol {
 					return;
 				converter.dispatchEvent(new WindowEvent(converter, WindowEvent.WINDOW_CLOSING));
 				converter = new PanelVLSMTable();
-				converter.build(textMajorNetwork.getText(), panelSubnetTable.getData());
+				converter.build(textMajorNetwork.getText(), panelSubnetTable.getData(), languageHandler);
 			});
 		});
 	}

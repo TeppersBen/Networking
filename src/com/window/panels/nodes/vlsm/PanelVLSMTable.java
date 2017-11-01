@@ -19,6 +19,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import com.Settings;
+import com.handlers.LanguageHandler;
 import com.utils.calculators.VLSMSpecializedCalculator;
 
 public class PanelVLSMTable extends JFrame {
@@ -28,10 +29,10 @@ public class PanelVLSMTable extends JFrame {
 	private Table table;
 	private JTextField[][] data;
 	
-	public void build(String majorNetwork, JTextField[][] data) {
+	public void build(String majorNetwork, JTextField[][] data, LanguageHandler handler) {
 		setTitle(Settings.title + " - VLSM table");
 		initScreen();
-		table = new Table(majorNetwork, data);
+		table = new Table(majorNetwork, data, handler);
 		add(table);
 		
 		this.setData(data);
@@ -84,20 +85,25 @@ class Table extends JPanel {
 	private static final long serialVersionUID = -8218140888013072845L;
 	
 	private JTable table;
+	private LanguageHandler languageHandler;
 	
-	private String[] names = { 
-		"Subnet name",
-		"Needed size",
-		"Allocated size",
-		"Address",
-		"CIDR",
-		"Netmask",
-		"Assignable range",
-		"Broadcast"
-	};
+	private String[] names = new String[8];
 	
-	public Table(String majorNetwork, JTextField[][] data) {
+	private void initTableNames() {
+		names[0] = languageHandler.getKey("vlsm_table_subnetname");
+		names[1] = languageHandler.getKey("vlsm_table_neededsize");
+		names[2] = languageHandler.getKey("vlsm_table_allocatedsize");
+		names[3] = languageHandler.getKey("vlsm_table_address");
+		names[4] = languageHandler.getKey("vlsm_table_cidr");
+		names[5] = languageHandler.getKey("vlsm_table_netmask");
+		names[6] = languageHandler.getKey("vlsm_table_assignablerange");
+		names[7] = languageHandler.getKey("vlsm_table_broadcast");
+	}
+	
+	public Table(String majorNetwork, JTextField[][] data, LanguageHandler handler) {
 		super(new BorderLayout());
+		setLanguageHandler(handler);
+		initTableNames();
 		table = new JTable(createDataHolder(majorNetwork, data), names);
 		
 		table.setEnabled(false);
@@ -187,6 +193,10 @@ class Table extends JPanel {
 	        }
 	        columnModel.getColumn(column).setPreferredWidth(width);
 	    }
+	}
+	
+	private void setLanguageHandler(LanguageHandler handler) {
+		languageHandler = handler;
 	}
 }
 
