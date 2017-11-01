@@ -3,6 +3,7 @@ package com;
 import com.development.PanelConsole;
 import com.handlers.LanguageHandler;
 import com.utils.Logger;
+import com.utils.Popup;
 import com.window.Splash;
 import com.window.WindowBuilder;
 import com.window.panels.PanelCategorySelection;
@@ -28,17 +29,19 @@ public class Launcher {
 	private static PanelConsole panelConsole;
 	
 	public static void main(String[] args) {
-		Settings.debug = true;
-		Settings.versionRelease = "0.04.0024.060";
+		Settings.debug = false;
+		Settings.versionRelease = "0.04.0101.067";
 		init(0, 4, 60);
 	}
 	
 	private static void init(int major, int minor, int bugfixes) {
-		Splash splash = new Splash(21);
+		Splash splash = new Splash(22);
 		
 		//handlers
 		splash.nextProgressMessage("Initializing handlers");
 		languageHandler = new LanguageHandler();
+		splash.nextProgress();
+		Popup.setLanguageHandler(languageHandler);
 		splash.nextProgress();
 		
 		//main frames
