@@ -31,7 +31,7 @@ public class Launcher {
 	public static void main(String[] args) {
 		Settings.debug = false;
 		Settings.versionRelease = "0.04.0101.067";
-		init(0, 4, 60);
+		init(0, 4, 67);
 	}
 	
 	private static void init(int major, int minor, int bugfixes) {

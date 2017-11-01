@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.Settings;
 import com.handlers.LanguageHandler;
 import com.utils.Formatter;
 import com.utils.Popup;
@@ -90,10 +89,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 			}
 		});
 		buttonHelp.addActionListener(e -> {
-			if (Settings.debug)
-				showHelp();
-			else
-				Popup.showMaintenanceMessage();
+			showHelp();
 		});
 	}
 	private boolean isCIDRNotation() {

@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.Settings;
 import com.handlers.LanguageHandler;
 import com.utils.Popup;
 import com.utils.calculators.NetworkConverter;
@@ -82,10 +81,7 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 			labelHostsTotalSubnets.setText(" " + languageHandler.getKey("converter_hosts_label_Subnets") + ": " + NetworkConverter.getTotalValidSubnets(Integer.parseInt(VLSMSpecializedCalculator.getCIDR(value))));
 		});
 		buttonHelp.addActionListener(e -> {
-			if (Settings.debug)
-				showHelp();
-			else
-				Popup.showMaintenanceMessage();
+			showHelp();
 		});
 	}
 	
