@@ -17,6 +17,7 @@ import javax.swing.text.JTextComponent;
 
 import com.Settings;
 import com.devices.Router;
+import com.handlers.LanguageHandler;
 import com.window.panels.PanelProtocol;
 
 public class PanelConsole extends PanelProtocol {
@@ -29,8 +30,8 @@ public class PanelConsole extends PanelProtocol {
 
 	private String title;
 
-	public PanelConsole() {
-		super();
+	public PanelConsole(LanguageHandler languageHandler) {
+		super(languageHandler);
 		title = Settings.title;
 		consoleHandler = new ConsoleHandler(consoleField);
 		consoleField.addKeyListener(consoleHandler.getKeyListener());

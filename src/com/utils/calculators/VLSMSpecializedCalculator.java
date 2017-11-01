@@ -1,11 +1,13 @@
-package com.window.panels.nodes.vlsm;
-
-import com.utils.NetworkConverter;
+package com.utils.calculators;
 
 public class VLSMSpecializedCalculator extends NetworkConverter {
 	
 	private static int[] knownHosts = getKnownHosts();
 	
+	/**
+	 * Creates an array of integers which holds all possible usable hosts in a network.
+	 * @return array of all possible hosts
+	 */
 	public static int[] getKnownHosts() {
 		int[] hostSizes = new int[32];
 		int mask = 32;
@@ -16,6 +18,12 @@ public class VLSMSpecializedCalculator extends NetworkConverter {
 		return hostSizes;
 	}
 	
+	/**
+	 * Converts the requested host size in first following valid usable host number.
+	 * @param requestedSize
+	 * @return String of valid host number
+	 * @Example 60 -> 62
+	 */
 	public static String getValidHost(int requestedSize) {
 		for (int i = 0; i < knownHosts.length; i++) {
 			if (requestedSize - knownHosts[i] <= 0) {
@@ -25,6 +33,12 @@ public class VLSMSpecializedCalculator extends NetworkConverter {
 		return "0";
 	}
 	
+	/**
+	 * Converts the requested host size into the correct CIDR notation.
+	 * @param size
+	 * @return String of the CIDR notation
+	 * @Example 60 -> 26
+	 */
 	public static String getCIDR(int size) {
 		size = Integer.parseInt(getValidHost(size));
 		for (int i = 0; i < knownHosts.length; i++) {
@@ -35,25 +49,27 @@ public class VLSMSpecializedCalculator extends NetworkConverter {
 		return "0";
 	}
 	
+	/**
+	 * Converts the requested host size in to the correct decimal netmask notation.
+	 * @param size
+	 * @return String of decimal netmask notation
+	 */
 	public static String getNetmask(int size) {
 		size = Integer.parseInt(getCIDR(size));
-		return String.valueOf(netmaskIntegerToIP(size));
+		return String.valueOf(netmaskCIDRtoDecimal(size));
 	}
 	
 	/**
-	 * [0] = Network address
-	 * [1] = HostIP start
-	 * [2] = HostIP stop
-	 * [3] = Broadcast IP
-	 * @param input
-	 * @return
+	 * Converts a major network into a vlsm view.
+	 * @param network - decimal Network
+	 * @param netmask - CIDR notation
+	 * @return String array of network details<br>[0] = Network Address<br>[1] = HostIP Start<br>[2] = HostIP Stop<br>[3] = Broadcast IP
+	 * @Example MajorNetwork: 192.168.0.1<br>Netmask: 24<br>---------------------------------<br>networkAddress: 192.168.0.0<br>hostIP Start: 192.168.0.1<br>hostIP Stop: 192.168.0.254<br>Broadcast IP: 192.168.0.255
 	 */
-	public static String[] calculateNetwork(String input, int netmask) {
+	public static String[] calculateNetwork(String network, int netmask) {
 		String[] result = new String[4];
-		String[] splitter = input.split("/");
-		String ip = splitter[0];
 		
-		String networkAddress = getNetworkAddress(ip, netmaskIntegerToIP(netmask));
+		String networkAddress = getNetworkAddress(network, netmaskCIDRtoDecimal(netmask));
 		String hostIPStart = getHostIPStart(networkAddress);
 		String hostIPStop = getHostIPStop(networkAddress, getTotalValidHosts(netmask));	
 		String broadcastIP = getBroadcastAddress(hostIPStop);
@@ -88,6 +104,13 @@ public class VLSMSpecializedCalculator extends NetworkConverter {
 		return ipAdd(network, 1);
 	}
 	
+	/**
+	 * Utility function that allows you to add an amount to a IP.
+	 * @param ip
+	 * @param amount
+	 * @return String of new ip
+	 * @Example ip: 192.168.0.10<br>amount: 252<br>-----------------<br>192.168.1.6
+	 */
 	public static String ipAdd(String ip, int amount) {
 		int values[] = new int[4];
 		String[] net = ip.split("\\.");

@@ -19,18 +19,20 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import com.Settings;
+import com.handlers.LanguageHandler;
+import com.utils.calculators.VLSMSpecializedCalculator;
 
-public class VLSMTable extends JFrame {
+public class PanelVLSMTable extends JFrame {
 
 	private static final long serialVersionUID = -4010383195907305739L;
 	
 	private Table table;
 	private JTextField[][] data;
 	
-	public void build(String majorNetwork, JTextField[][] data) {
+	public void build(String majorNetwork, JTextField[][] data, LanguageHandler handler) {
 		setTitle(Settings.title + " - VLSM table");
 		initScreen();
-		table = new Table(majorNetwork, data);
+		table = new Table(majorNetwork, data, handler);
 		add(table);
 		
 		this.setData(data);
@@ -83,20 +85,25 @@ class Table extends JPanel {
 	private static final long serialVersionUID = -8218140888013072845L;
 	
 	private JTable table;
+	private LanguageHandler languageHandler;
 	
-	private String[] names = { 
-		"Subnet name",
-		"Needed size",
-		"Allocated size",
-		"Address",
-		"CIDR",
-		"Netmask",
-		"Assignable range",
-		"Broadcast"
-	};
+	private String[] names = new String[8];
 	
-	public Table(String majorNetwork, JTextField[][] data) {
+	private void initTableNames() {
+		names[0] = languageHandler.getKey("vlsm_table_subnetname");
+		names[1] = languageHandler.getKey("vlsm_table_neededsize");
+		names[2] = languageHandler.getKey("vlsm_table_allocatedsize");
+		names[3] = languageHandler.getKey("vlsm_table_address");
+		names[4] = languageHandler.getKey("vlsm_table_cidr");
+		names[5] = languageHandler.getKey("vlsm_table_netmask");
+		names[6] = languageHandler.getKey("vlsm_table_assignablerange");
+		names[7] = languageHandler.getKey("vlsm_table_broadcast");
+	}
+	
+	public Table(String majorNetwork, JTextField[][] data, LanguageHandler handler) {
 		super(new BorderLayout());
+		setLanguageHandler(handler);
+		initTableNames();
 		table = new JTable(createDataHolder(majorNetwork, data), names);
 		
 		table.setEnabled(false);
@@ -133,14 +140,16 @@ class Table extends JPanel {
 	public String[][] createDataHolder(String majorNetwork, JTextField[][] data) {
 		String[][] result = new String[data.length][8];
 		data = sortArrayDependingOnRequestedSize(data);
-		String[] net = VLSMSpecializedCalculator.calculateNetwork(majorNetwork, 0);
+		String network = majorNetwork.split("/")[0];
+		int mask = Integer.parseInt(majorNetwork.split("/")[1]);
+		String[] net = VLSMSpecializedCalculator.calculateNetwork(network, mask);
 		int cidr = 0;
 		for (int i = 0; i < data.length; i++) {
 			cidr = Integer.parseInt(VLSMSpecializedCalculator.getCIDR(Integer.parseInt(VLSMSpecializedCalculator.getValidHost(Integer.parseInt(data[i][1].getText())))));
 			if (i != 0) 
 				net = VLSMSpecializedCalculator.calculateNetwork(VLSMSpecializedCalculator.ipAdd(net[3], 1), cidr);
 			else
-				net = VLSMSpecializedCalculator.calculateNetwork(majorNetwork, cidr);
+				net = VLSMSpecializedCalculator.calculateNetwork(network, cidr);
 			for (int x = 0; x < result[0].length; x++) {
 				switch(x) {
 				case 0: //subnet name
@@ -184,6 +193,10 @@ class Table extends JPanel {
 	        }
 	        columnModel.getColumn(column).setPreferredWidth(width);
 	    }
+	}
+	
+	private void setLanguageHandler(LanguageHandler handler) {
+		languageHandler = handler;
 	}
 }
 

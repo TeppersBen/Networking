@@ -5,10 +5,15 @@ import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
+import com.handlers.LanguageHandler;
 import com.utils.Logger;
 import com.window.panels.PanelProtocol;
 
 public class PanelLogging extends PanelProtocol {
+
+	public PanelLogging(LanguageHandler languageHandler) {
+		super(languageHandler);
+	}
 
 	private static final long serialVersionUID = 5475597876727660349L;
 

@@ -7,24 +7,31 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.utils.NetworkConverter;
-import com.utils.OptionPane;
+import com.handlers.LanguageHandler;
+import com.utils.Popup;
+import com.utils.calculators.NetworkConverter;
 import com.window.panels.PanelProtocol;
 
 public class PanelConverterAddress extends PanelProtocol {
+
+	public PanelConverterAddress(LanguageHandler languageHandler) {
+		super(languageHandler);
+	}
 
 	private static final long serialVersionUID = 1L;
 	private JLabel labelAddress;
 	private JLabel labelAddressResult;
 	private JTextField textfieldAddress;
 	private JButton buttonAddress;
+	private JButton buttonHelp;
 	
 	@Override
 	protected void initComponents() {
-		labelAddress = new JLabel(" IPv4 Address: ");
-		labelAddressResult = new JLabel(" Address: ");
+		labelAddress = new JLabel(" " + languageHandler.getKey("converter_IPv4_label_IPv4_Address") + ": ");
+		labelAddressResult = new JLabel(" " + languageHandler.getKey("converter_IPv4_label_Address") + ": ");
 		textfieldAddress = new JTextField(11);
-		buttonAddress = new JButton("Convert Address");
+		buttonAddress = new JButton(languageHandler.getKey("converter_IPv4_button_ConvertAddress"));
+		buttonHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 	}
 
 	@Override
@@ -32,20 +39,23 @@ public class PanelConverterAddress extends PanelProtocol {
 		JPanel panelAddress = new JPanel(new BorderLayout());
 		JPanel panelAddressSub = new JPanel(new BorderLayout());
 		JPanel panelAddressResult = new JPanel(new BorderLayout());
+		JPanel panelButtons = new JPanel(new BorderLayout());
 		setEmptyFieldSet(panelAddress);
+		panelButtons.add(buttonAddress, BorderLayout.CENTER);
+		panelButtons.add(buttonHelp, BorderLayout.EAST);
 		panelAddressSub.add(labelAddress, BorderLayout.WEST);
 		panelAddressSub.add(textfieldAddress, BorderLayout.CENTER);
 		panelAddressResult.add(labelAddressResult);
 		panelAddress.add(panelAddressSub, BorderLayout.NORTH);
 		panelAddress.add(panelAddressResult, BorderLayout.CENTER);
-		panelAddress.add(buttonAddress, BorderLayout.SOUTH);
+		panelAddress.add(panelButtons, BorderLayout.SOUTH);
 		add(panelAddress);
 	}
 
 	private void sendErrorMessage() {
-		OptionPane.showErrorMessage("Invalid IPv4 Address Detected!<br>" 
-				+ "Example: (decimal) 192.168.0.0<br>" 
-				+ "Example: (binary) 11000000.10101000.00000000.00000000");
+		Popup.showErrorMessage(languageHandler.getKey("converter_IPv4_error_invalidIPv4Address") + "<br>"
+				+ "Example: (decimal) " + languageHandler.getKey("converter_IPv4_error_decimal_Example") + "<br>"
+				+ "Example: (binary) " + languageHandler.getKey("converter_IPv4_error_binary_Example"));
 	}
 	
 	@Override
@@ -68,6 +78,9 @@ public class PanelConverterAddress extends PanelProtocol {
 				}
 				sendOutput(false);
 			}
+		});
+		buttonHelp.addActionListener(e -> {
+			showHelp();
 		});
 	}
 	
@@ -100,9 +113,9 @@ public class PanelConverterAddress extends PanelProtocol {
 	
 	private void sendOutput(boolean isBinary) {
 		if (isBinary) {
-			labelAddressResult.setText(" Address: " + NetworkConverter.binaryIPv4ToDecimal(textfieldAddress.getText()));
+			labelAddressResult.setText(" " + languageHandler.getKey("converter_IPv4_label_Address") + ": " + NetworkConverter.binaryIPv4ToDecimal(textfieldAddress.getText()));
 		} else {
-			labelAddressResult.setText(" Address: " + NetworkConverter.decimalIPv4ToBinary(textfieldAddress.getText()));
+			labelAddressResult.setText(" " + languageHandler.getKey("converter_IPv4_label_Address") + ": " + NetworkConverter.decimalIPv4ToBinary(textfieldAddress.getText()));
 		}
 	}
 	
@@ -118,5 +131,11 @@ public class PanelConverterAddress extends PanelProtocol {
 			}
 		}
 		return true;
+	}
+	
+	private void showHelp() {
+		Popup.showHelpMessage(languageHandler.getKey("converter_IPv4_help_WhatIsIt"), 
+				languageHandler.getKey("converter_IPv4_help_HowDoesItWork"),
+				languageHandler.getKey("converter_IPv4_help_Example"));
 	}
 }

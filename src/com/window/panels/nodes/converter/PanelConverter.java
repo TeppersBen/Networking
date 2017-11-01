@@ -5,10 +5,14 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.handlers.LanguageHandler;
 import com.window.panels.PanelProtocol;
 
 public class PanelConverter extends PanelProtocol {
 
+	public PanelConverter(LanguageHandler languageHandler) {
+		super(languageHandler);
+	}
 	private static final long serialVersionUID = -5111118154502890039L;
 
 	@Override
@@ -17,15 +21,15 @@ public class PanelConverter extends PanelProtocol {
 		
 		/* assembly */
 		JPanel sub1 = new JPanel(new BorderLayout());
-		sub1.add(new PanelConverterAddress(), BorderLayout.NORTH);
-		sub1.add(new PanelConverterNetmask(), BorderLayout.CENTER);
-		sub1.add(new PanelConverterRequestedHosts(), BorderLayout.SOUTH);
+		sub1.add(new PanelConverterAddress(languageHandler), BorderLayout.NORTH);
+		sub1.add(new PanelConverterNetmask(languageHandler), BorderLayout.CENTER);
+		sub1.add(new PanelConverterRequestedHosts(languageHandler), BorderLayout.SOUTH);
 		
 		JPanel sub2 = new JPanel(new BorderLayout());
 		sub2.add(sub1, BorderLayout.NORTH);
 		sub2.add(new JLabel(" "), BorderLayout.CENTER);
 		
-		add(setTitle("Converter"), BorderLayout.NORTH);
+		add(setTitle(languageHandler.getKey("converter_Title")), BorderLayout.NORTH);
 		add(sub2, BorderLayout.CENTER);
 	}
 

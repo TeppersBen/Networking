@@ -1,13 +1,18 @@
 package com;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.utils.NetworkConverter;
+import com.utils.calculators.NetworkConverter;
 
 class TestNetworkConverter {
 
+	@Test
+	void checkNetmaskIntegerToBinary() {
+		assertEquals("11111111.11111111.11110000.00000000", NetworkConverter.netmaskCIDRtoBinary(20));
+	}
+	
 	@Test
 	void checkGetNetmaskClass() {
 		assertEquals("A", NetworkConverter.getNetmaskClass("255.0.0.0"));
@@ -29,7 +34,7 @@ class TestNetworkConverter {
 
 	@Test
 	void checkNetmaskIntegerToIP() {
-		assertEquals("255.255.0.0", NetworkConverter.netmaskIntegerToIP(16));
+		assertEquals("255.255.0.0", NetworkConverter.netmaskCIDRtoDecimal(16));
 	}
 
 	@Test

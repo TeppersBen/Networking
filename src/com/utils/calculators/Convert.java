@@ -1,4 +1,4 @@
-package com.utils;
+package com.utils.calculators;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,21 +7,13 @@ public class Convert {
 
 	public static List<Integer> maxBitList = createMaxBitList();
 	public static List<Integer> ipv4BitList = createIPv4BitList();
-	
-	/* PRIVATE UTILS */
-	public static String netmaskIntegerToBinary(int netmask) {
-		StringBuilder result = new StringBuilder();
-		for (int i = 0; i < netmask; i++) {
-			result.append("1" + ((i != 0 && (i + 1) % 8 == 0) ? "." : ""));
-		}
-		
-		int yetToGo = 32 - netmask;
-		for (int i = yetToGo; i > 0; i--) {
-			result.append("0" + (((i-1) % 8 == 0 && i != 1) ? "." : ""));
-		}
-		return result.toString();
-	}
-	
+
+	/**
+	 * Converts a binary value to a decimal value.
+	 * @param binary
+	 * @return String of the decimal value.
+	 * @Example 11110000 -> 240
+	 */
 	public static String binaryToDecimal(String binary) {
 		StringBuilder result = new StringBuilder(binary);
 		int value = 0;
@@ -36,6 +28,12 @@ public class Convert {
 		return result.toString();
 	}
 	
+	/**
+	 * Converts a decimal value to a binary value.
+	 * @param decimal
+	 * @return String of the binary value.
+	 * @Example 20 -> 00010100
+	 */
 	public static String decimalToBinary(int decimal) {
 		StringBuilder result = new StringBuilder();
 
@@ -58,10 +56,18 @@ public class Convert {
 		return result.toString();
 	}
 	
+	/**
+	 * Creates a list of the 8 bit sequence in reverse.
+	 * @return List [128, 64, 32, 16, 8, 4, 2, 1]
+	 */
 	public static List<Integer> createIPv4BitList() {
 		return Arrays.asList(128, 64, 32, 16, 8, 4, 2, 1);
 	}
 	
+	/**
+	 * Creates a list of the 4 bit max_value sequence in reverse.
+	 * @return List [15, 7, 3, 1]
+	 */
 	public static List<Integer> createMaxBitList() {
 		return Arrays.asList(15, 7, 3, 1);
 	}

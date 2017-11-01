@@ -14,8 +14,13 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import com.Settings;
+import com.handlers.LanguageHandler;
 
 public class PanelCategorySelection extends PanelProtocol {
+
+	public PanelCategorySelection(LanguageHandler languageHandler) {
+		super(languageHandler);
+	}
 
 	private static final long serialVersionUID = 7399346587037443971L;
 	private JTree tree;
@@ -50,10 +55,10 @@ public class PanelCategorySelection extends PanelProtocol {
 	}
 
 	private void createTree() {
-		createNode("Session", Arrays.asList("Logging", "Language"));
+		createNode("Session", Arrays.asList("Logging"));
 		createNode("Calculators", Arrays.asList("Converter", "VLSM"));
 		if (Settings.debug) {
-			createNode("Development", Arrays.asList("Console"));
+			createNode("Development", Arrays.asList("Console", "Settings"));
 		}
 	}
 

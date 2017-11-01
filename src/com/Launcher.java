@@ -1,12 +1,14 @@
 package com;
 
 import com.development.PanelConsole;
+import com.handlers.LanguageHandler;
 import com.utils.Logger;
+import com.utils.Popup;
 import com.window.Splash;
 import com.window.WindowBuilder;
 import com.window.panels.PanelCategorySelection;
 import com.window.panels.PanelDisplay;
-import com.window.panels.nodes.PanelLanguage;
+import com.window.panels.nodes.PanelSettings;
 import com.window.panels.nodes.PanelLogging;
 import com.window.panels.nodes.PanelWelcome;
 import com.window.panels.nodes.converter.PanelConverter;
@@ -15,10 +17,11 @@ import com.window.panels.nodes.vlsm.PanelVLSM;
 public class Launcher {
 
 	private static WindowBuilder windowBuilder;
+	private static LanguageHandler languageHandler;
 	
 	private static PanelCategorySelection panelCategorySelection;
 	private static PanelDisplay panelDisplay;	
-	private static PanelLanguage panelLanguage;	
+	private static PanelSettings panelSettings;	
 	private static PanelLogging panelLogging;
 	private static PanelWelcome panelWelcome;	
 	private static PanelConverter panelConverter;
@@ -27,40 +30,47 @@ public class Launcher {
 	
 	public static void main(String[] args) {
 		Settings.debug = false;
-		Settings.versionRelease = "0.04.0024.060";
-		init(0, 4, 60);
+		Settings.versionRelease = "0.04.0101.067";
+		init(0, 4, 67);
 	}
 	
 	private static void init(int major, int minor, int bugfixes) {
-		Splash splash = new Splash(20);
+		Splash splash = new Splash(22);
+		
+		//handlers
+		splash.nextProgressMessage("Initializing handlers");
+		languageHandler = new LanguageHandler();
+		splash.nextProgress();
+		Popup.setLanguageHandler(languageHandler);
+		splash.nextProgress();
 		
 		//main frames
 		splash.nextProgressMessage("Creating main-frames");
-		panelCategorySelection = new PanelCategorySelection();
+		panelCategorySelection = new PanelCategorySelection(languageHandler);
 		splash.nextProgress();
 		windowBuilder = new WindowBuilder(major, minor, bugfixes);
 		splash.nextProgress();
-		panelDisplay = new PanelDisplay();
+		panelDisplay = new PanelDisplay(languageHandler);
 		
 		//nodes
 		splash.nextProgressMessage("Creating nodes");
 		splash.nextProgress();
-		panelLanguage = new PanelLanguage();
+		panelSettings = new PanelSettings(languageHandler);
 		splash.nextProgress();
-		panelLogging = new PanelLogging();
+		panelLogging = new PanelLogging(languageHandler);
 		splash.nextProgress();
-		panelWelcome = new PanelWelcome();
+		panelWelcome = new PanelWelcome(languageHandler);
 		splash.nextProgress();
-		panelConverter = new PanelConverter();
+		panelConverter = new PanelConverter(languageHandler);
 		splash.nextProgress();
-		panelVLSM = new PanelVLSM();
+		panelVLSM = new PanelVLSM(languageHandler);
 		splash.nextProgress();
-		panelConsole = new PanelConsole();
+		panelConsole = new PanelConsole(languageHandler);
 		
 		//adding nodes to display
 		splash.nextProgressMessage("Adding nodes to NodeManager");
 		splash.nextProgress();
-		panelDisplay.addNodePanel(panelLanguage);
+		panelDisplay.addNodePanel(panelSettings);
 		splash.nextProgress();
 		panelDisplay.addNodePanel(panelLogging);
 		splash.nextProgress();
