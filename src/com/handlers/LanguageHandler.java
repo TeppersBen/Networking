@@ -9,7 +9,7 @@ public class LanguageHandler {
 	private ResourceBundle bundle;
 	
 	public LanguageHandler() {
-		Locale locale = new Locale("en", "GB");
+		locale = new Locale("en", "GB");
 		bundle = ResourceBundle.getBundle("resources.language.language", locale);
 	}
 	
@@ -20,6 +20,10 @@ public class LanguageHandler {
 	public void changeLanguage(String language, String country) {
 		locale = new Locale(language, country);
 		bundle = ResourceBundle.getBundle("resources.language.language", locale);
+	}
+	
+	public String getLocale() {
+		return locale.toString();
 	}
 	
 }

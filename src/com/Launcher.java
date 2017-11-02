@@ -8,10 +8,10 @@ import com.window.Splash;
 import com.window.WindowBuilder;
 import com.window.panels.PanelCategorySelection;
 import com.window.panels.PanelDisplay;
-import com.window.panels.nodes.PanelSettings;
 import com.window.panels.nodes.PanelLogging;
 import com.window.panels.nodes.PanelWelcome;
 import com.window.panels.nodes.converter.PanelConverter;
+import com.window.panels.nodes.settings.PanelSettings;
 import com.window.panels.nodes.vlsm.PanelVLSM;
 
 public class Launcher {
@@ -29,7 +29,7 @@ public class Launcher {
 	private static PanelConsole panelConsole;
 	
 	public static void main(String[] args) {
-		Settings.debug = false;
+		Settings.debug = true;
 		Settings.versionRelease = "0.04.0101.067";
 		init(0, 4, 67);
 	}
