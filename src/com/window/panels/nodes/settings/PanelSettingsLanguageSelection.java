@@ -60,4 +60,14 @@ public class PanelSettingsLanguageSelection extends PanelProtocol {
 		return result; 
 	}
 
+	public void execute() {
+		String language = languageBox.getSelectedItem().toString();
+		if (language.equalsIgnoreCase(languageHandler.getKey("settings_language_english"))) {
+			languageHandler.changeLanguage("en", "GB");
+		} else if (language.equalsIgnoreCase(languageHandler.getKey("settings_language_dutch"))) {
+			languageHandler.changeLanguage("nl", "NL");
+		} else if (language.equalsIgnoreCase(languageHandler.getKey("settings_language_macedonian"))) {
+			languageHandler.changeLanguage("mk", "MK");
+		}
+	}
 }

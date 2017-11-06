@@ -21,7 +21,7 @@ public class Configuration {
 		}
 	}
 	
-	public static void modifySoftwareVersion() {
+	private static void modifyKey(String key, String value) {
 		try {
 			File configFile = new File("src/resources/config.properties");
 			Properties config = new Properties();
@@ -29,11 +29,8 @@ public class Configuration {
 			FileInputStream fis = new FileInputStream(configFile);
 			config.load(fis);
 			fis.close();
-			
-			int major = Integer.parseInt(getKey("major"));
-			int minor = Integer.parseInt(getKey("minor"));
-			int bugsFixed = Integer.parseInt(getKey("bugsFixed"));
-			config.setProperty("version", new VersionCreator(major, minor, bugsFixed).toString());
+
+			config.setProperty(key, value);
 			
 			FileOutputStream fos = new FileOutputStream(configFile);
 			config.store(fos, "Program Settings");
@@ -43,4 +40,14 @@ public class Configuration {
 		}
 	}
 	
+	public static void modifySoftwareVersion() {
+		int major = Integer.parseInt(getKey("major"));
+		int minor = Integer.parseInt(getKey("minor"));
+		int bugsFixed = Integer.parseInt(getKey("bugsFixed"));
+		modifyKey("version", new VersionCreator(major, minor, bugsFixed).toString());
+	}
+	
+	public static void modifyLanguage(String language, String country) {
+		modifyKey("locale", language + "_" + country);
+	}
 }

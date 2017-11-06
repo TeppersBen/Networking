@@ -6,8 +6,8 @@ public class Settings {
 
 	public static boolean debug = Configuration.getKey("debug").equalsIgnoreCase("true") ? true : false;
 	
-	public static final int MAX_WIDTH = 520;
-	public static final int MAX_HEIGHT = 520;
+	public static final int MAX_WIDTH = Integer.parseInt(Configuration.getKey("windowWidth"));
+	public static final int MAX_HEIGHT = Integer.parseInt(Configuration.getKey("windowHeight"));
 
 	public static String version;
 	public static String title;
