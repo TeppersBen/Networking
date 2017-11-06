@@ -34,9 +34,7 @@ public class PanelSettingsLanguageSelection extends PanelProtocol {
 	}
 
 	@Override
-	protected void initListeners() {
-		
-	}
+	protected void initListeners() {}
 	
 	private void setCurrentLanguage() {
 		switch (languageHandler.getLocale()) {
