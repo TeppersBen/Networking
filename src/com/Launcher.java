@@ -29,12 +29,10 @@ public class Launcher {
 	private static PanelConsole panelConsole;
 	
 	public static void main(String[] args) {
-		Settings.debug = true;
-		Settings.versionRelease = "0.04.0101.067";
-		init(0, 4, 67);
+		init();
 	}
 	
-	private static void init(int major, int minor, int bugfixes) {
+	private static void init() {
 		Splash splash = new Splash(22);
 		
 		//handlers
@@ -48,7 +46,7 @@ public class Launcher {
 		splash.nextProgressMessage("Creating main-frames");
 		panelCategorySelection = new PanelCategorySelection(languageHandler);
 		splash.nextProgress();
-		windowBuilder = new WindowBuilder(major, minor, bugfixes);
+		windowBuilder = new WindowBuilder();
 		splash.nextProgress();
 		panelDisplay = new PanelDisplay(languageHandler);
 		

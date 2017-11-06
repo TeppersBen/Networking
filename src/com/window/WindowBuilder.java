@@ -10,7 +10,6 @@ import javax.swing.SwingUtilities;
 
 import com.Settings;
 import com.utils.LookAndFeelManager;
-import com.utils.VersionCreator;
 import com.window.panels.PanelCategorySelection;
 import com.window.panels.PanelDisplay;
 
@@ -23,9 +22,9 @@ public class WindowBuilder extends JFrame {
 	private PanelCategorySelection panelCategorySelection;
 	private PanelDisplay panelDisplay;
 	
-	public WindowBuilder(int major, int minor, int bugs) {
+	public WindowBuilder() {
 	   	initScreen();
-	   	createWindowTitle(major, minor, bugs);
+	   	setTitle(Settings.title);
 	}
 	
 	public void init(PanelCategorySelection panelCategorySelection, PanelDisplay panelDisplay) {
@@ -39,14 +38,6 @@ public class WindowBuilder extends JFrame {
 			revalidate();
 			setVisible(true);
 		});
-	}
-	
-	private void createWindowTitle(int major, int minor, int bugs) {
-		if (Settings.debug == true)
-			Settings.title = Settings.getMainTitle(new VersionCreator(major, minor, bugs).toString());
-		else 
-			Settings.title = Settings.getMainTitle(Settings.versionRelease);
-		setTitle(Settings.title);
 	}
 	
 	private void initScreen() {

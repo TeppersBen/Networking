@@ -31,15 +31,12 @@ public class PanelSettings extends PanelProtocol {
 		JPanel panelApply = new JPanel(new BorderLayout());
 		panelApply.add(buttonApply, BorderLayout.EAST);
 		add(panelApply, BorderLayout.SOUTH);
-		
 	}
 
 	@Override
 	protected void initListeners() {
 		buttonApply.addActionListener(e -> {
-			/*
-			 * TODO Modify the language pack.
-			 */
+			//TODO Modify the language pack.
 		});
 	}
 
