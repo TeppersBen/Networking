@@ -1,11 +1,13 @@
-package com.utils;
+package com.handlers;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Properties;
 
-public class Configuration {
+import com.utils.VersionCreator;
+
+public class ConfigurationHandler {
 	
 	public static String getKey(String key) {
 		try {
