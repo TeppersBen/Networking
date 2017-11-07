@@ -16,6 +16,7 @@ public abstract class PanelProtocol extends JPanel {
 	private static final long serialVersionUID = 3246826528396342033L;
 	
 	protected LanguageHandler languageHandler;
+	private String panelName;
 	
 	public PanelProtocol(LanguageHandler languageHandler) {
 		setLayout(new BorderLayout());
@@ -26,7 +27,7 @@ public abstract class PanelProtocol extends JPanel {
 		layoutComponents();
 		initListeners();
 	}
-
+	
 	protected abstract void initComponents();
 	protected abstract void layoutComponents();
 	protected abstract void initListeners();
@@ -51,5 +52,14 @@ public abstract class PanelProtocol extends JPanel {
 		labelTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		labelTitle.setVerticalAlignment(SwingConstants.CENTER);
 		return panelTitle;
+	}
+	
+
+	public void setPanelName(String panelName) {
+		this.panelName = panelName;
+	}
+	
+	public String getPanelName() {
+		return panelName;
 	}
 }

@@ -22,13 +22,14 @@ public class PanelSettings extends PanelProtocol {
 	
 	@Override
 	protected void initComponents() {
+		setPanelName(languageHandler.getKey("tab_session_settings"));
 		languageSelection = new PanelSettingsLanguageSelection(languageHandler);
 		buttonApply = new JButton(languageHandler.getKey("settings_button_apply"));
 	}
 	
 	@Override
 	protected void layoutComponents() {
-		add(setTitle("Settings"), BorderLayout.NORTH);
+		add(setTitle(getPanelName()), BorderLayout.NORTH);
 		JPanel panel1 = new JPanel(new BorderLayout());
 		panel1.add(languageSelection, BorderLayout.NORTH);
 		add(panel1, BorderLayout.CENTER);
@@ -40,8 +41,8 @@ public class PanelSettings extends PanelProtocol {
 	@Override
 	protected void initListeners() {
 		buttonApply.addActionListener(e -> {
-			languageSelection.execute();
 			Popup.showInformationMessage(languageHandler.getKey("settings_restart_request"));
+			languageSelection.execute();
 		});
 	}
 

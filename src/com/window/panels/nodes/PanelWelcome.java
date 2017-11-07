@@ -13,12 +13,12 @@ public class PanelWelcome extends PanelProtocol {
 
 	@Override
 	protected void initComponents() {
-		
+		setPanelName(languageHandler.getKey("tab_welcome"));
 	}
 
 	@Override
 	protected void layoutComponents() {
-		add(setTitle("Welcome!"));
+		add(setTitle(languageHandler.getKey("tab_welcome") + "!"));
 	}
 
 	@Override
