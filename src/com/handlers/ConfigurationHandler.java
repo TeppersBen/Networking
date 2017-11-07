@@ -5,13 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Properties;
 
+import com.Settings;
 import com.utils.VersionCreator;
 
 public class ConfigurationHandler {
 	
 	public static String getKey(String key) {
 		try {
-			File configFile = new File("src/resources/config.properties");
+			File configFile = new File(Settings.CONFIGURATION_FILE);
 			FileInputStream fis = new FileInputStream(configFile);
 			Properties config = new Properties();
 			config.load(fis);
@@ -23,9 +24,26 @@ public class ConfigurationHandler {
 		}
 	}
 	
+	public static void compileConfiguration() {
+		try {
+			File configFile = new File(Settings.CONFIGURATION_FILE);
+			Properties config = new Properties();
+			
+			FileInputStream fis = new FileInputStream(configFile);
+			config.load(fis);
+			fis.close();
+			
+			FileOutputStream fos = new FileOutputStream(configFile);
+			config.store(fos, "Program Settings");
+			fos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private static void modifyKey(String key, String value) {
 		try {
-			File configFile = new File("src/resources/config.properties");
+			File configFile = new File(Settings.CONFIGURATION_FILE);
 			Properties config = new Properties();
 			
 			FileInputStream fis = new FileInputStream(configFile);
