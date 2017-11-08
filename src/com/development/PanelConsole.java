@@ -74,10 +74,10 @@ class ConsoleHandler {
 					pane.setCaretPosition(pane.getText().length());
 					break;
 				case VK_BACK_SPACE:
-					if (pane.getText().charAt(pane.getText().length() - 2) == '#')
-						pane.setText(pane.getText() + " ");
-					if (pane.getText().charAt(pane.getText().length() - 2) == '>')
-						pane.setText(pane.getText() + " ");
+					if (pane.getText().charAt(pane.getText().length() - 1) == '#')
+						pane.setText(pane.getText() + "#");
+					if (pane.getText().charAt(pane.getText().length() - 1) == '>')
+						pane.setText(pane.getText() + ">");
 					break;
 				case VK_UP:
 				case VK_DOWN:

@@ -81,7 +81,7 @@ public abstract class NetworkDevice {
 	protected String createCommandsList(String[][] commands) {
 		String result = "";
 		for (int i = 0; i < commands.length; i++) {
-			result += String.format("  %-11s %s%n", commands[i][0], commands[i][1]);
+			result += String.format("  %-11s %s \n", commands[i][0], commands[i][1]);
 		}
 		return "Exec commands:\n" + result + getCurrentState();
 	}

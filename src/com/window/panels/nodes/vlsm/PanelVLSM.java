@@ -207,15 +207,15 @@ class SubnetPanelCreator extends JPanel {
 	private LanguageHandler languageHandler;
 	
 	public SubnetPanelCreator(int subnets, LanguageHandler handler) {
-		build(subnets);
 		setLanguageHandler(handler);
+		build(subnets);
 	}
 	
 	public void build(int subnets) {
 		setLayout(new GridLayout(subnets+1, 2));
 		character = (int) 'A';
-		add(new JLabel("Name", SwingConstants.CENTER));
-		add(new JLabel("Size", SwingConstants.CENTER));
+		add(new JLabel(languageHandler.getKey("vlsm_label_subnetname"), SwingConstants.CENTER));
+		add(new JLabel(languageHandler.getKey("vlsm_label_subnetsize"), SwingConstants.CENTER));
 		data = new JTextField[subnets][2];
 		for (int i = 0; i < subnets; i++) {
 			data[i][0] = new JTextField(1);
