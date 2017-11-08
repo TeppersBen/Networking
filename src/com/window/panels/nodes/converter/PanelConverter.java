@@ -29,10 +29,13 @@ public class PanelConverter extends PanelProtocol {
 		sub2.add(sub1, BorderLayout.NORTH);
 		sub2.add(new JLabel(" "), BorderLayout.CENTER);
 		
-		add(setTitle(languageHandler.getKey("converter_Title")), BorderLayout.NORTH);
+		add(setTitle(getPanelName()), BorderLayout.NORTH);
 		add(sub2, BorderLayout.CENTER);
 	}
 
 	protected void initListeners() {}
-	protected void initComponents() {}
+	
+	protected void initComponents() {
+		setPanelName(languageHandler.getKey("tab_calculators_converter"));
+	}
 }

@@ -22,6 +22,7 @@ public class PanelLogging extends PanelProtocol {
 	
 	@Override
 	protected void initComponents() {
+		setPanelName(languageHandler.getKey("tab_session_logging"));
 		loggingField = new JTextPane();
 		Logger.setLoggingField(loggingField);
 		scroll = new JScrollPane();
@@ -30,7 +31,7 @@ public class PanelLogging extends PanelProtocol {
 
 	@Override
 	protected void layoutComponents() {
-		add(setTitle("Logging"), BorderLayout.NORTH);
+		add(setTitle(getPanelName()), BorderLayout.NORTH);
 		add(scroll, BorderLayout.CENTER);
 	}
 

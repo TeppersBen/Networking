@@ -21,13 +21,12 @@ public class PanelDisplay extends PanelProtocol {
 	private PanelConsole panelConsole;
 	
 	public void addNodePanel(PanelProtocol panel) {
-		String result = panel.getClass().getSimpleName();
-		cards.add(panel, result.substring(0, 1).toLowerCase() + result.substring(1));
+		cards.add(panel, "panel" + panel.getPanelName());
 	}
 	
 	public void build() {
 		add(cards);
-		setState("panelWelcome");
+		setState("panel" + languageHandler.getKey("tab_welcome"));
 	}
 	
 	@Override

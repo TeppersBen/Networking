@@ -43,6 +43,7 @@ public class PanelVLSM extends PanelProtocol {
 
 	@Override
 	protected void initComponents() {
+		setPanelName(languageHandler.getKey("tab_calculators_vlsm"));
 		labelMajorNetwork = new JLabel(" " + languageHandler.getKey("vlsm_label_majornetwork") + " ");
 		textMajorNetwork = new JTextField(5);
 
@@ -63,7 +64,7 @@ public class PanelVLSM extends PanelProtocol {
 
 	@Override
 	protected void layoutComponents() {
-		add(setTitle("VLSM"), BorderLayout.NORTH);
+		add(setTitle(getPanelName()), BorderLayout.NORTH);
 
 		JPanel panelMajorNetwork = new JPanel(new BorderLayout());
 		panelMajorNetwork.add(labelMajorNetwork, BorderLayout.WEST);

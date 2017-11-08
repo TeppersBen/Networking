@@ -50,15 +50,27 @@ public class PanelCategorySelection extends PanelProtocol {
 	protected void initListeners() {
 		tree.addTreeSelectionListener(e -> {
 			DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+			if (!isValidNode(selectedNode.toString()))
+				return;
 			PanelDisplay.setState("panel" + selectedNode.toString());
 		});
 	}
+	
+	private boolean isValidNode(String node) {
+		if (node.equalsIgnoreCase(languageHandler.getKey("tab_session")))
+			return false;
+		if (node.equalsIgnoreCase(languageHandler.getKey("tab_calculators")))
+			return false;
+		return true;
+	}
 
 	private void createTree() {
-		createNode("Session", Arrays.asList("Logging"));
-		createNode("Calculators", Arrays.asList("Converter", "VLSM"));
+		createNode(languageHandler.getKey("tab_session"), Arrays.asList(languageHandler.getKey("tab_session_logging"),
+				 														languageHandler.getKey("tab_session_settings")));
+		createNode(languageHandler.getKey("tab_calculators"), Arrays.asList(languageHandler.getKey("tab_calculators_converter"), 
+																			languageHandler.getKey("tab_calculators_vlsm")));
 		if (Settings.debug) {
-			createNode("Development", Arrays.asList("Console", "Settings"));
+			createNode("Development", Arrays.asList("Console"));
 		}
 	}
 

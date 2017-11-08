@@ -7,9 +7,10 @@ public class LanguageHandler {
 
 	private Locale locale;
 	private ResourceBundle bundle;
+	private String localeString = ConfigurationHandler.getUserKey("locale");
 	
 	public LanguageHandler() {
-		Locale locale = new Locale("en", "GB");
+		locale = new Locale(localeString.split("_")[0], localeString.split("_")[1]);
 		bundle = ResourceBundle.getBundle("resources.language.language", locale);
 	}
 	
@@ -18,8 +19,11 @@ public class LanguageHandler {
 	}
 	
 	public void changeLanguage(String language, String country) {
-		locale = new Locale(language, country);
-		bundle = ResourceBundle.getBundle("resources.language.language", locale);
+		ConfigurationHandler.modifyLanguage(language, country);
+	}
+	
+	public String getLocale() {
+		return locale.toString();
 	}
 	
 }
