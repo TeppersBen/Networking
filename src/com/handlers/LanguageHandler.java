@@ -7,7 +7,7 @@ public class LanguageHandler {
 
 	private Locale locale;
 	private ResourceBundle bundle;
-	private String localeString = ConfigurationHandler.getKey("locale");
+	private String localeString = ConfigurationHandler.getUserKey("locale");
 	
 	public LanguageHandler() {
 		locale = new Locale(localeString.split("_")[0], localeString.split("_")[1]);
