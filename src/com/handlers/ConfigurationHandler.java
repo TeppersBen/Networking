@@ -24,23 +24,6 @@ public class ConfigurationHandler {
 		}
 	}
 	
-	public static void compileConfiguration() {
-		try {
-			File configFile = new File(Settings.CONFIGURATION_FILE);
-			Properties config = new Properties();
-			
-			FileInputStream fis = new FileInputStream(configFile);
-			config.load(fis);
-			fis.close();
-			
-			FileOutputStream fos = new FileOutputStream(configFile);
-			config.store(fos, "Program Settings");
-			fos.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 	private static void modifyKey(String key, String value) {
 		try {
 			File configFile = new File(Settings.CONFIGURATION_FILE);

@@ -37,24 +37,22 @@ public class PanelSettingsLanguageSelection extends PanelProtocol {
 	protected void initListeners() {}
 	
 	private void setCurrentLanguage() {
-		switch (languageHandler.getLocale()) {
-		case "en_GB":
-			languageBox.setSelectedIndex(1);
-			break;
-		case "nl_NL":
-			languageBox.setSelectedIndex(0);
-			break;
-		case "mk_MK":
-			languageBox.setSelectedIndex(2);
-			break;
+		String item = "";
+		for (int i = 0; i < languageBox.getItemCount(); i++) {
+			languageBox.setSelectedIndex(i);
+			item = languageBox.getSelectedItem().toString();
+			if (item.equalsIgnoreCase(languageHandler.getKey("settings_language_english"))) {
+				languageBox.setSelectedIndex(i);
+			} else if (item.equalsIgnoreCase(languageHandler.getKey("settings_language_dutch"))) {
+				languageBox.setSelectedIndex(i);
+			}
 		}
 	}
 	
 	private String[] getLanguageList() {
 		String[] result = {
 				languageHandler.getKey("settings_language_english"),
-				languageHandler.getKey("settings_language_dutch"),
-				languageHandler.getKey("settings_language_macedonian")
+				languageHandler.getKey("settings_language_dutch")
 		};
 		Arrays.sort(result);
 		return result; 
@@ -66,8 +64,6 @@ public class PanelSettingsLanguageSelection extends PanelProtocol {
 			languageHandler.changeLanguage("en", "GB");
 		} else if (language.equalsIgnoreCase(languageHandler.getKey("settings_language_dutch"))) {
 			languageHandler.changeLanguage("nl", "NL");
-		} else if (language.equalsIgnoreCase(languageHandler.getKey("settings_language_macedonian"))) {
-			languageHandler.changeLanguage("mk", "MK");
 		}
 	}
 }

@@ -19,8 +19,6 @@ public class LanguageHandler {
 	}
 	
 	public void changeLanguage(String language, String country) {
-		locale = new Locale(language, country);
-		bundle = ResourceBundle.getBundle("resources.language.language", locale);
 		ConfigurationHandler.modifyLanguage(language, country);
 	}
 	
