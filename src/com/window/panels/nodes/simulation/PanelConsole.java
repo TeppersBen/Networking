@@ -1,4 +1,4 @@
-package com.engine.development;
+package com.window.panels.nodes.simulation;
 
 import static java.awt.event.KeyEvent.VK_BACK_SPACE;
 import static java.awt.event.KeyEvent.VK_DOWN;

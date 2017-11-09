@@ -1,6 +1,5 @@
 package com;
 
-import com.engine.development.PanelConsole;
 import com.engine.handlers.LanguageHandler;
 import com.engine.utils.Logger;
 import com.engine.utils.Popup;
@@ -12,6 +11,7 @@ import com.window.panels.nodes.PanelLogging;
 import com.window.panels.nodes.PanelWelcome;
 import com.window.panels.nodes.converter.PanelConverter;
 import com.window.panels.nodes.settings.PanelSettings;
+import com.window.panels.nodes.simulation.PanelConsole;
 import com.window.panels.nodes.vlsm.PanelVLSM;
 
 public class Launcher {
