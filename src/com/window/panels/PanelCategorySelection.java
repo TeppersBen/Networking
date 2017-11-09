@@ -29,7 +29,7 @@ public class PanelCategorySelection extends PanelProtocol {
 
 	@Override
 	protected void initComponents() {
-		top = new DefaultMutableTreeNode("Make your selection.");
+		top = new DefaultMutableTreeNode("");
 		tree = new JTree(top);
 		treeView = new JScrollPane(tree);
 
@@ -70,7 +70,8 @@ public class PanelCategorySelection extends PanelProtocol {
 		createNode(languageHandler.getKey("tab_calculators"), Arrays.asList(languageHandler.getKey("tab_calculators_converter"), 
 																			languageHandler.getKey("tab_calculators_vlsm")));
 		if (Settings.debug) {
-			createNode("Development", Arrays.asList("Console"));
+			createNode("Development", Arrays.asList("Console",
+													"Simulation"));
 		}
 	}
 
