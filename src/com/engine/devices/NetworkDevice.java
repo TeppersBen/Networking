@@ -1,4 +1,4 @@
-package com.devices;
+package com.engine.devices;
 
 public abstract class NetworkDevice {
 

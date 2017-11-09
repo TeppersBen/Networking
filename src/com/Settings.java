@@ -2,7 +2,7 @@ package com;
 
 import java.io.File;
 
-import com.handlers.ConfigurationHandler;
+import com.engine.handlers.ConfigurationHandler;
 
 public class Settings {
 

@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.Settings;
-import com.handlers.LanguageHandler;
-import com.utils.LookAndFeelManager;
+import com.engine.handlers.LanguageHandler;
+import com.engine.utils.LookAndFeelManager;
 
 public abstract class PanelProtocol extends JPanel {
 

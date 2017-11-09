@@ -1,9 +1,9 @@
 package com;
 
-import com.development.PanelConsole;
-import com.handlers.LanguageHandler;
-import com.utils.Logger;
-import com.utils.Popup;
+import com.engine.development.PanelConsole;
+import com.engine.handlers.LanguageHandler;
+import com.engine.utils.Logger;
+import com.engine.utils.Popup;
 import com.window.Splash;
 import com.window.WindowBuilder;
 import com.window.panels.PanelCategorySelection;

@@ -1,6 +1,6 @@
 package com.window.panels.nodes;
 
-import com.handlers.LanguageHandler;
+import com.engine.handlers.LanguageHandler;
 import com.window.panels.PanelProtocol;
 
 public class PanelWelcome extends PanelProtocol {

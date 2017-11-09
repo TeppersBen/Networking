@@ -19,8 +19,8 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import com.Settings;
-import com.handlers.LanguageHandler;
-import com.utils.calculators.VLSMSpecializedCalculator;
+import com.engine.calculators.VLSMSpecializedCalculator;
+import com.engine.handlers.LanguageHandler;
 
 public class PanelVLSMTable extends JFrame {
 

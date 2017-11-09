@@ -14,7 +14,7 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import com.Settings;
-import com.handlers.LanguageHandler;
+import com.engine.handlers.LanguageHandler;
 
 public class PanelCategorySelection extends PanelProtocol {
 

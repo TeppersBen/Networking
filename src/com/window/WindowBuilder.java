@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import com.Settings;
-import com.utils.LookAndFeelManager;
+import com.engine.utils.LookAndFeelManager;
 import com.window.panels.PanelCategorySelection;
 import com.window.panels.PanelDisplay;
 

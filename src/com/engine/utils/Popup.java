@@ -1,8 +1,8 @@
-package com.utils;
+package com.engine.utils;
 
 import javax.swing.JOptionPane;
 
-import com.handlers.LanguageHandler;
+import com.engine.handlers.LanguageHandler;
 
 public class Popup {
 	

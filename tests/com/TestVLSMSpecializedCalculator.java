@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import com.utils.calculators.VLSMSpecializedCalculator;
+import com.engine.calculators.VLSMSpecializedCalculator;
 
 class TestVLSMSpecializedCalculator {
 	

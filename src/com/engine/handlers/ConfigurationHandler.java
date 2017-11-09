@@ -1,4 +1,4 @@
-package com.handlers;
+package com.engine.handlers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import com.Settings;
-import com.utils.VersionCreator;
+import com.engine.utils.VersionCreator;
 
 public class ConfigurationHandler {
 	

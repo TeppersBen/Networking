@@ -6,7 +6,7 @@ import java.util.Arrays;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
-import com.handlers.LanguageHandler;
+import com.engine.handlers.LanguageHandler;
 import com.window.panels.PanelProtocol;
 
 public class PanelSettingsLanguageSelection extends PanelProtocol {

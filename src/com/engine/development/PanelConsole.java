@@ -1,4 +1,4 @@
-package com.development;
+package com.engine.development;
 
 import static java.awt.event.KeyEvent.VK_BACK_SPACE;
 import static java.awt.event.KeyEvent.VK_DOWN;
@@ -16,8 +16,8 @@ import javax.swing.JTextPane;
 import javax.swing.text.JTextComponent;
 
 import com.Settings;
-import com.devices.Router;
-import com.handlers.LanguageHandler;
+import com.engine.devices.Router;
+import com.engine.handlers.LanguageHandler;
 import com.window.panels.PanelProtocol;
 
 public class PanelConsole extends PanelProtocol {

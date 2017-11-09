@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.handlers.LanguageHandler;
+import com.engine.handlers.LanguageHandler;
 import com.window.panels.PanelProtocol;
 
 public class PanelConverter extends PanelProtocol {
