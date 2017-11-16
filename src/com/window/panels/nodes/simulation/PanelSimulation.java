@@ -1,7 +1,10 @@
 package com.window.panels.nodes.simulation;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -16,7 +19,12 @@ public class PanelSimulation extends PanelProtocol {
 	private JScrollPane scroll;
 	private JButton buttonAddDevice;
 	private JPanel panelDevices;
-
+	
+	private List<PanelDevice> list = new LinkedList<>();
+	
+	private final int MAX_DEVICES = 10;
+	private int deviceCount;
+	
 	public PanelSimulation(LanguageHandler languageHandler) {
 		super(languageHandler);
 	}
@@ -24,15 +32,15 @@ public class PanelSimulation extends PanelProtocol {
 	@Override
 	protected void initComponents() {
 		setPanelName("Simulation");
-		panelDevices = new JPanel(new GridLayout(5, 1));
-		scroll = new JScrollPane();
-		scroll.setViewportView(panelDevices);
+		panelDevices = new JPanel(new GridLayout(10, 1));
+		scroll = new JScrollPane(panelDevices);
+		panelDevices.setMaximumSize(new Dimension(200, 500));
 		buttonAddDevice = new JButton("Add Device");
 	}
 
 	@Override
 	protected void layoutComponents() {
-		add(setTitle("Simulation"), BorderLayout.NORTH);
+		add(setTitle(getPanelName()), BorderLayout.NORTH);
 		add(scroll, BorderLayout.CENTER);
 		add(buttonAddDevice, BorderLayout.SOUTH);
 	}
@@ -40,8 +48,12 @@ public class PanelSimulation extends PanelProtocol {
 	@Override
 	protected void initListeners() {
 		buttonAddDevice.addActionListener(e -> {
-			//scroll.add(new PanelDevice());
+			if (deviceCount >= MAX_DEVICES) return;
+			PanelDevice device = new PanelDevice();
+			list.add(device);
+			panelDevices.add(device);
+			panelDevices.revalidate();
+			deviceCount++;
 		});
 	}
-
 }

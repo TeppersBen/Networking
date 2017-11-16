@@ -3,6 +3,8 @@ package com.window.panels.nodes.simulation;
 import static java.awt.event.KeyEvent.VK_BACK_SPACE;
 import static java.awt.event.KeyEvent.VK_DOWN;
 import static java.awt.event.KeyEvent.VK_ENTER;
+import static java.awt.event.KeyEvent.VK_LEFT;
+import static java.awt.event.KeyEvent.VK_RIGHT;
 import static java.awt.event.KeyEvent.VK_UP;
 
 import java.awt.BorderLayout;
@@ -63,6 +65,7 @@ class ConsoleHandler {
 		device = new Router();
 		pane.setText(device.getCurrentState());
 		pane.setFont(new Font("Monospaced", Font.PLAIN, 11));
+		pane.setCaretColor(Color.white);
 	}
 
 	public KeyAdapter getKeyListener() {
@@ -81,8 +84,9 @@ class ConsoleHandler {
 					break;
 				case VK_UP:
 				case VK_DOWN:
+				case VK_LEFT:
+				case VK_RIGHT:
 					caretLastPosition = pane.getCaretPosition();
-					pane.setCaretColor(Color.white);
 					break;
 				}
 			}
@@ -104,8 +108,9 @@ class ConsoleHandler {
 					break;
 				case VK_UP:
 				case VK_DOWN:
+				case VK_LEFT:
+				case VK_RIGHT:
 					pane.setCaretPosition(caretLastPosition);
-					pane.setCaretColor(Color.black);
 					break;
 				}
 			}
