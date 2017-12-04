@@ -138,6 +138,10 @@ public class PanelVLSM extends PanelProtocol {
 				converter.build(textMajorNetwork.getText(), panelSubnetTable.getData(), languageHandler);
 			});
 		});
+		
+		buttonClearFields.addActionListener(e -> {
+			panelSubnetTable.resetFields();
+		});
 	}
 	
 	private boolean isValidMajorNetwork() {
@@ -220,10 +224,16 @@ class SubnetPanelCreator extends JPanel {
 	
 	public void build(int subnets) {
 		setLayout(new GridLayout(subnets+1, 2));
-		character = 'A';
 		add(new JLabel(languageHandler.getKey("vlsm_label_subnetname"), SwingConstants.CENTER));
 		add(new JLabel(languageHandler.getKey("vlsm_label_subnetsize"), SwingConstants.CENTER));
+		createDefault(subnets);
+		replaceValues();
+		dataBackup = data;
+	}
+	
+	private void createDefault(int subnets) {
 		data = new JTextField[subnets][2];
+		character = 'A';
 		for (int i = 0; i < subnets; i++) {
 			data[i][0] = new JTextField(1);
 			data[i][0].setText(String.valueOf(character));
@@ -234,8 +244,15 @@ class SubnetPanelCreator extends JPanel {
 			add(data[i][0]);
 			add(data[i][1]);
 		}
-		replaceValues();
-		dataBackup = data;
+	}
+	
+	public void resetFields() {
+		character = 'A';
+		for (int i = 0; i < data.length; i++) {
+			data[i][0].setText(String.valueOf(character));
+			character++;
+			data[i][1].setText("");
+		}
 	}
 	
 	private void replaceValues() {
