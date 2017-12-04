@@ -1,5 +1,9 @@
 package com.window.panels.nodes;
 
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
 import com.engine.handlers.LanguageHandler;
 import com.window.panels.PanelProtocol;
 
@@ -14,11 +18,12 @@ public class PanelWelcome extends PanelProtocol {
 	@Override
 	protected void initComponents() {
 		setPanelName(languageHandler.getKey("tab_welcome"));
+		setBorder(BorderFactory.createTitledBorder(""));
 	}
 
 	@Override
 	protected void layoutComponents() {
-		add(setTitle(languageHandler.getKey("tab_welcome") + "!"));
+		add(new JLabel("<html>" + languageHandler.getKey("tab_welcome") + "!", SwingConstants.HORIZONTAL));
 	}
 
 	@Override
