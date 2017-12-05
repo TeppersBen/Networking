@@ -34,7 +34,7 @@ public class PanelConsole extends PanelProtocol {
 
 	public PanelConsole(LanguageHandler languageHandler) {
 		super(languageHandler);
-		title = Settings.title;
+		title = Settings.TITLE;
 		consoleHandler = new ConsoleHandler(consoleField);
 		consoleField.addKeyListener(consoleHandler.getKeyListener());
 		add(setTitle(title), BorderLayout.NORTH);

@@ -24,7 +24,7 @@ public class WindowBuilder extends JFrame {
 	
 	public WindowBuilder() {
 	   	initScreen();
-	   	setTitle(Settings.title);
+	   	setTitle(Settings.TITLE);
 	}
 	
 	public void init(PanelCategorySelection panelCategorySelection, PanelDisplay panelDisplay) {

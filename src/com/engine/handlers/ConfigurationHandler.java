@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Properties;
 
 import com.Settings;
@@ -90,6 +93,7 @@ public class ConfigurationHandler {
 		int minor = Integer.parseInt(getSystemKey("minor"));
 		int bugsFixed = Integer.parseInt(getSystemKey("bugsFixed"));
 		modifyKey("src/" + Settings.CONFIGURATION_SYSTEM_FILE, "version", new VersionCreator(major, minor, bugsFixed).toString());
+		modifyKey("src/" + Settings.CONFIGURATION_SYSTEM_FILE, "releaseDate", String.format("%1$td-%1$tm-%1$ty", LocalDateTime.of(LocalDate.now(), LocalTime.now())));
 	}
 	
 	public static void modifyLanguage(String language, String country) {

@@ -15,12 +15,13 @@ public class Settings {
 	public static final int MAX_HEIGHT = Integer.parseInt(ConfigurationHandler.getUserKey("windowHeight"));
 
 	public static String version;
-	public static String title;
+	public static String releaseDate;
+	public static final String TITLE = ConfigurationHandler.getSystemKey("title");
 	
 	static {
 		if (debug)
 			ConfigurationHandler.modifySoftwareVersion();
 		version = ConfigurationHandler.getSystemKey("version");
-		title = ConfigurationHandler.getSystemKey("title") + " - [Version: " + version + "]";
+		releaseDate = ConfigurationHandler.getSystemKey("releaseDate");
 	}
 }

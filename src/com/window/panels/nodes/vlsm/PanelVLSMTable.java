@@ -30,7 +30,7 @@ public class PanelVLSMTable extends JFrame {
 	private JTextField[][] data;
 	
 	public void build(String majorNetwork, JTextField[][] data, LanguageHandler handler) {
-		setTitle(Settings.title + " - VLSM table");
+		setTitle(Settings.TITLE + " - VLSM table");
 		initScreen();
 		table = new Table(majorNetwork, data, handler);
 		add(table);
