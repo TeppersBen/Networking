@@ -1,15 +1,12 @@
 package com.window.panels.nodes;
 
-import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import com.Settings;
 import com.engine.handlers.LanguageHandler;
+import com.window.panels.PanelDetailedInformation;
 import com.window.panels.PanelProtocol;
 
 public class PanelWelcome extends PanelProtocol {
@@ -34,17 +31,16 @@ public class PanelWelcome extends PanelProtocol {
 	protected void initComponents() {
 		initStrings();
 		setPanelName(welcome);
-		setBorder(BorderFactory.createTitledBorder(""));
 	}
 
 	@Override
 	protected void layoutComponents() {
+		setBorder(BorderFactory.createTitledBorder(""));
 		setLayout(new GridBagLayout());
-		JPanel panelMain = new JPanel(new BorderLayout());
-		panelMain.add(new JLabel("<html><b>" + welcome + "!", SwingConstants.HORIZONTAL), BorderLayout.NORTH);
-		panelMain.add(new JLabel(toUpperCaseFirstChar(version), SwingConstants.HORIZONTAL), BorderLayout.CENTER);
-		panelMain.add(new JLabel(toUpperCaseFirstChar(releaseDate), SwingConstants.HORIZONTAL), BorderLayout.SOUTH);
-		add(panelMain);
+		add(new PanelDetailedInformation(toUpperCaseFirstChar(welcome) + "!",
+										 toUpperCaseFirstChar(version),
+										 toUpperCaseFirstChar(releaseDate)));
+		//add(new PanelDetailedInformation("Welcome","1","2","3","4","5","6","7","8","9","10")); TODO fix bug where values from 8 - 10 are not displayed!
 	}
 
 	private String toUpperCaseFirstChar(String text) {
