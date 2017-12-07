@@ -46,12 +46,13 @@ public class PanelDetailedInformation extends JPanel {
 		if (labels.length == 2) {
 			panels[0].add(labels[1], BorderLayout.SOUTH);
 		} else {
-			for (int i = 1; i <= panels.length; i+=2) {
-				panels[index].add(labels[i], BorderLayout.NORTH);
-				panels[index].add(labels[i+1], BorderLayout.CENTER);
-				if (i == panels.length && i+2 < labels.length)
-					panels[index].add(labels[i+2], BorderLayout.SOUTH);
-				index++;
+			for (int i = 1; i < panels.length; i++) {
+				panels[i].add(labels[index], BorderLayout.NORTH);
+				panels[i].add(labels[index+1], BorderLayout.CENTER);
+				if (i == panels.length-1 && index+2 < labels.length) {
+					panels[i].add(labels[index+2], BorderLayout.SOUTH);
+				}
+				index += 2;
 			}
 		}
 		
