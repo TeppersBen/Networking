@@ -40,7 +40,6 @@ public class PanelWelcome extends PanelProtocol {
 		add(new PanelDetailedInformation(toUpperCaseFirstChar(welcome) + "!",
 										 toUpperCaseFirstChar(version),
 										 toUpperCaseFirstChar(releaseDate)));
-		//add(new PanelDetailedInformation("Welcome","1","2","3","4","5","6","7","8","9","10")); TODO fix bug where values from 8 - 10 are not displayed!
 	}
 
 	private String toUpperCaseFirstChar(String text) {
