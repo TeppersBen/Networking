@@ -1,5 +1,6 @@
 package com;
 
+import com.engine.calculators.NetworkConverter;
 import com.engine.handlers.LanguageHandler;
 import com.engine.utils.Logger;
 import com.engine.utils.Popup;
@@ -31,7 +32,8 @@ public class Launcher {
 	private static PanelSimulation panelSimulation;
 	
 	public static void main(String[] args) {
-		init();
+		//init();
+		System.out.println(NetworkConverter.getRequestedWildcard("192.168.0.0", "192.175.255.255"));
 	}
 	
 	private static void init() {

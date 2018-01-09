@@ -178,5 +178,46 @@ public class NetworkConverter extends Convert {
 		}
 		return valid;
 	}
+	
+	/**
+	 * Converts a Decimal Netmask to its Wildcard
+	 * @param decimalNetmask
+	 * @return string of Wildcard
+	 * @Example 255.255.0.0 > 0.0.255.255
+	 */
+	public static String getWildCardMask(String decimalNetmask) {
+		String[] segments = decimalNetmask.split("\\.");
+		String result = "";
+		for (int j = 0; j < 4; j++) {
+			result += (255 - Integer.parseInt(segments[j])) + ((j == 3) ? "" : ".");
+		}
+		return result;
+	}
+	
+	/**
+	 * Converts two ip addresses and returns the best possible wildcard
+	 * @param firstIP
+	 * @param lastIP
+	 * @return wildcard
+	 */
+	public static String getRequestedWildcard(String firstIP, String lastIP) {
+		firstIP = decimalIPv4ToBinary(firstIP);
+		lastIP = decimalIPv4ToBinary(lastIP);
+		int count = 0;
+		String result = "";
+		int step = 1;
+		while (!(firstIP.charAt(32 - count) == '1' && lastIP.charAt(32 - count) == '1')) {
+			count++;
+		}
+		for (int i = 0; i < 32 - count; i++) {
+			result += "0" + ((step % 8 == 0 && step != 0 && step != 32) ? "." : "");
+			step++;
+		}
+		for (int i = 0; i < count; i++) {
+			result += "1" + ((step % 8 == 0 && step != 0 && step != 32) ? "." : "");
+			step++;
+		}
+		return binaryIPv4ToDecimal(result);
+	}
 
 }
