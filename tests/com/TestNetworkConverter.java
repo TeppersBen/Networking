@@ -1,5 +1,6 @@
 package com;
 
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -58,6 +59,21 @@ class TestNetworkConverter {
 		final String b = "11110111.11111111.01110111.11011010";
 		final String c = "11010010.11011111.00110100.11001000";
 		assertEquals(c, NetworkConverter.operatorAND(a, b));
+	}
+	
+	@Test
+	void checkgetWildCardMaskUsingSubnetMask() {
+		assertEquals("0.0.255.255", NetworkConverter.getWildCardMask("255.255.0.0"));
+	}
+	
+	@Test
+	void checkgetWildCardMaskUsingCIDR() {
+		assertEquals("0.0.255.255", NetworkConverter.getWildCardMask(16));
+	}
+	
+	@Test
+	void checkgetRequestedWildcard() {
+		assertEquals("0.0.0.1", NetworkConverter.getRequestedWildcard("10.0.1.16", "10.0.1.17"));
 	}
 	
 }
