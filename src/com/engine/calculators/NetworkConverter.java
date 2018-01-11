@@ -180,8 +180,8 @@ public class NetworkConverter extends Convert {
 	}
 	
 	/**
-	 * Converts a Decimal Netmask to its Wildcard
-	 * @param decimalNetmask
+	 * Converts a Decimal Netmask to its Wildcard.
+	 * @param decimalNetmask - String of decimal subnet mask
 	 * @return string of Wildcard
 	 * @Example 255.255.0.0 > 0.0.255.255
 	 */
@@ -195,29 +195,30 @@ public class NetworkConverter extends Convert {
 	}
 	
 	/**
-	 * Converts two ip addresses and returns the best possible wildcard
-	 * @param firstIP
-	 * @param lastIP
-	 * @return wildcard
+	 * Converts a CIDR notation to its Wildcard.
+	 * @param cidr - network range notation
+	 * @return string of wildcard
+	 * @Example 24 > 0.0.0.255
+	 */
+	public static String getWildCardMask(int cidr) {
+		return getWildCardMask(netmaskCIDRtoDecimal(cidr));
+	}
+	
+	/**
+	 * Converts two ip addresses and returns the best possible wildcard.
+	 * @param firstIP - First IP address in the requested range
+	 * @param lastIP - Last IP address in the requested range
+	 * @return wildcard of requested ACL range
+	 * @Example <b>firstIP:</b> 10.0.1.16<br><b>lastIP:</b> 10.0.1.17<br><b>------------------<br>Wildcard:</b> 0.0.0.1
 	 */
 	public static String getRequestedWildcard(String firstIP, String lastIP) {
-		firstIP = decimalIPv4ToBinary(firstIP);
-		lastIP = decimalIPv4ToBinary(lastIP);
-		int count = 0;
+		String[] firstIPSegments = firstIP.split("\\.");
+		String[] lastIPSegments = lastIP.split("\\.");
 		String result = "";
-		int step = 1;
-		while (!(firstIP.charAt(32 - count) == '1' && lastIP.charAt(32 - count) == '1')) {
-			count++;
+		for (int i = 0; i < 4; i++) {
+			result += (Integer.parseInt(lastIPSegments[i]) - Integer.parseInt(firstIPSegments[i])) + ((i == 3) ? "" : ".");
 		}
-		for (int i = 0; i < 32 - count; i++) {
-			result += "0" + ((step % 8 == 0 && step != 0 && step != 32) ? "." : "");
-			step++;
-		}
-		for (int i = 0; i < count; i++) {
-			result += "1" + ((step % 8 == 0 && step != 0 && step != 32) ? "." : "");
-			step++;
-		}
-		return binaryIPv4ToDecimal(result);
+		return result;
 	}
 
 }
