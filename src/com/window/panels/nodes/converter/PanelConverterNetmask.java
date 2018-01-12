@@ -26,6 +26,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 	private JLabel labelNetmaskClass;
 	private JLabel labelNetmaskTotalHosts;
 	private JLabel labelNetmaskTotalSubnets;
+	private JLabel labelNetmaskWildcard;
 	private JTextField textfieldNetmask;
 	private JButton buttonNetmask;
 	private JButton buttonHelp;
@@ -40,6 +41,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 		textfieldNetmask = new JTextField(11);
 		buttonNetmask = new JButton(languageHandler.getKey("converter_netmask_button_ConverterNetmask"));
 		buttonHelp = new JButton(languageHandler.getKey("converter_button_Help"));
+		labelNetmaskWildcard = new JLabel(" " + languageHandler.getKey("converter_acl_wildcard") + ": ");
 	}
 	
 	@Override
@@ -58,7 +60,8 @@ public class PanelConverterNetmask extends PanelProtocol {
 		panelNetmaskResult.add(labelNetmaskClass, BorderLayout.CENTER);
 		panelNetmaskResult.add(labelNetmaskTotalSubnets, BorderLayout.SOUTH);
 		panelNetmaskResult1.add(labelNetmaskTotalHosts, BorderLayout.NORTH);
-		panelNetmaskResult1.add(panelButtons, BorderLayout.CENTER);
+		panelNetmaskResult1.add(labelNetmaskWildcard, BorderLayout.CENTER);
+		panelNetmaskResult1.add(panelButtons, BorderLayout.SOUTH);
 		panelNetmask.add(panelNetmaskSub, BorderLayout.NORTH);
 		panelNetmask.add(panelNetmaskResult, BorderLayout.CENTER);
 		panelNetmask.add(panelNetmaskResult1, BorderLayout.SOUTH);
@@ -162,6 +165,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 			labelNetmaskClass.setText(" " + languageHandler.getKey("converter_netmask_label_Class") + ": " + NetworkConverter.getNetmaskClass(NetworkConverter.netmaskCIDRtoDecimal(netmask)));
 			labelNetmaskTotalSubnets.setText(" " + languageHandler.getKey("converter_netmask_label_Subnets") + ": " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(netmask)));
 			labelNetmaskTotalHosts.setText(" " + languageHandler.getKey("converter_netmask_label_Hosts") + ": " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(netmask)));
+			labelNetmaskWildcard.setText(" " + languageHandler.getKey("converter_acl_wildcard") + ": " + NetworkConverter.getWildCardMask(netmask));
 		} else {
 			if (isBinary) {
 				String netmask = NetworkConverter.binaryIPv4ToDecimal(textfieldNetmask.getText());
@@ -174,6 +178,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 				labelNetmaskClass.setText(" " + languageHandler.getKey("converter_netmask_label_Class") + ": " + NetworkConverter.getNetmaskClass(netmask));
 				labelNetmaskTotalSubnets.setText(" " + languageHandler.getKey("converter_netmask_label_Subnets") + ": " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
 				labelNetmaskTotalHosts.setText(" " + languageHandler.getKey("converter_netmask_label_Hosts") + ": " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
+				labelNetmaskWildcard.setText(" " + languageHandler.getKey("converter_acl_wildcard") + ": " + NetworkConverter.getWildCardMask(netmask));
 			} else {
 				String netmask = textfieldNetmask.getText();
 				if (!NetworkConverter.isValidNetmask(netmask)) {
@@ -184,6 +189,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 				labelNetmaskClass.setText(" " + languageHandler.getKey("converter_netmask_label_Class") + ": " + NetworkConverter.getNetmaskClass(netmask));
 				labelNetmaskTotalSubnets.setText(" " + languageHandler.getKey("converter_netmask_label_Subnets") + ": " + Formatter.formatInteger(NetworkConverter.getTotalValidSubnets(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
 				labelNetmaskTotalHosts.setText(" " + languageHandler.getKey("converter_netmask_label_Hosts") + ": " + Formatter.formatInteger(NetworkConverter.getTotalValidHosts(Integer.parseInt(NetworkConverter.netmaskDecimalToCIDR(netmask)))));
+				labelNetmaskWildcard.setText(" " + languageHandler.getKey("converter_acl_wildcard") + ": " + NetworkConverter.getWildCardMask(netmask));
 			}
 		}
 	}

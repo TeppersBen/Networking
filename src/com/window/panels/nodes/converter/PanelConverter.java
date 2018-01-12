@@ -25,12 +25,17 @@ public class PanelConverter extends PanelProtocol {
 		sub1.add(new PanelConverterNetmask(languageHandler), BorderLayout.CENTER);
 		sub1.add(new PanelConverterRequestedHosts(languageHandler), BorderLayout.SOUTH);
 		
+		JPanel acl = new JPanel(new BorderLayout());
+		acl.add(new PanelConverterACL(languageHandler), BorderLayout.NORTH);
+		acl.add(new JLabel(" "), BorderLayout.CENTER);
+		
 		JPanel sub2 = new JPanel(new BorderLayout());
 		sub2.add(sub1, BorderLayout.NORTH);
-		sub2.add(new JLabel(" "), BorderLayout.CENTER);
+		sub2.add(acl, BorderLayout.CENTER);
 		
 		add(setTitle(getPanelName()), BorderLayout.NORTH);
 		add(sub2, BorderLayout.CENTER);
+		add(new JLabel(" "), BorderLayout.SOUTH);
 	}
 
 	protected void initListeners() {}
