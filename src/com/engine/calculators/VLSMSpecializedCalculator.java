@@ -1,4 +1,4 @@
-package com.utils.calculators;
+package com.engine.calculators;
 
 public class VLSMSpecializedCalculator extends NetworkConverter {
 	

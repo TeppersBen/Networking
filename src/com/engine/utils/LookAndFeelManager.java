@@ -1,4 +1,4 @@
-package com.utils;
+package com.engine.utils;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;

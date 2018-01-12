@@ -1,4 +1,4 @@
-package com.utils.calculators;
+package com.engine.calculators;
 
 import java.util.Arrays;
 import java.util.List;
@@ -177,6 +177,48 @@ public class NetworkConverter extends Convert {
 					valid = true;
 		}
 		return valid;
+	}
+	
+	/**
+	 * Converts a Decimal Netmask to its Wildcard.
+	 * @param decimalNetmask - String of decimal subnet mask
+	 * @return string of Wildcard
+	 * @Example 255.255.0.0 > 0.0.255.255
+	 */
+	public static String getWildCardMask(String decimalNetmask) {
+		String[] segments = decimalNetmask.split("\\.");
+		String result = "";
+		for (int j = 0; j < 4; j++) {
+			result += (255 - Integer.parseInt(segments[j])) + ((j == 3) ? "" : ".");
+		}
+		return result;
+	}
+	
+	/**
+	 * Converts a CIDR notation to its Wildcard.
+	 * @param cidr - network range notation
+	 * @return string of wildcard
+	 * @Example 24 > 0.0.0.255
+	 */
+	public static String getWildCardMask(int cidr) {
+		return getWildCardMask(netmaskCIDRtoDecimal(cidr));
+	}
+	
+	/**
+	 * Converts two ip addresses and returns the best possible wildcard.
+	 * @param firstIP - First IP address in the requested range
+	 * @param lastIP - Last IP address in the requested range
+	 * @return wildcard of requested ACL range
+	 * @Example <b>firstIP:</b> 10.0.1.16<br><b>lastIP:</b> 10.0.1.17<br><b>------------------<br>Wildcard:</b> 0.0.0.1
+	 */
+	public static String getRequestedWildcard(String firstIP, String lastIP) {
+		String[] firstIPSegments = firstIP.split("\\.");
+		String[] lastIPSegments = lastIP.split("\\.");
+		String result = "";
+		for (int i = 0; i < 4; i++) {
+			result += (Integer.parseInt(lastIPSegments[i]) - Integer.parseInt(firstIPSegments[i])) + ((i == 3) ? "" : ".");
+		}
+		return result;
 	}
 
 }

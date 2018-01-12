@@ -3,7 +3,7 @@ package com.window;
 import javax.swing.JFrame;
 import javax.swing.JProgressBar;
 
-import com.utils.LookAndFeelManager;
+import com.engine.utils.LookAndFeelManager;
 
 public class Splash extends JFrame {
 

@@ -13,9 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import com.handlers.LanguageHandler;
-import com.utils.Popup;
-import com.utils.calculators.VLSMSpecializedCalculator;
+import com.engine.calculators.VLSMSpecializedCalculator;
+import com.engine.handlers.LanguageHandler;
+import com.engine.utils.Popup;
 import com.window.panels.PanelProtocol;
 
 public class PanelVLSM extends PanelProtocol {
@@ -36,6 +36,7 @@ public class PanelVLSM extends PanelProtocol {
 	private SubnetPanelCreator panelSubnetTable;
 
 	private JButton buttonSubmit;
+	private JButton buttonClearFields;
 	
 	private JScrollPane scroll;
 	
@@ -60,6 +61,7 @@ public class PanelVLSM extends PanelProtocol {
 		scroll = new JScrollPane();
 		
 		converter = new PanelVLSMTable();
+		buttonClearFields = new JButton(languageHandler.getKey("vlsm_button_clearfields"));
 	}
 
 	@Override
@@ -73,7 +75,11 @@ public class PanelVLSM extends PanelProtocol {
 		JPanel panelSubnetAmount = new JPanel(new BorderLayout());
 		panelSubnetAmount.add(labelNumberofSubnets, BorderLayout.WEST);
 		panelSubnetAmount.add(textNumberofSubnets, BorderLayout.CENTER);
-		panelSubnetAmount.add(buttonChangeNumberofSubnets, BorderLayout.EAST);
+		
+		JPanel panelSubnetsAmountSection = new JPanel(new BorderLayout());
+		panelSubnetsAmountSection.add(buttonChangeNumberofSubnets, BorderLayout.CENTER);
+		panelSubnetsAmountSection.add(buttonClearFields, BorderLayout.EAST);
+		panelSubnetAmount.add(panelSubnetsAmountSection, BorderLayout.EAST);
 		
 		JPanel panelSubnets2 = new JPanel(new BorderLayout());
 		panelSubnets2.add(panelSubnetAmount, BorderLayout.NORTH);
@@ -131,6 +137,10 @@ public class PanelVLSM extends PanelProtocol {
 				converter = new PanelVLSMTable();
 				converter.build(textMajorNetwork.getText(), panelSubnetTable.getData(), languageHandler);
 			});
+		});
+		
+		buttonClearFields.addActionListener(e -> {
+			panelSubnetTable.resetFields();
 		});
 	}
 	
@@ -202,30 +212,59 @@ class SubnetPanelCreator extends JPanel {
 
 	private static final long serialVersionUID = -6000195008416312570L;
 
-	private int character;
+	private char character;
 	private JTextField[][] data;
 	private LanguageHandler languageHandler;
+	private JTextField[][] dataBackup;
 	
 	public SubnetPanelCreator(int subnets, LanguageHandler handler) {
-		build(subnets);
 		setLanguageHandler(handler);
+		build(subnets);
 	}
 	
 	public void build(int subnets) {
 		setLayout(new GridLayout(subnets+1, 2));
-		character = (int) 'A';
-		add(new JLabel("Name", SwingConstants.CENTER));
-		add(new JLabel("Size", SwingConstants.CENTER));
+		add(new JLabel(languageHandler.getKey("vlsm_label_subnetname"), SwingConstants.CENTER));
+		add(new JLabel(languageHandler.getKey("vlsm_label_subnetsize"), SwingConstants.CENTER));
+		createDefault(subnets);
+		replaceValues();
+		dataBackup = data;
+	}
+	
+	private void createDefault(int subnets) {
 		data = new JTextField[subnets][2];
+		character = 'A';
 		for (int i = 0; i < subnets; i++) {
 			data[i][0] = new JTextField(1);
-			data[i][0].setText(String.valueOf((char) character));
+			data[i][0].setText(String.valueOf(character));
 			character++;
 			
 			data[i][1] = new JTextField(1);
 			
 			add(data[i][0]);
 			add(data[i][1]);
+		}
+	}
+	
+	public void resetFields() {
+		character = 'A';
+		for (int i = 0; i < data.length; i++) {
+			data[i][0].setText(String.valueOf(character));
+			character++;
+			data[i][1].setText("");
+		}
+	}
+	
+	private void replaceValues() {
+		if (dataBackup == null) 
+			return;
+		int length = data.length;
+		if (length > dataBackup.length)
+			length = dataBackup.length;
+		for (int i = 0; i < length; i++) {
+			for (int x = 0; x < 2; x++) {
+				data[i][x].setText(dataBackup[i][x].getText());
+			}
 		}
 	}
 	

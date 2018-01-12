@@ -7,10 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.handlers.LanguageHandler;
-import com.utils.Popup;
-import com.utils.calculators.NetworkConverter;
-import com.utils.calculators.VLSMSpecializedCalculator;
+import com.engine.calculators.NetworkConverter;
+import com.engine.calculators.VLSMSpecializedCalculator;
+import com.engine.handlers.LanguageHandler;
+import com.engine.utils.Popup;
 import com.window.panels.PanelProtocol;
 
 public class PanelConverterRequestedHosts extends PanelProtocol {
@@ -27,6 +27,7 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 	private JLabel labelHostsClass;
 	private JLabel labelHostsTotalHosts;
 	private JLabel labelHostsTotalSubnets;
+	private JLabel labelHostsWildcard;
 	private JTextField textfieldHosts;
 	private JButton buttonHosts;
 	private JButton buttonHelp;
@@ -39,6 +40,7 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 		labelHostsClass = new JLabel(" " + languageHandler.getKey("converter_hosts_label_Class") + ": ");
 		labelHostsTotalSubnets = new JLabel(" " + languageHandler.getKey("converter_hosts_label_Subnets") + ": ");
 		labelHostsTotalHosts = new JLabel(" " + languageHandler.getKey("converter_hosts_label_Hosts") + ": ");
+		labelHostsWildcard = new JLabel(" " + languageHandler.getKey("converter_acl_wildcard") + ": ");
 		textfieldHosts = new JTextField(11);
 		buttonHosts = new JButton(languageHandler.getKey("converter_hosts_button_ConvertHosts"));
 		buttonHelp = new JButton(languageHandler.getKey("converter_button_Help"));
@@ -61,7 +63,10 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 		panelHostsResult.add(labelHostsClass, BorderLayout.SOUTH);
 		panelHostsResult1.add(labelHostsTotalSubnets, BorderLayout.NORTH);
 		panelHostsResult1.add(labelHostsTotalHosts, BorderLayout.CENTER);
-		panelHostsResult1.add(panelButtons, BorderLayout.SOUTH);
+		JPanel panelHostsResult2 = new JPanel(new BorderLayout());
+		panelHostsResult2.add(labelHostsWildcard, BorderLayout.NORTH);
+		panelHostsResult2.add(panelButtons, BorderLayout.CENTER);
+		panelHostsResult1.add(panelHostsResult2, BorderLayout.SOUTH);
 		panelHosts.add(panelHostsSub, BorderLayout.NORTH);
 		panelHosts.add(panelHostsResult, BorderLayout.CENTER);
 		panelHosts.add(panelHostsResult1, BorderLayout.SOUTH);
@@ -79,6 +84,7 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 			labelHostsResultNetmask.setText(" " + languageHandler.getKey("converter_hosts_label_Netmask") + ": " + VLSMSpecializedCalculator.getNetmask(value));
 			labelHostsClass.setText(" " + languageHandler.getKey("converter_hosts_label_Class") + ": " + NetworkConverter.getNetmaskClass(VLSMSpecializedCalculator.getNetmask(value)));
 			labelHostsTotalSubnets.setText(" " + languageHandler.getKey("converter_hosts_label_Subnets") + ": " + NetworkConverter.getTotalValidSubnets(Integer.parseInt(VLSMSpecializedCalculator.getCIDR(value))));
+			labelHostsWildcard.setText(" " + languageHandler.getKey("converter_acl_wildcard") + ": " + NetworkConverter.getWildCardMask(VLSMSpecializedCalculator.getNetmask(value)));
 		});
 		buttonHelp.addActionListener(e -> {
 			showHelp();

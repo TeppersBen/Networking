@@ -19,8 +19,8 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import com.Settings;
-import com.handlers.LanguageHandler;
-import com.utils.calculators.VLSMSpecializedCalculator;
+import com.engine.calculators.VLSMSpecializedCalculator;
+import com.engine.handlers.LanguageHandler;
 
 public class PanelVLSMTable extends JFrame {
 
@@ -30,7 +30,7 @@ public class PanelVLSMTable extends JFrame {
 	private JTextField[][] data;
 	
 	public void build(String majorNetwork, JTextField[][] data, LanguageHandler handler) {
-		setTitle(Settings.title + " - VLSM table");
+		setTitle(Settings.TITLE + " - VLSM table");
 		initScreen();
 		table = new Table(majorNetwork, data, handler);
 		add(table);
@@ -185,7 +185,7 @@ class Table extends JPanel {
 	public void resizeColumnWidth(JTable table) {
 	    final TableColumnModel columnModel = table.getColumnModel();
 	    for (int column = 0; column < table.getColumnCount(); column++) {
-	        int width = 70;
+	        int width = 90;
 	        for (int row = 0; row < table.getRowCount(); row++) {
 	            TableCellRenderer renderer = table.getCellRenderer(row, column);
 	            Component comp = table.prepareRenderer(renderer, row, column);

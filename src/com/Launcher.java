@@ -1,9 +1,8 @@
 package com;
 
-import com.development.PanelConsole;
-import com.handlers.LanguageHandler;
-import com.utils.Logger;
-import com.utils.Popup;
+import com.engine.handlers.LanguageHandler;
+import com.engine.utils.Logger;
+import com.engine.utils.Popup;
 import com.window.Splash;
 import com.window.WindowBuilder;
 import com.window.panels.PanelCategorySelection;
@@ -12,6 +11,8 @@ import com.window.panels.nodes.PanelLogging;
 import com.window.panels.nodes.PanelWelcome;
 import com.window.panels.nodes.converter.PanelConverter;
 import com.window.panels.nodes.settings.PanelSettings;
+import com.window.panels.nodes.simulation.PanelConsole;
+import com.window.panels.nodes.simulation.PanelSimulation;
 import com.window.panels.nodes.vlsm.PanelVLSM;
 
 public class Launcher {
@@ -27,13 +28,14 @@ public class Launcher {
 	private static PanelConverter panelConverter;
 	private static PanelVLSM panelVLSM;
 	private static PanelConsole panelConsole;
+	private static PanelSimulation panelSimulation;
 	
 	public static void main(String[] args) {
 		init();
 	}
 	
 	private static void init() {
-		Splash splash = new Splash(22);
+		Splash splash = new Splash(24);
 		
 		//handlers
 		splash.nextProgressMessage("Initializing handlers");
@@ -64,6 +66,8 @@ public class Launcher {
 		panelVLSM = new PanelVLSM(languageHandler);
 		splash.nextProgress();
 		panelConsole = new PanelConsole(languageHandler);
+		splash.nextProgress();
+		panelSimulation = new PanelSimulation(languageHandler);
 		
 		//adding nodes to display
 		splash.nextProgressMessage("Adding nodes to NodeManager");
@@ -79,6 +83,8 @@ public class Launcher {
 		panelDisplay.addNodePanel(panelVLSM);
 		splash.nextProgress();
 		panelDisplay.addNodePanel(panelConsole);
+		splash.nextProgress();
+		panelDisplay.addNodePanel(panelSimulation);
 		
 		//merge the nodes into the panel itself
 		splash.nextProgressMessage("Getting nodes ready to be displayed");

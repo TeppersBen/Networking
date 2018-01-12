@@ -5,8 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import com.handlers.LanguageHandler;
-import com.utils.Popup;
+import com.engine.handlers.LanguageHandler;
+import com.engine.utils.Popup;
 import com.window.panels.PanelProtocol;
 
 public class PanelSettings extends PanelProtocol {

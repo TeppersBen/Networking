@@ -1,4 +1,4 @@
-package com.utils;
+package com.engine.utils;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,12 +9,13 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
+import com.Settings;
+
 public class Logger {
 
 	private static JTextPane area;
 
 	private static Thread logThread;
-	private static Thread errorThread;
 
 	public static void setLoggingField(JTextPane field) {
 		area = field;
@@ -23,31 +24,16 @@ public class Logger {
 	}
 
 	public static synchronized void log(String message) {
-		if (area == null)
-			return;
-		logThread = new Thread(() -> {
-			appendToPane(message, Color.BLACK);
-		});
-		logThread.start();
-		try {
-			logThread.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		writeLine(message, Color.black);
 	}
 
 	public static synchronized void error(String message) {
-		if (area == null)
-			return;
-		errorThread = new Thread(() -> {
-			appendToPane("[Error]: " + message, Color.RED);
-		});
-		errorThread.start();
-		try {
-			errorThread.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		writeLine(message, Color.red);
+	}
+	
+	public static synchronized void debugLog(String message) {
+		if (Settings.debug)
+			writeLine(message, Color.black);
 	}
 
 	private static void appendToPane(String msg, Color c) {
@@ -62,6 +48,20 @@ public class Logger {
 		area.setCaretPosition(len);
 		area.setCharacterAttributes(aset, false);
 		area.setEditable(false);
+	}
+	
+	private static synchronized void writeLine(String message, Color color) {
+		if (area == null)
+			return;
+		logThread = new Thread(() -> {
+			appendToPane(message, color);
+		});
+		logThread.start();
+		try {
+			logThread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

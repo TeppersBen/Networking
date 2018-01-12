@@ -5,8 +5,8 @@ import java.awt.CardLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import com.development.PanelConsole;
-import com.handlers.LanguageHandler;
+import com.engine.handlers.LanguageHandler;
+import com.window.panels.nodes.simulation.PanelConsole;
 
 public class PanelDisplay extends PanelProtocol {
 

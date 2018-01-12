@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import com.Settings;
-import com.utils.LookAndFeelManager;
+import com.engine.utils.LookAndFeelManager;
 import com.window.panels.PanelCategorySelection;
 import com.window.panels.PanelDisplay;
 
@@ -24,7 +24,7 @@ public class WindowBuilder extends JFrame {
 	
 	public WindowBuilder() {
 	   	initScreen();
-	   	setTitle(Settings.title);
+	   	setTitle(Settings.TITLE);
 	}
 	
 	public void init(PanelCategorySelection panelCategorySelection, PanelDisplay panelDisplay) {

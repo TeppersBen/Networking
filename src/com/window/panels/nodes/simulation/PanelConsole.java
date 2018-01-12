@@ -1,8 +1,10 @@
-package com.development;
+package com.window.panels.nodes.simulation;
 
 import static java.awt.event.KeyEvent.VK_BACK_SPACE;
 import static java.awt.event.KeyEvent.VK_DOWN;
 import static java.awt.event.KeyEvent.VK_ENTER;
+import static java.awt.event.KeyEvent.VK_LEFT;
+import static java.awt.event.KeyEvent.VK_RIGHT;
 import static java.awt.event.KeyEvent.VK_UP;
 
 import java.awt.BorderLayout;
@@ -16,8 +18,8 @@ import javax.swing.JTextPane;
 import javax.swing.text.JTextComponent;
 
 import com.Settings;
-import com.devices.Router;
-import com.handlers.LanguageHandler;
+import com.engine.devices.Router;
+import com.engine.handlers.LanguageHandler;
 import com.window.panels.PanelProtocol;
 
 public class PanelConsole extends PanelProtocol {
@@ -32,7 +34,7 @@ public class PanelConsole extends PanelProtocol {
 
 	public PanelConsole(LanguageHandler languageHandler) {
 		super(languageHandler);
-		title = Settings.title;
+		title = Settings.TITLE;
 		consoleHandler = new ConsoleHandler(consoleField);
 		consoleField.addKeyListener(consoleHandler.getKeyListener());
 		add(setTitle(title), BorderLayout.NORTH);
@@ -63,6 +65,7 @@ class ConsoleHandler {
 		device = new Router();
 		pane.setText(device.getCurrentState());
 		pane.setFont(new Font("Monospaced", Font.PLAIN, 11));
+		pane.setCaretColor(Color.white);
 	}
 
 	public KeyAdapter getKeyListener() {
@@ -74,15 +77,16 @@ class ConsoleHandler {
 					pane.setCaretPosition(pane.getText().length());
 					break;
 				case VK_BACK_SPACE:
-					if (pane.getText().charAt(pane.getText().length() - 2) == '#')
-						pane.setText(pane.getText() + " ");
-					if (pane.getText().charAt(pane.getText().length() - 2) == '>')
-						pane.setText(pane.getText() + " ");
+					if (pane.getText().charAt(pane.getText().length() - 1) == '#')
+						pane.setText(pane.getText() + "#");
+					if (pane.getText().charAt(pane.getText().length() - 1) == '>')
+						pane.setText(pane.getText() + ">");
 					break;
 				case VK_UP:
 				case VK_DOWN:
+				case VK_LEFT:
+				case VK_RIGHT:
 					caretLastPosition = pane.getCaretPosition();
-					pane.setCaretColor(Color.white);
 					break;
 				}
 			}
@@ -104,8 +108,9 @@ class ConsoleHandler {
 					break;
 				case VK_UP:
 				case VK_DOWN:
+				case VK_LEFT:
+				case VK_RIGHT:
 					pane.setCaretPosition(caretLastPosition);
-					pane.setCaretColor(Color.black);
 					break;
 				}
 			}

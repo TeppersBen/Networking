@@ -5,8 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
-import com.handlers.LanguageHandler;
-import com.utils.Logger;
+import com.engine.handlers.LanguageHandler;
+import com.engine.utils.Logger;
 import com.window.panels.PanelProtocol;
 
 public class PanelLogging extends PanelProtocol {
