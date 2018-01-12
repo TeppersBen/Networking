@@ -5,9 +5,9 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import com.engine.calculators.NetworkConverter;
+import com.engine.components.TextField;
 import com.engine.handlers.LanguageHandler;
 import com.engine.utils.Popup;
 import com.window.panels.PanelProtocol;
@@ -21,7 +21,7 @@ public class PanelConverterAddress extends PanelProtocol {
 	private static final long serialVersionUID = 1L;
 	private JLabel labelAddress;
 	private JLabel labelAddressResult;
-	private JTextField textfieldAddress;
+	private TextField textfieldAddress;
 	private JButton buttonAddress;
 	private JButton buttonHelp;
 	
@@ -29,7 +29,7 @@ public class PanelConverterAddress extends PanelProtocol {
 	protected void initComponents() {
 		labelAddress = new JLabel(" " + languageHandler.getKey("converter_IPv4_label_IPv4_Address") + ": ");
 		labelAddressResult = new JLabel(" " + languageHandler.getKey("converter_IPv4_label_Address") + ": ");
-		textfieldAddress = new JTextField(11);
+		textfieldAddress = new TextField(11, "ex: 192.168.0.1");
 		buttonAddress = new JButton(languageHandler.getKey("converter_IPv4_button_ConvertAddress"));
 		buttonHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 	}

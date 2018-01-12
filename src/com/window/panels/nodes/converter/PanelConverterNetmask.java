@@ -5,9 +5,9 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import com.engine.calculators.NetworkConverter;
+import com.engine.components.TextField;
 import com.engine.handlers.LanguageHandler;
 import com.engine.utils.Formatter;
 import com.engine.utils.Popup;
@@ -27,7 +27,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 	private JLabel labelNetmaskTotalHosts;
 	private JLabel labelNetmaskTotalSubnets;
 	private JLabel labelNetmaskWildcard;
-	private JTextField textfieldNetmask;
+	private TextField textfieldNetmask;
 	private JButton buttonNetmask;
 	private JButton buttonHelp;
 	
@@ -38,7 +38,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 		labelNetmaskClass = new JLabel(" " + languageHandler.getKey("converter_netmask_label_Class") + ": ");
 		labelNetmaskTotalSubnets = new JLabel(" " + languageHandler.getKey("converter_netmask_label_Subnets") + ": ");
 		labelNetmaskTotalHosts = new JLabel(" " + languageHandler.getKey("converter_netmask_label_Hosts") + ": ");
-		textfieldNetmask = new JTextField(11);
+		textfieldNetmask = new TextField(11, "ex: [255.255.0.0 | 16]");
 		buttonNetmask = new JButton(languageHandler.getKey("converter_netmask_button_ConverterNetmask"));
 		buttonHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 		labelNetmaskWildcard = new JLabel(" " + languageHandler.getKey("converter_acl_wildcard") + ": ");
