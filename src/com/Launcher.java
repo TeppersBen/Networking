@@ -48,7 +48,7 @@ public class Launcher {
 		splash.nextProgressMessage("Creating main-frames");
 		panelCategorySelection = new PanelCategorySelection(languageHandler);
 		splash.nextProgress();
-		windowBuilder = new WindowBuilder();
+		windowBuilder = new WindowBuilder(languageHandler);
 		splash.nextProgress();
 		panelDisplay = new PanelDisplay(languageHandler);
 		

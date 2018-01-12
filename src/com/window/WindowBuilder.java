@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import com.Settings;
+import com.engine.handlers.LanguageHandler;
 import com.engine.utils.LookAndFeelManager;
 import com.window.panels.PanelCategorySelection;
 import com.window.panels.PanelDisplay;
@@ -21,10 +22,12 @@ public class WindowBuilder extends JFrame {
 	
 	private PanelCategorySelection panelCategorySelection;
 	private PanelDisplay panelDisplay;
+	private LanguageHandler languageHandler;
 	
-	public WindowBuilder() {
+	public WindowBuilder(LanguageHandler languageHandler) {
 	   	initScreen();
 	   	setTitle(Settings.TITLE);
+	   	this.languageHandler = languageHandler;
 	}
 	
 	public void init(PanelCategorySelection panelCategorySelection, PanelDisplay panelDisplay) {
@@ -49,7 +52,7 @@ public class WindowBuilder extends JFrame {
 	}
 	
 	private void layoutComponents() {
-		labelCategory = new JLabel("Category:");
+		labelCategory = new JLabel(languageHandler.getKey("word_category") + ":");
 		JPanel panel = new JPanel(new BorderLayout());
 		panel.add(labelCategory, BorderLayout.NORTH);
 		panel.add(panelCategorySelection, BorderLayout.WEST);

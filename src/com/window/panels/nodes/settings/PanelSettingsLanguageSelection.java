@@ -6,6 +6,7 @@ import java.util.Arrays;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
+import com.engine.handlers.ConfigurationHandler;
 import com.engine.handlers.LanguageHandler;
 import com.window.panels.PanelProtocol;
 
@@ -37,22 +38,34 @@ public class PanelSettingsLanguageSelection extends PanelProtocol {
 	protected void initListeners() {}
 	
 	private void setCurrentLanguage() {
-		String item = "";
-		for (int i = 0; i < languageBox.getItemCount(); i++) {
-			languageBox.setSelectedIndex(i);
-			item = languageBox.getSelectedItem().toString();
-			if (item.equalsIgnoreCase(languageHandler.getKey("settings_language_english"))) {
-				languageBox.setSelectedIndex(i);
-			} else if (item.equalsIgnoreCase(languageHandler.getKey("settings_language_dutch"))) {
-				languageBox.setSelectedIndex(i);
-			}
+		String local = ConfigurationHandler.getUserKey("locale");
+		switch (local) {
+		case "mk_MK":
+			languageBox.setSelectedIndex(getCurrentLanguageID(languageHandler.getKey("settings_language_macedonian")));
+			break;
+		case "nl_NL":
+			languageBox.setSelectedIndex(getCurrentLanguageID(languageHandler.getKey("settings_language_dutch")));
+			break;
+		case "en_GB":
+			languageBox.setSelectedIndex(getCurrentLanguageID(languageHandler.getKey("settings_language_english")));
+			break;
 		}
 	}
 	
+	private int getCurrentLanguageID(String language) {
+		String[] languageList = getLanguageList();
+		for (int i = 0; i < languageList.length; i++) {
+			if (language.equalsIgnoreCase(languageList[i]))
+				return i;
+		}
+		return -1;
+	}
+
 	private String[] getLanguageList() {
 		String[] result = {
 				languageHandler.getKey("settings_language_english"),
-				languageHandler.getKey("settings_language_dutch")
+				languageHandler.getKey("settings_language_dutch"),
+				languageHandler.getKey("settings_language_macedonian")
 		};
 		Arrays.sort(result);
 		return result; 
@@ -64,6 +77,8 @@ public class PanelSettingsLanguageSelection extends PanelProtocol {
 			languageHandler.changeLanguage("en", "GB");
 		} else if (language.equalsIgnoreCase(languageHandler.getKey("settings_language_dutch"))) {
 			languageHandler.changeLanguage("nl", "NL");
+		} else if (language.equalsIgnoreCase(languageHandler.getKey("settings_language_macedonian"))) {
+			languageHandler.changeLanguage("mk", "MK");
 		}
 	}
 }
