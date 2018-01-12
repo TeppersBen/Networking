@@ -1,12 +1,14 @@
 package com.window.panels.nodes.converter;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import com.engine.calculators.NetworkConverter;
 import com.engine.handlers.LanguageHandler;
@@ -34,11 +36,11 @@ public class PanelConverterACL extends PanelProtocol{
 
 	@Override
 	protected void initComponents() {
-		lblFirstIP = new JLabel(" " + languageHandler.getKey("converter_acl_firstip") + ":");
+		lblFirstIP = new JLabel(" " + languageHandler.getKey("converter_acl_firstip") + ": ");
 		lblLastIP = new JLabel(" :" + languageHandler.getKey("converter_acl_lastip") + " ");
 		lblWildcard = new JLabel(" " + languageHandler.getKey("converter_acl_wildcard") + ": ");
-		txtFirstIP = new JTextField(15);
-		txtLastIP = new JTextField(15);
+		txtFirstIP = new JTextField();
+		txtLastIP = new JTextField();
 		btnCreateWildcard = new JButton(languageHandler.getKey("converter_acl_button_createwildcard"));
 		btnHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 	}
@@ -51,10 +53,17 @@ public class PanelConverterACL extends PanelProtocol{
 		buttons.add(btnCreateWildcard, BorderLayout.CENTER);
 		buttons.add(btnHelp, BorderLayout.EAST);
 		JPanel north = new JPanel(new BorderLayout());
-		JPanel northtxt = new JPanel(new FlowLayout());
-		northtxt.add(txtFirstIP);
-		northtxt.add(new JLabel("-"));
-		northtxt.add(txtLastIP);
+		JPanel northtxt = new JPanel(new GridBagLayout());
+		GridBagConstraints constraint = new GridBagConstraints();
+		constraint.fill = GridBagConstraints.HORIZONTAL;
+		constraint.weightx = 1.0;
+		constraint.gridwidth = 1;
+		constraint.gridx = 0;
+		constraint.gridy = 0;
+		northtxt.add(txtFirstIP, constraint);
+		northtxt.add(new JLabel(" - ", SwingConstants.HORIZONTAL));
+		constraint.gridx = 2;
+		northtxt.add(txtLastIP, constraint);
 		north.add(lblFirstIP, BorderLayout.WEST);
 		north.add(northtxt, BorderLayout.CENTER);
 		north.add(lblLastIP, BorderLayout.EAST);
