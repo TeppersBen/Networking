@@ -38,7 +38,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 		labelNetmaskClass = new JLabel(" " + languageHandler.getKey("converter_netmask_label_Class") + ": ");
 		labelNetmaskTotalSubnets = new JLabel(" " + languageHandler.getKey("converter_netmask_label_Subnets") + ": ");
 		labelNetmaskTotalHosts = new JLabel(" " + languageHandler.getKey("converter_netmask_label_Hosts") + ": ");
-		textfieldNetmask = new TextField(11, languageHandler.getKey("word_example") + ": [255.255.0.0 | 16]");
+		textfieldNetmask = new TextField(11, languageHandler.getKey("word_example(short)") + ": [255.255.0.0 | 16]");
 		buttonNetmask = new JButton(languageHandler.getKey("converter_netmask_button_ConverterNetmask"));
 		buttonHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 		labelNetmaskWildcard = new JLabel(" " + languageHandler.getKey("converter_acl_wildcard") + ": ");

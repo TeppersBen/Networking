@@ -41,7 +41,7 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 		labelHostsTotalSubnets = new JLabel(" " + languageHandler.getKey("converter_hosts_label_Subnets") + ": ");
 		labelHostsTotalHosts = new JLabel(" " + languageHandler.getKey("converter_hosts_label_Hosts") + ": ");
 		labelHostsWildcard = new JLabel(" " + languageHandler.getKey("converter_acl_wildcard") + ": ");
-		textfieldHosts = new TextField(11, languageHandler.getKey("word_example") + ": 60");
+		textfieldHosts = new TextField(11, languageHandler.getKey("word_example(short)") + ": 60");
 		buttonHosts = new JButton(languageHandler.getKey("converter_hosts_button_ConvertHosts"));
 		buttonHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 	}

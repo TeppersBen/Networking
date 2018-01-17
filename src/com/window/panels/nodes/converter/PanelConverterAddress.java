@@ -29,7 +29,7 @@ public class PanelConverterAddress extends PanelProtocol {
 	protected void initComponents() {
 		labelAddress = new JLabel(" " + languageHandler.getKey("converter_IPv4_label_IPv4_Address") + ": ");
 		labelAddressResult = new JLabel(" " + languageHandler.getKey("converter_IPv4_label_Address") + ": ");
-		textfieldAddress = new TextField(11, languageHandler.getKey("word_example") + ": 192.168.0.1");
+		textfieldAddress = new TextField(11, languageHandler.getKey("word_example(short)") + ": 192.168.0.1");
 		buttonAddress = new JButton(languageHandler.getKey("converter_IPv4_button_ConvertAddress"));
 		buttonHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 	}
