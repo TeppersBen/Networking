@@ -15,7 +15,7 @@ import com.engine.handlers.LanguageHandler;
 import com.engine.utils.Popup;
 import com.window.panels.PanelProtocol;
 
-public class PanelConverterACL extends PanelProtocol{
+public class PanelConverterACL extends PanelProtocol {
 
 	private static final long serialVersionUID = -7835341280525800252L;
 
@@ -39,8 +39,8 @@ public class PanelConverterACL extends PanelProtocol{
 		lblFirstIP = new JLabel(" " + languageHandler.getKey("converter_acl_firstip") + ": ");
 		lblLastIP = new JLabel(" :" + languageHandler.getKey("converter_acl_lastip") + " ");
 		lblWildcard = new JLabel(" " + languageHandler.getKey("converter_acl_wildcard") + ": ");
-		txtFirstIP = new TextField("ex: 10.0.1.16");
-		txtLastIP = new TextField("ex: 10.0.2.120");
+		txtFirstIP = new TextField(languageHandler.getKey("word_example") + ": 10.0.1.16");
+		txtLastIP = new TextField(languageHandler.getKey("word_example") + ": 10.0.2.120");
 		btnCreateWildcard = new JButton(languageHandler.getKey("converter_acl_button_createwildcard"));
 		btnHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 	}
