@@ -5,10 +5,10 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import com.engine.calculators.NetworkConverter;
 import com.engine.calculators.VLSMSpecializedCalculator;
+import com.engine.components.TextField;
 import com.engine.handlers.LanguageHandler;
 import com.engine.utils.Popup;
 import com.window.panels.PanelProtocol;
@@ -28,7 +28,7 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 	private JLabel labelHostsTotalHosts;
 	private JLabel labelHostsTotalSubnets;
 	private JLabel labelHostsWildcard;
-	private JTextField textfieldHosts;
+	private TextField textfieldHosts;
 	private JButton buttonHosts;
 	private JButton buttonHelp;
 	
@@ -41,7 +41,7 @@ public class PanelConverterRequestedHosts extends PanelProtocol {
 		labelHostsTotalSubnets = new JLabel(" " + languageHandler.getKey("converter_hosts_label_Subnets") + ": ");
 		labelHostsTotalHosts = new JLabel(" " + languageHandler.getKey("converter_hosts_label_Hosts") + ": ");
 		labelHostsWildcard = new JLabel(" " + languageHandler.getKey("converter_acl_wildcard") + ": ");
-		textfieldHosts = new JTextField(11);
+		textfieldHosts = new TextField(11, languageHandler.getKey("word_example(short)") + ": 60");
 		buttonHosts = new JButton(languageHandler.getKey("converter_hosts_button_ConvertHosts"));
 		buttonHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 	}

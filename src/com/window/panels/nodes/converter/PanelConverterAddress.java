@@ -5,9 +5,9 @@ import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import com.engine.calculators.NetworkConverter;
+import com.engine.components.TextField;
 import com.engine.handlers.LanguageHandler;
 import com.engine.utils.Popup;
 import com.window.panels.PanelProtocol;
@@ -21,7 +21,7 @@ public class PanelConverterAddress extends PanelProtocol {
 	private static final long serialVersionUID = 1L;
 	private JLabel labelAddress;
 	private JLabel labelAddressResult;
-	private JTextField textfieldAddress;
+	private TextField textfieldAddress;
 	private JButton buttonAddress;
 	private JButton buttonHelp;
 	
@@ -29,7 +29,7 @@ public class PanelConverterAddress extends PanelProtocol {
 	protected void initComponents() {
 		labelAddress = new JLabel(" " + languageHandler.getKey("converter_IPv4_label_IPv4_Address") + ": ");
 		labelAddressResult = new JLabel(" " + languageHandler.getKey("converter_IPv4_label_Address") + ": ");
-		textfieldAddress = new JTextField(11);
+		textfieldAddress = new TextField(11, languageHandler.getKey("word_example(short)") + ": 192.168.0.1");
 		buttonAddress = new JButton(languageHandler.getKey("converter_IPv4_button_ConvertAddress"));
 		buttonHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 	}
@@ -54,8 +54,8 @@ public class PanelConverterAddress extends PanelProtocol {
 
 	private void sendErrorMessage() {
 		Popup.showErrorMessage(languageHandler.getKey("converter_IPv4_error_invalidIPv4Address") + "<br>"
-				+ "Example: (decimal) " + languageHandler.getKey("converter_IPv4_error_decimal_Example") + "<br>"
-				+ "Example: (binary) " + languageHandler.getKey("converter_IPv4_error_binary_Example"));
+				+ languageHandler.getKey("word_example") + ": (" + languageHandler.getKey("word_decimal") + ") " + languageHandler.getKey("converter_IPv4_error_decimal_Example") + "<br>"
+				+ languageHandler.getKey("word_example") + ": (" + languageHandler.getKey("word_binary") + ") " + languageHandler.getKey("converter_IPv4_error_binary_Example"));
 	}
 	
 	@Override

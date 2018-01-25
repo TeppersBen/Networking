@@ -7,23 +7,23 @@ import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.engine.calculators.NetworkConverter;
+import com.engine.components.TextField;
 import com.engine.handlers.LanguageHandler;
 import com.engine.utils.Popup;
 import com.window.panels.PanelProtocol;
 
-public class PanelConverterACL extends PanelProtocol{
+public class PanelConverterACL extends PanelProtocol {
 
 	private static final long serialVersionUID = -7835341280525800252L;
 
 	private JLabel lblFirstIP;
-	private JTextField txtFirstIP;
+	private TextField txtFirstIP;
 	
 	private JLabel lblLastIP;
-	private JTextField txtLastIP;
+	private TextField txtLastIP;
 	
 	private JLabel lblWildcard;
 	
@@ -39,8 +39,8 @@ public class PanelConverterACL extends PanelProtocol{
 		lblFirstIP = new JLabel(" " + languageHandler.getKey("converter_acl_firstip") + ": ");
 		lblLastIP = new JLabel(" :" + languageHandler.getKey("converter_acl_lastip") + " ");
 		lblWildcard = new JLabel(" " + languageHandler.getKey("converter_acl_wildcard") + ": ");
-		txtFirstIP = new JTextField();
-		txtLastIP = new JTextField();
+		txtFirstIP = new TextField(languageHandler.getKey("word_example(short)") + ": 10.0.1.16");
+		txtLastIP = new TextField(languageHandler.getKey("word_example(short)") + ": 10.0.2.120");
 		btnCreateWildcard = new JButton(languageHandler.getKey("converter_acl_button_createwildcard"));
 		btnHelp = new JButton(languageHandler.getKey("converter_button_Help"));
 	}
@@ -93,24 +93,30 @@ public class PanelConverterACL extends PanelProtocol{
 	
 	private boolean isValidIP() {
 		String[] firstIP = txtFirstIP.getText().split("\\.");
-		for (int i = 0; i < 4; i++) {
-			if (!(firstIP[i].length() > 0 && firstIP[i].length() < 4)) 
-				return false;
-			if (Integer.parseInt(firstIP[i]) > 255)
-				return false;
-			if (Integer.parseInt(firstIP[i]) < 0)
-				return false;
+		try {
+			for (int i = 0; i < 4; i++) {
+				if (!(firstIP[i].length() > 0 && firstIP[i].length() < 4)) 
+					return false;
+				if (Integer.parseInt(firstIP[i]) > 255)
+					return false;
+				if (Integer.parseInt(firstIP[i]) < 0)
+					return false;
+			}
+			String[] lastIP = txtLastIP.getText().split("\\.");
+			for (int i = 0; i < 4; i++) {
+				if (!(lastIP[i].length() > 0 && lastIP[i].length() < 4)) 
+					return false;
+				if (Integer.parseInt(lastIP[i]) > 255)
+					return false;
+				if (Integer.parseInt(lastIP[i]) < 0)
+					return false;
+			}
+			return true;
+		} catch (NumberFormatException ex) {
+			Popup.showErrorMessage(languageHandler.getKey("converter_IPv4_error_invalidIPv4Address"));
+			return false;
 		}
-		String[] lastIP = txtLastIP.getText().split("\\.");
-		for (int i = 0; i < 4; i++) {
-			if (!(lastIP[i].length() > 0 && lastIP[i].length() < 4)) 
-				return false;
-			if (Integer.parseInt(lastIP[i]) > 255)
-				return false;
-			if (Integer.parseInt(lastIP[i]) < 0)
-				return false;
-		}
-		return true;
+		
 	}
 	
 	private void setWildCard(String wildcard) {
