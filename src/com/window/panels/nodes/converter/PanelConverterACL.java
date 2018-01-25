@@ -93,24 +93,30 @@ public class PanelConverterACL extends PanelProtocol {
 	
 	private boolean isValidIP() {
 		String[] firstIP = txtFirstIP.getText().split("\\.");
-		for (int i = 0; i < 4; i++) {
-			if (!(firstIP[i].length() > 0 && firstIP[i].length() < 4)) 
-				return false;
-			if (Integer.parseInt(firstIP[i]) > 255)
-				return false;
-			if (Integer.parseInt(firstIP[i]) < 0)
-				return false;
+		try {
+			for (int i = 0; i < 4; i++) {
+				if (!(firstIP[i].length() > 0 && firstIP[i].length() < 4)) 
+					return false;
+				if (Integer.parseInt(firstIP[i]) > 255)
+					return false;
+				if (Integer.parseInt(firstIP[i]) < 0)
+					return false;
+			}
+			String[] lastIP = txtLastIP.getText().split("\\.");
+			for (int i = 0; i < 4; i++) {
+				if (!(lastIP[i].length() > 0 && lastIP[i].length() < 4)) 
+					return false;
+				if (Integer.parseInt(lastIP[i]) > 255)
+					return false;
+				if (Integer.parseInt(lastIP[i]) < 0)
+					return false;
+			}
+			return true;
+		} catch (NumberFormatException ex) {
+			Popup.showErrorMessage(languageHandler.getKey("converter_IPv4_error_invalidIPv4Address"));
+			return false;
 		}
-		String[] lastIP = txtLastIP.getText().split("\\.");
-		for (int i = 0; i < 4; i++) {
-			if (!(lastIP[i].length() > 0 && lastIP[i].length() < 4)) 
-				return false;
-			if (Integer.parseInt(lastIP[i]) > 255)
-				return false;
-			if (Integer.parseInt(lastIP[i]) < 0)
-				return false;
-		}
-		return true;
+		
 	}
 	
 	private void setWildCard(String wildcard) {

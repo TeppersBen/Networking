@@ -153,9 +153,9 @@ public class PanelConverterNetmask extends PanelProtocol {
 	
 	private void sendErrorMessage() {
 		Popup.showErrorMessage(languageHandler.getKey("converter_netmask_error_invalidNetmask") + "<br>"
-				+ "Example: (decimal) " + languageHandler.getKey("converter_netmask_error_decimal_Example") + "<br>"
-				+ "Example: (binary) " + languageHandler.getKey("converter_netmask_error_binary_Example") + "<br>"
-				+ "Example: (CIDR) " + languageHandler.getKey("converter_netmask_error_cidr_Example"));
+				+ languageHandler.getKey("word_example") + ": (" + languageHandler.getKey("word_decimal") + ") " + languageHandler.getKey("converter_netmask_error_decimal_Example") + "<br>"
+				+ languageHandler.getKey("word_example") + ": (" + languageHandler.getKey("word_binary") + ") " + languageHandler.getKey("converter_netmask_error_binary_Example") + "<br>"
+				+ languageHandler.getKey("word_example") + ": (CIDR) " + languageHandler.getKey("converter_netmask_error_cidr_Example"));
 	}
 	
 	private void sendOutput(boolean isCIDR, boolean isBinary) {
