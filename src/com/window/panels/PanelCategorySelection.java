@@ -69,10 +69,10 @@ public class PanelCategorySelection extends PanelProtocol {
 				 														languageHandler.getKey("tab_session_settings")));
 		createNode(languageHandler.getKey("tab_calculators"), Arrays.asList(languageHandler.getKey("tab_calculators_converter"), 
 																			languageHandler.getKey("tab_calculators_vlsm")));
-		if (Settings.debug) {
-			createNode("Development", Arrays.asList("Console",
-													"Simulation"));
-		}
+		if (Settings.debug)
+			createNode("Smart-AI", Arrays.asList("RIPv2", "VLAN", "sACL", "DHCP"));
+		if (Settings.debug)
+			createNode("Development", Arrays.asList("Console", "Simulation"));
 	}
 
 	private void createNode(String title, List<String> list) {
