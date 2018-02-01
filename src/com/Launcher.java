@@ -13,6 +13,10 @@ import com.window.panels.nodes.converter.PanelConverter;
 import com.window.panels.nodes.settings.PanelSettings;
 import com.window.panels.nodes.simulation.PanelConsole;
 import com.window.panels.nodes.simulation.PanelSimulation;
+import com.window.panels.nodes.smartAI.PanelDHCP;
+import com.window.panels.nodes.smartAI.PanelRIPv2;
+import com.window.panels.nodes.smartAI.PanelVLAN;
+import com.window.panels.nodes.smartAI.PanelsACL;
 import com.window.panels.nodes.vlsm.PanelVLSM;
 
 public class Launcher {
@@ -29,13 +33,17 @@ public class Launcher {
 	private static PanelVLSM panelVLSM;
 	private static PanelConsole panelConsole;
 	private static PanelSimulation panelSimulation;
+	private static PanelDHCP panelDHCP;
+	private static PanelRIPv2 panelRIPv2;
+	private static PanelsACL panelsACL;
+	private static PanelVLAN panelVLAN;
 	
 	public static void main(String[] args) {
 		init();
 	}
 	
 	private static void init() {
-		Splash splash = new Splash(24);
+		Splash splash = new Splash(32);
 		
 		//handlers
 		splash.nextProgressMessage("Initializing handlers");
@@ -68,6 +76,14 @@ public class Launcher {
 		panelConsole = new PanelConsole(languageHandler);
 		splash.nextProgress();
 		panelSimulation = new PanelSimulation(languageHandler);
+		splash.nextProgress();
+		panelDHCP = new PanelDHCP(languageHandler);
+		splash.nextProgress();
+		panelRIPv2 = new PanelRIPv2(languageHandler);
+		splash.nextProgress();
+		panelsACL = new PanelsACL(languageHandler);
+		splash.nextProgress();
+		panelVLAN = new PanelVLAN(languageHandler);
 		
 		//adding nodes to display
 		splash.nextProgressMessage("Adding nodes to NodeManager");
@@ -85,6 +101,14 @@ public class Launcher {
 		panelDisplay.addNodePanel(panelConsole);
 		splash.nextProgress();
 		panelDisplay.addNodePanel(panelSimulation);
+		splash.nextProgress();
+		panelDisplay.addNodePanel(panelDHCP);
+		splash.nextProgress();
+		panelDisplay.addNodePanel(panelRIPv2);
+		splash.nextProgress();
+		panelDisplay.addNodePanel(panelsACL);
+		splash.nextProgress();
+		panelDisplay.addNodePanel(panelVLAN);
 		
 		//merge the nodes into the panel itself
 		splash.nextProgressMessage("Getting nodes ready to be displayed");
