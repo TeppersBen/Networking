@@ -82,7 +82,7 @@ public class VLSMSpecializedCalculator extends NetworkConverter {
 		return result;
 	}
 	
-	private static String getNetworkAddress(String ip, String mask) {
+	public static String getNetworkAddress(String ip, String mask) {
 		String and = operatorAND(decimalIPv4ToBinary(ip), decimalIPv4ToBinary(mask));
 		String[] remind = and.split("\\.");
 		StringBuilder result = new StringBuilder();
