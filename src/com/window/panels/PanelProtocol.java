@@ -18,6 +18,11 @@ public abstract class PanelProtocol extends JPanel {
 	protected LanguageHandler languageHandler;
 	private String panelName;
 	
+	public PanelProtocol(LanguageHandler languageHandler, String title) {
+		this(languageHandler);
+		setPanelName(title);
+	}
+	
 	public PanelProtocol(LanguageHandler languageHandler) {
 		setLayout(new BorderLayout());
 		this.languageHandler = languageHandler;
