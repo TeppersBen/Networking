@@ -16,7 +16,6 @@ public class Settings {
 
 	public static String version;
 	public static String releaseDate;
-	public static final String TITLE = ConfigurationHandler.getSystemKey("title");
 	
 	static {
 		if (debug)
@@ -24,4 +23,7 @@ public class Settings {
 		version = ConfigurationHandler.getSystemKey("version");
 		releaseDate = ConfigurationHandler.getSystemKey("releaseDate");
 	}
+	
+	public static final String TITLE = ConfigurationHandler.getSystemKey("title") + ((ConfigurationHandler.getSystemKey("debug").equalsIgnoreCase("true")) ? " [Development Build: " + version + "]" : "");
+	
 }
