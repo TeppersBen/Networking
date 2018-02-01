@@ -40,6 +40,7 @@ public class SmartAIDHCP extends SmartAI {
 	}
 	
 	private void setExcludedIPs(String excludedIPs) {
+		excludedIPs = excludedIPs.replaceAll("\n", "").replace("\r", "");
 		String[] ranges = excludedIPs.split(",");
 		for (int i = 0; i < ranges.length; i++) {
 			console.println("Router(config)#ip dhcp excluded-address " + ranges[i]);
