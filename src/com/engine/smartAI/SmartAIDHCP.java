@@ -65,7 +65,7 @@ public class SmartAIDHCP extends SmartAI {
 					splitter[0] = splitter[0].replaceAll(" ", "");
 					splitter[1] = splitter[1].replaceAll(" ", "");
 					if (ValidatorHandler.isValidIPv4Address(splitter[0])
-					 || ValidatorHandler.isValidIPv4Address(splitter[1]))
+					 && ValidatorHandler.isValidIPv4Address(splitter[1]))
 						console.println("Router(config)#ip dhcp excluded-address " + splitter[0] + " - " + splitter[1]);
 				}
 				
