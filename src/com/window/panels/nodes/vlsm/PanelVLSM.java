@@ -166,6 +166,7 @@ public class PanelVLSM extends PanelProtocol {
 			return false;
 		}
 		if (!ValidatorHandler.isValidMajorNetwork(textMajorNetwork.getText())) {
+			Popup.showErrorMessage(languageHandler.getKey("vlsm_error_invalidmajornetwork"));
 			return false;
 		}
 		if (!isPossibleToCreateVLSM())

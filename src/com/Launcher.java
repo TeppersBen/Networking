@@ -1,7 +1,6 @@
 package com;
 
 import com.engine.handlers.LanguageHandler;
-import com.engine.handlers.ValidatorHandler;
 import com.engine.utils.Logger;
 import com.engine.utils.Popup;
 import com.window.Splash;
@@ -44,15 +43,13 @@ public class Launcher {
 	}
 	
 	private static void init() {
-		Splash splash = new Splash(33);
+		Splash splash = new Splash(32);
 		
 		//handlers
 		splash.nextProgressMessage("Initializing handlers");
 		languageHandler = new LanguageHandler();
 		splash.nextProgress();
 		Popup.setLanguageHandler(languageHandler);
-		splash.nextProgress();
-		ValidatorHandler.mountLanguageHandler(languageHandler);
 		splash.nextProgress();
 		
 		//main frames

@@ -41,17 +41,17 @@ public class PanelDHCP extends PanelProtocol {
 
 	@Override
 	protected void initComponents() {
-		labelPoolName = new JLabel(" Pool name: ");
-		labelNetwork = new JLabel(" Network: ");
-		labelExcludedIPs = new JLabel(" Excluded IPs: ");
-		labelDNSServer = new JLabel(" DNS Server: ");
+		labelPoolName = new JLabel(" " + languageHandler.getKey("smartAI_dhcp_poolName") +":* ");
+		labelNetwork = new JLabel(" " + languageHandler.getKey("smartAI_dhcp_network") + ":* ");
+		labelExcludedIPs = new JLabel(" " + languageHandler.getKey("smartAI_dhcp_excludedIPs") + ": ");
+		labelDNSServer = new JLabel(" " + languageHandler.getKey("smartAI_dhcp_dnsServer") + ": ");
 		
 		txtPoolName = new TextField("ex: Clients");
 		txtNetwork = new TextField("ex: 192.168.0.1/24");
 		txtExcludedIPs = new TextArea("ex: 192.168.0.0 - 192.168.0.1, 192.168.0.255");
 		txtDNSServer = new TextField("ex: 8.8.8.8");
 		
-		btnCreate = new JButton("Create Command List");
+		btnCreate = new JButton(languageHandler.getKey("smartAI_button_createCommandList"));
 		console = new Console();
 		smartAI = new SmartAIDHCP(console);
 	}
@@ -107,21 +107,22 @@ public class PanelDHCP extends PanelProtocol {
 				Popup.showErrorMessage(languageHandler.getKey("vlsm_error_invalidmajornetwork"));
 				return;
 			}
-			else if (!ValidatorHandler.isValidIPv4Address(txtDNSServer.getText())) {
-				Popup.showErrorMessage(languageHandler.getKey("converter_IPv4_error_invalidIPv4Address"));
-				return;
-			} else {
-				smartAI.clearConsole();
-				smartAI.exec(txtPoolName.getText(), 
-							 txtNetwork.getText(), 
-							 txtDNSServer.getText(), 
-							 txtExcludedIPs.getText());
+			if (!txtDNSServer.isEmpty()) {
+				if (!ValidatorHandler.isValidIPv4Address(txtDNSServer.getText())) {
+					Popup.showErrorMessage(languageHandler.getKey("smartAI_dhcp_invalidDNSServer"));
+					return;
+				}
 			}
+			smartAI.clearConsole();
+			smartAI.exec(txtPoolName.getText(), 
+						 txtNetwork.getText(), 
+						 txtDNSServer, 
+						 txtExcludedIPs);
 		});
 	}
 	
 	private boolean isFieldsEmpty() {
-		return txtPoolName.isEmpty() || txtNetwork.isEmpty() || txtDNSServer.isEmpty();
+		return txtPoolName.isEmpty() || txtNetwork.isEmpty();
 	}
 	
 }

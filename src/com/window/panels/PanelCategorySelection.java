@@ -61,6 +61,10 @@ public class PanelCategorySelection extends PanelProtocol {
 			return false;
 		if (node.equalsIgnoreCase(languageHandler.getKey("tab_calculators")))
 			return false;
+		if (node.equalsIgnoreCase("Smart-AI"))
+			return false;
+		if (node.equalsIgnoreCase("Development"))
+			return false;
 		return true;
 	}
 
