@@ -103,11 +103,11 @@ public class PanelDHCP extends PanelProtocol {
 				Popup.showErrorMessage(languageHandler.getKey("vlsm_error_emptyfields"));
 				return;
 			}
-			else if (ValidatorHandler.isValidMajorNetwork(txtNetwork.getText())) {
+			else if (!ValidatorHandler.isValidMajorNetwork(txtNetwork.getText())) {
 				Popup.showErrorMessage(languageHandler.getKey("vlsm_error_invalidmajornetwork"));
 				return;
 			}
-			else if (ValidatorHandler.isValidIPv4Address(txtDNSServer.getText())) {
+			else if (!ValidatorHandler.isValidIPv4Address(txtDNSServer.getText())) {
 				Popup.showErrorMessage(languageHandler.getKey("converter_IPv4_error_invalidIPv4Address"));
 				return;
 			} else {
