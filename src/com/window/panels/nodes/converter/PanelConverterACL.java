@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import com.engine.calculators.NetworkConverter;
 import com.engine.components.TextField;
 import com.engine.handlers.LanguageHandler;
+import com.engine.handlers.ValidatorHandler;
 import com.engine.utils.Popup;
 import com.window.panels.PanelProtocol;
 
@@ -92,31 +93,10 @@ public class PanelConverterACL extends PanelProtocol {
 	}
 	
 	private boolean isValidIP() {
-		String[] firstIP = txtFirstIP.getText().split("\\.");
-		try {
-			for (int i = 0; i < 4; i++) {
-				if (!(firstIP[i].length() > 0 && firstIP[i].length() < 4)) 
-					return false;
-				if (Integer.parseInt(firstIP[i]) > 255)
-					return false;
-				if (Integer.parseInt(firstIP[i]) < 0)
-					return false;
-			}
-			String[] lastIP = txtLastIP.getText().split("\\.");
-			for (int i = 0; i < 4; i++) {
-				if (!(lastIP[i].length() > 0 && lastIP[i].length() < 4)) 
-					return false;
-				if (Integer.parseInt(lastIP[i]) > 255)
-					return false;
-				if (Integer.parseInt(lastIP[i]) < 0)
-					return false;
-			}
+		if (ValidatorHandler.isValidIPv4Address(txtFirstIP.getText())
+			&& ValidatorHandler.isValidIPv4Address(txtLastIP.getText()))
 			return true;
-		} catch (NumberFormatException ex) {
-			Popup.showErrorMessage(languageHandler.getKey("converter_IPv4_error_invalidIPv4Address"));
-			return false;
-		}
-		
+		return false;
 	}
 	
 	private void setWildCard(String wildcard) {

@@ -15,6 +15,7 @@ import javax.swing.SwingUtilities;
 
 import com.engine.calculators.VLSMSpecializedCalculator;
 import com.engine.handlers.LanguageHandler;
+import com.engine.handlers.ValidatorHandler;
 import com.engine.utils.Popup;
 import com.window.panels.PanelProtocol;
 
@@ -144,41 +145,6 @@ public class PanelVLSM extends PanelProtocol {
 		});
 	}
 	
-	private boolean isValidMajorNetwork() {
-		String ip = textMajorNetwork.getText().split("/")[0];
-		int ipValue = 0;
-		if (textMajorNetwork.getText().split("/").length != 2) {
-			Popup.showErrorMessage(languageHandler.getKey("vlsm_error_invalidmajornetwork") + "<br>"
-					+ languageHandler.getKey("word_example").substring(0, 1).toUpperCase() + languageHandler.getKey("word_example").substring(1) + ": 192.168.0.0/24");
-			return false;
-		}
-		if (ip.split("\\.").length != 4) {
-			Popup.showErrorMessage(languageHandler.getKey("vlsm_error_invalidmajornetwork") + "<br>"
-					+ languageHandler.getKey("word_example").substring(0, 1).toUpperCase() + languageHandler.getKey("word_example").substring(1) + ": 192.168.0.0/24");
-			return false;
-		}
-		try {
-			int CIDR = Integer.parseInt(textMajorNetwork.getText().split("/")[1]);
-			if (CIDR < 0 || CIDR > 32) {
-				Popup.showErrorMessage(languageHandler.getKey("vlsm_error_invalidcidr"));
-				return false;
-			}
-		} catch (NumberFormatException ex) {
-			Popup.showErrorMessage(languageHandler.getKey("vlsm_error_invalidcidrnotation") + "<br>"
-					+ languageHandler.getKey("vlsm_error_validcidrnotation"));
-			return false;
-		}
-		for (int i = 0; i < 4; i++) {
-			ipValue = Integer.parseInt(ip.split("\\.")[i]);
-			if (ipValue < 0 || ipValue > 255) {
-				Popup.showErrorMessage(languageHandler.getKey("vlsm_error_invalidmajornetworksegment") + "<br>" 
-						+ languageHandler.getKey("vlsm_error_validmajornetworksegment"));
-				return false;
-			}
-		}
-		return true;
-	}
-	
 	private boolean isPossibleToCreateVLSM() {
 		int totalHosts = Integer.parseInt(textMajorNetwork.getText().split("/")[1]);
 		totalHosts = VLSMSpecializedCalculator.getTotalValidHosts(totalHosts);
@@ -199,7 +165,7 @@ public class PanelVLSM extends PanelProtocol {
 		if (!panelSubnetTable.isSubnetSizesValid()) {
 			return false;
 		}
-		if (!isValidMajorNetwork()) {
+		if (!ValidatorHandler.isValidMajorNetwork(textMajorNetwork.getText())) {
 			return false;
 		}
 		if (!isPossibleToCreateVLSM())
