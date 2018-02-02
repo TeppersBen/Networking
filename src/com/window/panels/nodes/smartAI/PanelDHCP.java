@@ -11,7 +11,9 @@ import com.engine.components.Console;
 import com.engine.components.TextArea;
 import com.engine.components.TextField;
 import com.engine.handlers.LanguageHandler;
+import com.engine.handlers.ValidatorHandler;
 import com.engine.smartAI.SmartAIDHCP;
+import com.engine.utils.Popup;
 import com.window.panels.PanelProtocol;
 
 public class PanelDHCP extends PanelProtocol {
@@ -97,12 +99,29 @@ public class PanelDHCP extends PanelProtocol {
 	@Override
 	protected void initListeners() {
 		btnCreate.addActionListener(e -> {
-			smartAI.clearConsole();
-			smartAI.exec(txtPoolName.getText(), 
-						 txtNetwork.getText(), 
-						 txtDNSServer.getText(), 
-						 txtExcludedIPs.getText());
+			if (isFieldsEmpty()) {
+				Popup.showErrorMessage(languageHandler.getKey("vlsm_error_emptyfields"));
+				return;
+			}
+			else if (ValidatorHandler.isValidMajorNetwork(txtNetwork.getText())) {
+				Popup.showErrorMessage(languageHandler.getKey("vlsm_error_invalidmajornetwork"));
+				return;
+			}
+			else if (ValidatorHandler.isValidIPv4Address(txtDNSServer.getText())) {
+				Popup.showErrorMessage(languageHandler.getKey("converter_IPv4_error_invalidIPv4Address"));
+				return;
+			} else {
+				smartAI.clearConsole();
+				smartAI.exec(txtPoolName.getText(), 
+							 txtNetwork.getText(), 
+							 txtDNSServer.getText(), 
+							 txtExcludedIPs.getText());
+			}
 		});
 	}
-
+	
+	private boolean isFieldsEmpty() {
+		return txtPoolName.isEmpty() || txtNetwork.isEmpty() || txtDNSServer.isEmpty();
+	}
+	
 }
