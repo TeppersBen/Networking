@@ -13,7 +13,7 @@ public class SmartAIDHCP extends SmartAI {
 		super(console);
 	}
 	
-	public void exec(String poolName, String network, TextField dnsServer, TextArea excludedIPs) {
+	public void exec(String poolName, String network, TextField dnsServer, TextArea excludedIPs, TextField domainName) {
 		enterConfigurationTerminal();
 		String net = VLSMSpecializedCalculator.getNetworkAddress(network.split("/")[0], NetworkConverter.netmaskCIDRtoDecimal(Integer.parseInt(network.split("/")[1])));
 		String mask = NetworkConverter.netmaskCIDRtoDecimal(Integer.parseInt(network.split("/")[1]));
@@ -21,6 +21,8 @@ public class SmartAIDHCP extends SmartAI {
 		createDHCPNetwork(net, mask);
 		if (!dnsServer.isEmpty())
 			createDNSServer(dnsServer.getText());
+		if (!domainName.isEmpty())
+			createDomainName(domainName.getText());
 		exitDHCPconfig();
 		if (!excludedIPs.isEmpty())
 			setExcludedIPs(excludedIPs.getText());
@@ -43,6 +45,10 @@ public class SmartAIDHCP extends SmartAI {
 	
 	private void createDNSServer(String dnsServer) {
 		console.println("Router(dhcp-config)#dns-server " + dnsServer);
+	}
+	
+	private void createDomainName(String domain) {
+		console.println("Router(dhcp-config)#domain-name " + domain);
 	}
 	
 	private void exitDHCPconfig() {

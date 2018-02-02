@@ -24,11 +24,13 @@ public class PanelDHCP extends PanelProtocol {
 	private JLabel labelNetwork;
 	private JLabel labelExcludedIPs;
 	private JLabel labelDNSServer;
+	private JLabel labelDomainName;
 	
 	private TextField txtPoolName;
 	private TextField txtNetwork;
 	private TextArea txtExcludedIPs;
 	private TextField txtDNSServer;
+	private TextField txtDomainName;
 	
 	private JButton btnCreate;
 	
@@ -45,11 +47,13 @@ public class PanelDHCP extends PanelProtocol {
 		labelNetwork = new JLabel(" " + languageHandler.getKey("smartAI_dhcp_network") + ":* ");
 		labelExcludedIPs = new JLabel(" " + languageHandler.getKey("smartAI_dhcp_excludedIPs") + ": ");
 		labelDNSServer = new JLabel(" " + languageHandler.getKey("smartAI_dhcp_dnsServer") + ": ");
+		labelDomainName = new JLabel(" " + languageHandler.getKey("smartAI_dhcp_domainName") + ": ");
 		
 		txtPoolName = new TextField("ex: Clients");
 		txtNetwork = new TextField("ex: 192.168.0.1/24");
 		txtExcludedIPs = new TextArea("ex: 192.168.0.0 - 192.168.0.1, 192.168.0.255");
 		txtDNSServer = new TextField("ex: 8.8.8.8");
+		txtDomainName = new TextField("ex: Corporation.com");
 		
 		btnCreate = new JButton(languageHandler.getKey("smartAI_button_createCommandList"));
 		console = new Console();
@@ -76,6 +80,10 @@ public class PanelDHCP extends PanelProtocol {
 		panelDetailsDNSServer.add(labelDNSServer, BorderLayout.WEST);
 		panelDetailsDNSServer.add(txtDNSServer, BorderLayout.CENTER);
 		panelDetailsNorth.add(panelDetailsDNSServer);
+		JPanel panelDetailsDomainName = new JPanel(new BorderLayout());
+		panelDetailsDomainName.add(labelDomainName, BorderLayout.WEST);
+		panelDetailsDomainName.add(txtDomainName, BorderLayout.CENTER);
+		panelDetailsNorth.add(panelDetailsDomainName);
 		
 		JPanel panelDetailsSouth = new JPanel(new BorderLayout());
 		panelDetailsSouth.add(labelExcludedIPs, BorderLayout.WEST);
@@ -117,7 +125,8 @@ public class PanelDHCP extends PanelProtocol {
 			smartAI.exec(txtPoolName.getText(), 
 						 txtNetwork.getText(), 
 						 txtDNSServer, 
-						 txtExcludedIPs);
+						 txtExcludedIPs,
+						 txtDomainName);
 		});
 	}
 	
