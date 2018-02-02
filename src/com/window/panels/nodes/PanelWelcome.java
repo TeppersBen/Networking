@@ -6,7 +6,7 @@ import javax.swing.BorderFactory;
 
 import com.Settings;
 import com.engine.handlers.LanguageHandler;
-import com.window.panels.PanelDetailedInformation;
+import com.engine.utils.PanelDetailedInformation;
 import com.window.panels.PanelProtocol;
 
 public class PanelWelcome extends PanelProtocol {
