@@ -18,7 +18,7 @@ public class ValidatorHandler {
 	public static boolean isValidMajorNetwork(String majorNetwork) {
 		String ip = majorNetwork.split("/")[0];
 		int ipValue = 0;
-		if (majorNetwork.split("/").length == 2) {
+		if (majorNetwork.split("/").length != 2) {
 			Popup.showErrorMessage(languageHandler.getKey("vlsm_error_invalidmajornetwork") + "<br>"
 					+ languageHandler.getKey("word_example").substring(0, 1).toUpperCase() + languageHandler.getKey("word_example").substring(1) + ": 192.168.0.0/24");
 			return false;
