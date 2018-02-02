@@ -52,6 +52,7 @@ public class ValidatorHandler {
 	
 	public static boolean isValidIPv4Address(String IPv4Address) {
 		String[] ip = IPv4Address.split("\\.");
+		if (ip.length != 4) return false;
 		try {
 			for (int i = 0; i < 4; i++) {
 				if (!(ip[i].length() > 0 && ip[i].length() < 4)) 
