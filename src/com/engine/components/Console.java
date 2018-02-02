@@ -20,7 +20,6 @@ public class Console extends JScrollPane {
 		txtarea.setEnabled(false);
 		setViewportView(txtarea);
 		txtarea.setFont(new Font("Monospaced", Font.PLAIN, textSize));
-		txtarea.setText("[... Waiting for prompt action ...]");
 	}
 	
 	public void clearText() {
