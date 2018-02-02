@@ -28,6 +28,14 @@ public class TextField extends JTextField {
 		createFieldFocusUtility();
 	}
 	
+	public boolean isEmpty() {
+		if (getText().equalsIgnoreCase(filterName))
+			return true;
+		if (getText().equalsIgnoreCase(""))
+			return true;
+		return false;
+	}
+	
 	private void createFieldFocusUtility() {
 		setForeground(Color.GRAY);
 		setText(filterName);
