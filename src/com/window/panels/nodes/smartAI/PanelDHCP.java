@@ -37,6 +37,8 @@ public class PanelDHCP extends PanelProtocol {
 	private Console console;
 	private SmartAIDHCP smartAI;
 	
+	private String strExample;
+	
 	public PanelDHCP(LanguageHandler languageHandler) {
 		super(languageHandler, "DHCP");
 	}
@@ -49,11 +51,13 @@ public class PanelDHCP extends PanelProtocol {
 		labelDNSServer = new JLabel(" " + languageHandler.getKey("smartAI_dhcp_dnsServer") + ": ");
 		labelDomainName = new JLabel(" " + languageHandler.getKey("smartAI_dhcp_domainName") + ": ");
 		
-		txtPoolName = new TextField("ex: Clients");
-		txtNetwork = new TextField("ex: 192.168.0.1/24");
-		txtExcludedIPs = new TextArea("ex: 192.168.0.0 - 192.168.0.1, 192.168.0.255");
-		txtDNSServer = new TextField("ex: 8.8.8.8");
-		txtDomainName = new TextField("ex: Corporation.com");
+		strExample = languageHandler.getKey("word_example(short)");
+		
+		txtPoolName = new TextField(strExample + ": Clients");
+		txtNetwork = new TextField(strExample + ": 192.168.0.1/24");
+		txtExcludedIPs = new TextArea(strExample + ": 192.168.0.0 - 192.168.0.1, 192.168.0.255");
+		txtDNSServer = new TextField(strExample + ": 8.8.8.8");
+		txtDomainName = new TextField(strExample + ": Corporation.com");
 		
 		btnCreate = new JButton(languageHandler.getKey("smartAI_button_createCommandList"));
 		console = new Console();
