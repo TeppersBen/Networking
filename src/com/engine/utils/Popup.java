@@ -28,7 +28,7 @@ public class Popup {
 		String message = "<b><u>" + languageHandler.getKey("popup_help_whatisit") + ":</u></b><br>" + whatIsIt + "<br><br>"
 				+ "<b><u>" + languageHandler.getKey("popup_help_howdoesitwork") + ":</u></b><br>" + howDoesItWork + "<br><br>"
 				+ "<b><u>" + languageHandler.getKey("popup_help_example") + ":</u></b><br>" + example;
-		JOptionPane.showMessageDialog(null, "<html>" +  message + "<html>", "Help", JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "<html>" +  message + "<html>", languageHandler.getKey("popup_help_title"), JOptionPane.QUESTION_MESSAGE);
 	}
 	
 	public static void setLanguageHandler(LanguageHandler handler) {
