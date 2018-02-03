@@ -88,8 +88,12 @@ public class PanelsACL extends PanelProtocol {
 		components.add(panel, BorderLayout.CENTER);
 		
 		add(components, BorderLayout.NORTH);
-		add(console, BorderLayout.CENTER);
 		
+		JPanel output = new JPanel(new BorderLayout());
+		output.add(console);
+		add(output, BorderLayout.CENTER);
+		
+		setEmptyFieldSet(output);
 		setEmptyFieldSet(panel);
 	}
 
