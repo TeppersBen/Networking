@@ -12,7 +12,6 @@ import com.window.panels.nodes.PanelWelcome;
 import com.window.panels.nodes.converter.PanelConverter;
 import com.window.panels.nodes.settings.PanelSettings;
 import com.window.panels.nodes.simulation.PanelConsole;
-import com.window.panels.nodes.simulation.PanelSimulation;
 import com.window.panels.nodes.smartAI.PanelDHCP;
 import com.window.panels.nodes.smartAI.PanelRIPv2;
 import com.window.panels.nodes.smartAI.PanelVLAN;
@@ -32,7 +31,6 @@ public class Launcher {
 	private static PanelConverter panelConverter;
 	private static PanelVLSM panelVLSM;
 	private static PanelConsole panelConsole;
-	private static PanelSimulation panelSimulation;
 	private static PanelDHCP panelDHCP;
 	private static PanelRIPv2 panelRIPv2;
 	private static PanelsACL panelsACL;
@@ -43,7 +41,7 @@ public class Launcher {
 	}
 	
 	private static void init() {
-		Splash splash = new Splash(32);
+		Splash splash = new Splash(31);
 		
 		//handlers
 		splash.nextProgressMessage("Initializing handlers");
@@ -75,8 +73,6 @@ public class Launcher {
 		splash.nextProgress();
 		panelConsole = new PanelConsole(languageHandler);
 		splash.nextProgress();
-		panelSimulation = new PanelSimulation(languageHandler);
-		splash.nextProgress();
 		panelDHCP = new PanelDHCP(languageHandler);
 		splash.nextProgress();
 		panelRIPv2 = new PanelRIPv2(languageHandler);
@@ -99,8 +95,6 @@ public class Launcher {
 		panelDisplay.addNodePanel(panelVLSM);
 		splash.nextProgress();
 		panelDisplay.addNodePanel(panelConsole);
-		splash.nextProgress();
-		panelDisplay.addNodePanel(panelSimulation);
 		splash.nextProgress();
 		panelDisplay.addNodePanel(panelDHCP);
 		splash.nextProgress();

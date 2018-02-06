@@ -76,7 +76,7 @@ public class PanelCategorySelection extends PanelProtocol {
 		if (Settings.debug)
 			createNode("Smart-AI", Arrays.asList("RIPv2", "VLAN", "sACL", "DHCP"));
 		if (Settings.debug)
-			createNode("Development", Arrays.asList("Console", "Simulation"));
+			createNode("Development", Arrays.asList("Console"));
 	}
 
 	private void createNode(String title, List<String> list) {
