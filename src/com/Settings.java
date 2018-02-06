@@ -8,6 +8,7 @@ public class Settings {
 
 	public static final String CONFIGURATION_SYSTEM_FILE = "/resources/configuration/config.properties";
 	public static final String CONFIGURATION_USER_SETTINGS_FILE = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "Networking" + File.separator + "config.properties";
+	public static final String EXPORT_SMART_AI_LOCATION = CONFIGURATION_USER_SETTINGS_FILE + File.separator + "smartAI" + File.separator;
 	
 	public static boolean debug = ConfigurationHandler.getSystemKey("debug").equalsIgnoreCase("true") ? true : false;
 	
