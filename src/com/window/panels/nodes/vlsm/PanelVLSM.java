@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import com.engine.calculators.VLSMSpecializedCalculator;
+import com.engine.components.TextField;
 import com.engine.handlers.LanguageHandler;
 import com.engine.handlers.ValidatorHandler;
 import com.engine.utils.Popup;
@@ -28,7 +29,7 @@ public class PanelVLSM extends PanelProtocol {
 	private static final long serialVersionUID = -4200773632900692796L;
 
 	private JLabel labelMajorNetwork;
-	private JTextField textMajorNetwork;
+	private TextField textMajorNetwork;
 
 	private JLabel labelSubnets;
 	private JLabel labelNumberofSubnets;
@@ -47,11 +48,11 @@ public class PanelVLSM extends PanelProtocol {
 	protected void initComponents() {
 		setPanelName(languageHandler.getKey("tab_calculators_vlsm"));
 		labelMajorNetwork = new JLabel(" " + languageHandler.getKey("vlsm_label_majornetwork") + " ");
-		textMajorNetwork = new JTextField(5);
+		textMajorNetwork = new TextField(5, languageHandler.getKey("word_example(short)") + ": 192.168.0.1/24");
 
 		labelSubnets = new JLabel(" " + languageHandler.getKey("vlsm_label_subnets") + " ");
 		labelNumberofSubnets = new JLabel(" " + languageHandler.getKey("vlsm_label_numberofsubnets") + " ");
-		textNumberofSubnets = new JTextField(5);
+		textNumberofSubnets = new TextField(5);
 		buttonChangeNumberofSubnets = new JButton(languageHandler.getKey("vlsm_button_changesubnets"));
 
 		panelSubnetTable = new SubnetPanelCreator(5, languageHandler);
@@ -158,7 +159,7 @@ public class PanelVLSM extends PanelProtocol {
 	}
 	
 	private boolean isReadyToCreateTable() {
-		if (textMajorNetwork.getText().isEmpty() || !panelSubnetTable.isReadyToCreateTable()) {
+		if (textMajorNetwork.isEmpty() || !panelSubnetTable.isReadyToCreateTable()) {
 			Popup.showErrorMessage(languageHandler.getKey("vlsm_error_emptyfields"));
 			return false;
 		}
