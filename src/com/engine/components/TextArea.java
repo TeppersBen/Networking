@@ -1,31 +1,30 @@
 package com.engine.components;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-import javax.swing.JTextField;
+import javax.swing.BorderFactory;
+import javax.swing.JTextArea;
 
-public class TextField extends JTextField {
+public class TextArea extends JTextArea {
 
-	private static final long serialVersionUID = 1691849948846200668L;
+	private static final long serialVersionUID = 6715744721635848701L;
 
 	private String filterName;
 	
-	public TextField(String filterName) {
-		this(2, filterName);
+	public TextArea() {
+		this("");
 	}
 	
-	public TextField(int size, String filterName) {
-		super(size);
-		this.filterName = filterName;
+	public TextArea(String filter) {
+		filterName = " " + filter;
 		createFieldFocusUtility();
-	}
-	
-	public TextField(int size) {
-		super(size);
-		this.filterName = "";
-		createFieldFocusUtility();
+		setFont(new Font("Tahoma", 0, 11));
+		setBorder(BorderFactory.createLineBorder(Color.lightGray));
+		setWrapStyleWord(true);
+		setLineWrap(true);
 	}
 	
 	public boolean isEmpty() {

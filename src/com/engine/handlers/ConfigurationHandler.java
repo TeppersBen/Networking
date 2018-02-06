@@ -14,6 +14,8 @@ import com.engine.utils.VersionCreator;
 
 public class ConfigurationHandler {
 	
+	private static String information = "Program Settings\n#[WARNING]: Modify these settings at your own risk.\n#[SOLUTION]: if broken, delete this file and restart the app.";
+	
 	private static String getKey(String file, String key) {
 		try {
 			File configFile = new File(file);
@@ -63,7 +65,7 @@ public class ConfigurationHandler {
 			config.setProperty(key, value);
 			
 			FileOutputStream fos = new FileOutputStream(configFile);
-			config.store(fos, "Program Settings");
+			config.store(fos, information);
 			fos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,7 +83,7 @@ public class ConfigurationHandler {
 			config.setProperty("windowHeight", "520");
 			
 			FileOutputStream fos = new FileOutputStream(configFile);
-			config.store(fos, "User Settings");
+			config.store(fos, information);
 			fos.close();
 		} catch (Exception e) {
 			e.printStackTrace();

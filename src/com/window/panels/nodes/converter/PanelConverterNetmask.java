@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import com.engine.calculators.NetworkConverter;
 import com.engine.components.TextField;
 import com.engine.handlers.LanguageHandler;
+import com.engine.handlers.ValidatorHandler;
 import com.engine.utils.Formatter;
 import com.engine.utils.Popup;
 import com.window.panels.PanelProtocol;
@@ -72,7 +73,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 	protected void initListeners() {
 		buttonNetmask.addActionListener(e -> {
 			if (isCIDRNotation()) {
-				if (!isValidCIDRNotation()) {
+				if (!ValidatorHandler.isValidCIDR(textfieldNetmask.getText())) {
 					sendErrorMessage();
 					return;
 				}
@@ -84,7 +85,7 @@ public class PanelConverterNetmask extends PanelProtocol {
 				}
 				sendOutput(false, true);
 			} else {
-				if (!isValidDecimalInput()) {
+				if (!ValidatorHandler.isValidNetmask(textfieldNetmask.getText())) {
 					sendErrorMessage();
 					return;
 				}
@@ -98,17 +99,6 @@ public class PanelConverterNetmask extends PanelProtocol {
 	private boolean isCIDRNotation() {
 		if (textfieldNetmask.getText().split("\\.").length != 1)
 			return false;
-		return true;
-	}
-	
-	private boolean isValidCIDRNotation() {
-		try {
-			int cidr = Integer.parseInt(textfieldNetmask.getText());
-			if (!(cidr >= 0 && cidr <= 32))
-				return false;
-		} catch (NumberFormatException ex) {
-			return false;
-		}
 		return true;
 	}
 	
@@ -131,22 +121,6 @@ public class PanelConverterNetmask extends PanelProtocol {
 			} catch (NumberFormatException ex) {
 				return false;
 			}
-		}
-		return true;
-	}
-	
-	private boolean isValidDecimalInput() {
-		String[] splitter = textfieldNetmask.getText().split("\\.");
-		if (splitter.length != 4)
-			return false;
-		for (int i = 0; i < 4; i++) {
-			try {
-				Integer.parseInt(splitter[i]);
-			} catch (NumberFormatException ex) {
-				return false;
-			}
-			if (!(splitter[i].length() >= 1 && splitter[i].length() <= 3))
-				return false;
 		}
 		return true;
 	}

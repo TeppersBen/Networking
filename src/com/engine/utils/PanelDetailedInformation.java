@@ -1,4 +1,4 @@
-package com.window.panels;
+package com.engine.utils;
 
 import java.awt.BorderLayout;
 

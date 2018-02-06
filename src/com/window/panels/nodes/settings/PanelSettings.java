@@ -12,6 +12,7 @@ import com.window.panels.PanelProtocol;
 public class PanelSettings extends PanelProtocol {
 
 	private PanelSettingsLanguageSelection languageSelection;
+	private PanelSettingsScreenResolutionSelection screenResolutionSelection;
 	
 	public PanelSettings(LanguageHandler languageHandler) {
 		super(languageHandler);
@@ -24,15 +25,17 @@ public class PanelSettings extends PanelProtocol {
 	protected void initComponents() {
 		setPanelName(languageHandler.getKey("tab_session_settings"));
 		languageSelection = new PanelSettingsLanguageSelection(languageHandler);
+		screenResolutionSelection = new PanelSettingsScreenResolutionSelection(languageHandler);
 		buttonApply = new JButton(languageHandler.getKey("settings_button_apply"));
 	}
 	
 	@Override
 	protected void layoutComponents() {
-		add(setTitle(getPanelName()), BorderLayout.NORTH);
 		JPanel panel1 = new JPanel(new BorderLayout());
-		panel1.add(languageSelection, BorderLayout.NORTH);
-		add(panel1, BorderLayout.CENTER);
+		panel1.add(setTitle(getPanelName()), BorderLayout.NORTH);
+		panel1.add(languageSelection, BorderLayout.CENTER);
+		panel1.add(screenResolutionSelection, BorderLayout.SOUTH);
+		add(panel1, BorderLayout.NORTH);
 		JPanel panelApply = new JPanel(new BorderLayout());
 		panelApply.add(buttonApply, BorderLayout.EAST);
 		add(panelApply, BorderLayout.SOUTH);
@@ -43,6 +46,7 @@ public class PanelSettings extends PanelProtocol {
 		buttonApply.addActionListener(e -> {
 			Popup.showInformationMessage(languageHandler.getKey("settings_restart_request"));
 			languageSelection.execute();
+			screenResolutionSelection.execute();
 		});
 	}
 
