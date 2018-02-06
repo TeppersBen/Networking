@@ -10,9 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -21,6 +18,7 @@ import javax.swing.table.TableModel;
 import com.Settings;
 import com.engine.calculators.VLSMSpecializedCalculator;
 import com.engine.handlers.LanguageHandler;
+import com.engine.utils.LookAndFeelManager;
 
 public class PanelVLSMTable extends JFrame {
 
@@ -48,27 +46,7 @@ public class PanelVLSMTable extends JFrame {
 	private void initScreen() {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setResizable(false);
-		initLookAndFeel();
-	}
-	
-	private void initLookAndFeel() {
-		try {
-			String className = getLookAndFeelClassName("Windows");
-			UIManager.setLookAndFeel(className);
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
-			e.printStackTrace();
-		} 
-	}
-	
-	private String getLookAndFeelClassName(String nameSnippet) {
-	    LookAndFeelInfo[] plafs = UIManager.getInstalledLookAndFeels();
-	    for (LookAndFeelInfo info : plafs) {
-	        if (info.getName().contains(nameSnippet)) {
-	            return info.getClassName();
-	        }
-	    }
-	    return null;
+		LookAndFeelManager.initLookAndFeel();
 	}
 
 	public JTextField[][] getData() {
