@@ -8,6 +8,9 @@ This software is designed to make some aspects of CCNA networking easier and fas
 	- convert the requested amount of hosts to [CIDR, Netmask, Class, Subnets, Hosts, Wildcard];
 	- convert two IPv4 addresses into one wildcard for ACL usage;
 	
+# How to download
+Head over to the folder named "Versions" and more information will be displayed there.
+
 # In Development
 <dl>
 	<dt>Smart-AI</dt>
