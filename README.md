@@ -1,21 +1,20 @@
 # Networking
-Deze software moet de gebruiker aspecten van "Networking" makkelijker maken. Dit gaat van Console simulaties tot Converters.
+This software is designed to make some aspects of CCNA networking easier and faster.
 
-Deze software maakt gebruik van **Java 9.0.1**.
-
-# Versie code
-standaard prefix: **major.minor[.build[.revision]]**
-
-| prefix     | digits                                                  | uitleg |
-|:--------:|:---------------------------------------------------------- |:----------------------------|
-| major  | 1 | Software uitbreiding |
-| minor  | 2 | Kleine aanpassingen aan bestaande software delen. |
-| build  | 4 | Eerste twee digits is het aantal maanden er aan de software gewerkt wordt, laatste twee is de dag van de huidige maand. |
-| revision | 3 | Hoeveelheid bug fixes in huidige versie. |
-
+# Features
+	- create VLSM tables;
+	- convert IPv4 binary to decimal (and other way around);
+	- convert Netmask or CIDR to [usable hosts, subnets, wildcard, class] if given the Netmask, you'll also be told what its CIDR notation is, and other way around;
+	- convert the requested amount of hosts to [CIDR, Netmask, Class, Subnets, Hosts, Wildcard];
+	- convert two IPv4 addresses into one wildcard for ACL usage;
+	
+# In Development
 <dl>
-
-  <dt>voorbeeld: 1.05.2010.015</dt>
-  <dd>hier zitten we in de eerste major patch van de software, er zijn 5 aanpassingen gemaakt aan de huidige code na de release van de major patch, we zitten      hier in de 20ste maand sinds het begin van de start</dd>
-
+	<dt>Smart-AI</dt>
+	<dd>This feature will allow you to generate command-line, which means that you can fill in fields and tell the system what you want as a result. The system will then return you a full sequence of commands to fulfill your request.</dd>
+	<dt>Console</dt>
+	<dd>We want to allow you to practice your CLI skills within our application.</dd>
 </dl>
+
+# Requirements
+Java 9.0.4, can be downloaded [here](http://www.oracle.com/technetwork/java/javase/downloads/jre9-downloads-3848532.html).
