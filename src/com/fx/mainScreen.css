@@ -23,12 +23,6 @@
 	-fx-font-size: 1.6em;
 }
 
-.text-field {
-	-fx-text-fill: #FFFFFF;
-	-fx-font-size: 13pt;
-	-jfx-focus-color: #FFFFFF;
-}
-
 .button_close:hover {
 	-fx-background-color: #FF0000;
 }

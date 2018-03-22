@@ -1,0 +1,15 @@
+* {
+	-color-white: #FFFFFF;
+}
+
+.label {
+	-fx-text-fill: -color-white;
+	-fx-font-size: 1.35em;
+	-fx-font-weight: bold;
+}
+
+.text-field {
+	-fx-text-fill: -color-white;
+	-fx-font-size: 1.35em;
+	-jfx-focus-color: -color-white;
+}
