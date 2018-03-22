@@ -9,5 +9,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Teppers/eclipse-workspace/Networking/lib/jfoenix-9.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
