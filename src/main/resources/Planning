@@ -1,0 +1,68 @@
+MAIN: >> com
+	Launcher.java
+
+GUI: >> com.gui
+	WindowBuilder.java
+		PanelProtocol.java (super JPanel)
+		PanelCategorySelection.java
+		PanelDisplay.java
+			PanelWelcome.java
+			PanelConverter.java
+			PanelConverterAddress.java
+			PanelConverterNetmask.java
+			PanelConverterRequestedHosts.java
+			PanelSettings.java
+			PanelSettingsLanguageSelection.java
+			PanelVLSM.java
+			PanelVLSMTable.java
+			PanelConsole.java
+	
+ENGINE: >> com.engine
+	Settings.java
+	Devices.java
+	NetworkDevice.java
+	Router.java
+	LanguageHandler.java
+	Formatter.java
+	Logger.java
+	LookAndFeelManager.java
+	Popup.java
+	VersionCreator.java
+	Convert.java
+	NetworkConverter.java
+	VLSMSpecializedCalculator.java
+	Splash.java
+	
+########################################
+
+Class list:	
+	Launcher.java
+	Settings.java
+	PanelConsole.java
+	Devices.java
+	NetworkDevice.java
+	Router.java
+	LanguageHandler.java
+	Formatter.java
+	Logger.java
+	LookAndFeelManager.java
+	Popup.java
+	VersionCreator.java
+	Convert.java
+	NetworkConverter.java
+	VLSMSpecializedCalculator.java
+	Splash.java
+	WindowBuilder.java
+	PanelCategorySelection.java
+	PanelDisplay.java
+	PanelProtocol.java
+	PanelLogging.java
+	PanelWelcome.java
+	PanelConverter.java
+	PanelConverterAddress.java
+	PanelConverterNetmask.java
+	PanelConverterRequestedHosts.java
+	PanelSettings.java
+	PanelSettingsLanguageSelection.java
+	PanelVLSM.java
+	PanelVLSMTable.java

@@ -1,0 +1,49 @@
+/*
+ * Pre-made Values
+ */
+* {
+	-default-background-color: #292C35;
+}
+
+/*
+ * Global Settings
+ */
+.root {
+	-fx-background-color: -default-background-color;
+}
+
+.label {
+	-fx-text-fill: #FFFFFF;
+	-fx-font-size: 1.6em;
+	-fx-font-weight: bold;
+}
+
+.button {
+	-fx-text-fill: #FFFFFF;
+	-fx-font-size: 1.6em;
+}
+
+.button_close:hover {
+	-fx-background-color: #FF0000;
+}
+
+.button_minimize:hover {
+	-fx-background-color: #41434C;
+}
+
+.button_maximize:hover {
+	-fx-background-color: #41434C;
+}
+
+/*
+ * Tab-Pane styling
+ */
+.tab {
+	-fx-background-color: -default-background-color;
+	-fx-pref-width: 115;
+	-fx-pref-height: 50;
+}
+
+.tab-header-background {
+	-fx-background-color: -default-background-color;
+}
