@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.javaFX.controllers.NavigationBar"
+            stylesheets="/frames/css/NavigationBar.css">
+    <center>
+        <BorderPane styleClass="navigation-box">
+            <top>
+                <!-- TODO implement clickable logo that navigates to home
+                <ImageView> TO BE CONTINUED
+                    <image>
+                        <Image url="/frames/icons/logo-placeholder.png"/>
+                    </image>
+                </ImageView>
+                -->
+                <Label fx:id="logo" text="LOGO HERE"/>
+            </top>
+            <center>
+                <GridPane>
+                    <!-- TODO implement button icons -->
+                    <JFXButton fx:id="button_converters" text="Converters" onAction="#go_to_converters_frame"
+                               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <JFXButton fx:id="button_vlsm_calculator" text="VLSM Calculator" onAction="#go_to_vlsm_calculator_frame"
+                               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <JFXButton fx:id="button_settings" text="Settings" onAction="#go_to_settings_frame"
+                               GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <JFXButton fx:id="button_quit" text="Quit" onAction="#quit_application"
+                               GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                </GridPane>
+            </center>
+        </BorderPane>
+    </center>
+</BorderPane>

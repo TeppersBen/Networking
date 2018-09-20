@@ -1,13 +1,7 @@
-.navigation-box {
-    -fx-background-color: grey;
-}
-
-.navigation-box > GridPane {
-    -fx-vgap: 15;
+* {
     -fx-alignment: center;
 }
 
-.navigation-box > Label {
-    -fx-pref-width: 150;
-    -fx-alignment: center;
+#label_welcome {
+    -fx-font-weight: bold;
 }

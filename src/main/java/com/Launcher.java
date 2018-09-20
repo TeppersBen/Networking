@@ -1,5 +1,6 @@
 package com;
 
+import com.javaFX.handlers.FrameHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +15,8 @@ public class Launcher extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/frames/fxmls/WelcomeFrame.fxml"));
+		FrameHandler.primaryStage = primaryStage;
+		Parent root = FXMLLoader.load(getClass().getResource("/frames/fxmls/MainFrame.fxml"));
 		Scene scene = new Scene(root, 800, 600);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle(Settings.TITLE);

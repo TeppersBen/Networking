@@ -9,28 +9,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import com.jfoenix.controls.JFXButton?>
-<BorderPane xmlns="http://javafx.com/javafx"
+<FlowPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.fxcontrollers.WelcomeFrame"
+            fx:controller="com.javaFX.controllers.WelcomeFrame"
             stylesheets="/frames/css/WelcomeFrame.css">
-    <left>
-        <BorderPane styleClass="navigation-box">
-            <top>
-                <!--<ImageView> TO BE CONTINUED
-                    <image>
-                        <Image url="/frames/icons/logo-placeholder.png"/>
-                    </image>
-                </ImageView>-->
-                <Label text="LOGO HERE"/>
-            </top>
-            <center>
-                <GridPane>
-                    <JFXButton fx:id="button_converters" text="Converters" onAction="#go_to_converters_frame"
-                               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                    <JFXButton fx:id="button_vlsm_calculator" text="VLSM Calculator" onAction="#go_to_vlsm_calculator_frame"
-                               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                </GridPane>
-            </center>
-        </BorderPane>
-    </left>
-</BorderPane>
+    <VBox>
+        <Label fx:id="label_welcome"/>
+        <Label fx:id="label_version"/>
+        <Label fx:id="label_release"/>
+    </VBox>
+</FlowPane>

@@ -1,0 +1,21 @@
+.navigation-box {
+    -fx-background-color: grey;
+}
+
+.navigation-box > GridPane {
+    -fx-vgap: 15;
+    -fx-alignment: center;
+}
+
+.navigation-box > Label {
+    -fx-pref-width: 150;
+    -fx-alignment: center;
+}
+
+JFXButton {
+    -fx-pref-width: 100;
+}
+
+JFXButton:hover {
+    -fx-background-color: #e0e0e0;
+}
