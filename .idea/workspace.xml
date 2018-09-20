@@ -2,36 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ec759fa-ab47-4eac-b00f-472e7aee78c6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Networking.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fxcontrollers/WelcomeFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/frames/fxmls/WelcomeFrame.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/frames/css/WelcomeFrame.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/frames/icons/logo-placeholder.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/Splash.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/WindowBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/PanelCategorySelection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/PanelDisplay.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/PanelProtocol.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/PanelLogging.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/PanelWelcome.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/converter/PanelConverter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/converter/PanelConverterACL.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/converter/PanelConverterAddress.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/converter/PanelConverterNetmask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/converter/PanelConverterRequestedHosts.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/settings/PanelSettings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/settings/PanelSettingsLanguageSelection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/settings/PanelSettingsScreenResolutionSelection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/simulation/PanelConsole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/smartAI/PanelDHCP.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/smartAI/PanelRIPv2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/smartAI/PanelVLAN.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/smartAI/PanelsACL.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/vlsm/PanelVLSM.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/window/panels/nodes/vlsm/PanelVLSMTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/configuration/config.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/fxcontrollers/WelcomeFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fxcontrollers/WelcomeFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/frames/fxmls/WelcomeFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/frames/fxmls/WelcomeFrame.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -52,26 +28,33 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="9" />
-          <entry key="properties" value="2" />
+          <entry key="css" value="1" />
+          <entry key="fxml" value="1" />
+          <entry key="java" value="11" />
+          <entry key="properties" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="9" />
-          <entry key="Properties" value="2" />
+          <entry key="CSS" value="1" />
+          <entry key="JAVA" value="11" />
+          <entry key="Properties" value="4" />
+          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="202" />
+          <entry key="css" value="635" />
+          <entry key="fxml" value="462" />
+          <entry key="java" value="889" />
           <entry key="xml" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="202" />
-          <entry key="XML" value="41" />
+          <entry key="CSS" value="635" />
+          <entry key="JAVA" value="889" />
+          <entry key="XML" value="503" />
         </counts>
       </usages-collector>
     </session>
@@ -119,10 +102,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/Launcher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="289">
+              <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#252#253#0" expanded="true" />
+                <element signature="e#271#272#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -130,28 +115,45 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/frames/fxmls/WelcomeFrame.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="29" column="123" selection-start-line="29" selection-start-column="123" selection-end-line="29" selection-end-column="123" />
+            </state>
+          </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="46" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-            </state>
-          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fxcontrollers/WelcomeFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+            <state relative-caret-position="221">
+              <caret line="13" column="89" selection-start-line="13" selection-start-column="89" selection-end-line="13" selection-end-column="89" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#393#394#0" expanded="true" />
+                <element signature="e#430#431#0" expanded="true" />
+                <element signature="e#513#514#0" expanded="true" />
+                <element signature="e#573#574#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/language/language_en_GB.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="20" selection-start-line="20" selection-end-line="20" selection-end-column="20" />
+            </state>
+          </provider>
+          <provider editor-type-id="ResourceBundle" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/frames/css/WelcomeFrame.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -162,6 +164,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
+        <option value="CSS File" />
         <option value="Class" />
       </list>
     </option>
@@ -182,8 +185,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/engine/handlers/LanguageHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/Launcher.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxmls/WelcomeFrame.fxml" />
-        <option value="$PROJECT_DIR$/src/main/resources/frames/fxmls/WelcomeFrame.fxml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/frames/css/WelcomeFrame.css" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fxcontrollers/BaseFxController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/frames/fxmls/WelcomeFrame.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fxcontrollers/WelcomeFrame.java" />
       </list>
     </option>
   </component>
@@ -206,7 +212,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -246,6 +251,15 @@
               <item name="Networking" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="fxcontrollers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Networking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Networking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -255,6 +269,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="frames" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Networking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Networking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="frames" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Networking" type="b2602c69:ProjectViewProjectNode" />
@@ -265,16 +288,46 @@
               <item name="frames" type="462c0819:PsiDirectoryNode" />
               <item name="fxmls" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Networking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Networking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="language" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Networking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Networking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="language" type="462c0819:PsiDirectoryNode" />
+              <item name="Resource Bundle 'language'" type="a6c14932:ResourceBundleNode" />
+            </path>
+            <path>
+              <item name="Networking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Networking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Networking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Networking" type="462c0819:PsiDirectoryNode" />
+              <item name="versions" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537378720718" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537443275561" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -283,16 +336,17 @@
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Teppers\IdeaProjects\Networking\src\main\resources\frames.icons" />
-      <recent name="C:\Users\Teppers\IdeaProjects\Networking\src\main\resources\frames\fxmls" />
-      <recent name="C:\Users\Teppers\IdeaProjects\Networking\src\main\resources" />
-      <recent name="C:\Users\Teppers\IdeaProjects\Networking\src\main\resources\frames" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Ben_T\IdeaProjects\Networking\src\main\resources" />
       <recent name="C:\Users\Ben_T\IdeaProjects\Networking\src\main\java" />
       <recent name="C:\Users\Ben_T\IdeaProjects\Networking\src\test\java" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ben_T\IdeaProjects\Networking\src\main\resources\frames\icons" />
+      <recent name="C:\Users\Ben_T\IdeaProjects\Networking\src\main\resources\frames" />
+      <recent name="C:\Users\Ben_T\IdeaProjects\Networking\src\main\resources" />
+      <recent name="C:\Users\Ben_T\IdeaProjects\Networking\src\main\resources\frames\fxmls\fxmls" />
+      <recent name="C:\Users\Teppers\IdeaProjects\Networking\src\main\resources\frames.icons" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -355,13 +409,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7850000" />
+    <option name="totallyTimeSpent" value="14245000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18958664" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18336888" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -370,8 +424,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32939914" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3286334" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -468,35 +522,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/Launcher.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="254">
+          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fxcontrollers/BaseFxController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <folding>
+            <element signature="e#131#132#0" expanded="true" />
+            <element signature="e#212#213#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/language/language.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="ResourceBundle" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fxcontrollers/WelcomeFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="89" selection-start-line="13" selection-start-column="89" selection-end-line="13" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#393#394#0" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#513#514#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/frames/fxmls/WelcomeFrame.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="46" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+        <state relative-caret-position="408">
+          <caret line="29" column="123" selection-start-line="29" selection-start-column="123" selection-end-line="29" selection-end-column="123" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fxcontrollers/WelcomeFrame.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/Launcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+        <state relative-caret-position="289">
+          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#252#253#0" expanded="true" />
+            <element signature="e#271#272#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/language/language_en_GB.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+        <state relative-caret-position="340">
+          <caret line="20" column="20" selection-start-line="20" selection-end-line="20" selection-end-column="20" />
+        </state>
+      </provider>
+      <provider editor-type-id="ResourceBundle" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/frames/css/WelcomeFrame.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
         </state>
       </provider>
     </entry>

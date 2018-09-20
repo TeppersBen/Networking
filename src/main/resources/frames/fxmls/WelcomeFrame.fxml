@@ -11,16 +11,26 @@
 <?import com.jfoenix.controls.JFXButton?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.fxcontrollers.WelcomeFrame">
+            fx:controller="com.fxcontrollers.WelcomeFrame"
+            stylesheets="/frames/css/WelcomeFrame.css">
     <left>
-        <VBox>
-            <ImageView>
-                <image>
-                    <Image url="/frames/icons/logo-placeholder.png"/>
-                </image>
-            </ImageView>
-            <JFXButton text="UNKNOWN_BUTTON"/>
-            <JFXButton text="UNKNOWN_BUTTON"/>
-        </VBox>
+        <BorderPane styleClass="navigation-box">
+            <top>
+                <!--<ImageView> TO BE CONTINUED
+                    <image>
+                        <Image url="/frames/icons/logo-placeholder.png"/>
+                    </image>
+                </ImageView>-->
+                <Label text="LOGO HERE"/>
+            </top>
+            <center>
+                <GridPane>
+                    <JFXButton fx:id="button_converters" text="Converters" onAction="#go_to_converters_frame"
+                               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <JFXButton fx:id="button_vlsm_calculator" text="VLSM Calculator" onAction="#go_to_vlsm_calculator_frame"
+                               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                </GridPane>
+            </center>
+        </BorderPane>
     </left>
 </BorderPane>
