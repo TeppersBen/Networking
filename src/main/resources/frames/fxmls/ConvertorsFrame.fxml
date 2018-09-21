@@ -10,24 +10,38 @@
 <?import com.jfoenix.controls.JFXButton?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.javaFX.controllers.ConvertorsFrame">
+            fx:controller="com.javaFX.controllers.ConvertorsFrame"
+            stylesheets="/frames/css/ConverterFrame.css">
 
     <center>
-        <HBox>
-            <BorderPane>
-                <top>
-                    <VBox>
-                        <HBox>
-                            <Label fx:id="label_ipv4"/>
-                            <JFXTextField fx:id="txt_ipv4"/>
-                        </HBox>
-                        <Label fx:id="label_ipv4_result"/>
-                        <JFXButton fx:id="button_ipv4" onAction="#convert_ipv4"/>
-                    </VBox>
-
-                </top>
-            </BorderPane>
-        </HBox>
+        <GridPane styleClass="container">
+            <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <HBox>
+                    <Label fx:id="label_ipv4"/>
+                    <JFXTextField fx:id="txt_ipv4"/>
+                </HBox>
+                <Label fx:id="label_ipv4_result"/>
+                <JFXButton fx:id="button_ipv4" onAction="#convert_ipv4"/>
+            </VBox>
+            <VBox GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <HBox>
+                    <Label fx:id="label_netmask_cidr"/>
+                    <JFXTextField fx:id="txt_netmask_cidr"/>
+                </HBox>
+                <GridPane>
+                    <Label fx:id="label_netmask_cidr_result"
+                        GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label fx:id="label_netmask_cidr_result_class"
+                        GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label fx:id="label_netmask_cidr_result_hosts"
+                        GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label fx:id="label_netmask_cidr_result_subnets"
+                        GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label fx:id="label_netmask_cidr_result_wildcard"
+                        GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                </GridPane>
+            </VBox>
+        </GridPane>
     </center>
 
 </BorderPane>

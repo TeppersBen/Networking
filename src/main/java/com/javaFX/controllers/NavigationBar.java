@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 
 public class NavigationBar {
+    @FXML private JFXButton button_home;
     @FXML private JFXButton button_converters;
     @FXML private JFXButton button_vlsm_calculator;
     @FXML private JFXButton button_quit;
@@ -21,36 +22,30 @@ public class NavigationBar {
     @FXML private void initialize() {
         logo.focusTraversableProperty().set(true);
         System.out.println(getClass().getSimpleName() + ": initializing");
-        button_converters.setText(new LanguageHandler().getKey("tab_calculators_converter"));
-        button_vlsm_calculator.setText(new LanguageHandler().getKey("tab_calculators_vlsm"));
+        button_home.setText(LanguageHandler.getKey("tab_home"));
+        button_converters.setText(LanguageHandler.getKey("tab_calculators_converter"));
+        button_vlsm_calculator.setText(LanguageHandler.getKey("tab_calculators_vlsm"));
         //TODO implement button_quit.setText(new LanguageHandler().getKey(""));
+    }
+
+    @FXML private void go_to_home_frame() {
+        System.out.println("Go to home frame");
+        FrameHandler.switchFrame(FrameHandler.Frames.WELCOME);
     }
 
     @FXML private void go_to_converters_frame() {
         System.out.println("Go to converters frame");
-        try {
-            FrameHandler.switchFrame(FrameHandler.Frames.CONVERTORS);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        FrameHandler.switchFrame(FrameHandler.Frames.CONVERTORS);
     }
 
     @FXML private void go_to_vlsm_calculator_frame() {
         System.out.println("Go to vlsm calculator frame");
-        try {
-            FrameHandler.switchFrame(FrameHandler.Frames.VLSM);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        FrameHandler.switchFrame(FrameHandler.Frames.VLSM);
     }
 
     @FXML private void go_to_settings_frame() {
         System.out.println("Go to settings frame");
-        try {
-            FrameHandler.switchFrame(FrameHandler.Frames.SETTINGS);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        FrameHandler.switchFrame(FrameHandler.Frames.SETTINGS);
     }
 
     @FXML private void quit_application() {

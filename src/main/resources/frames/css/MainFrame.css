@@ -1,0 +1,7 @@
+* {
+    -fx-fill: white;
+}
+
+#stackPane {
+    -fx-background-color: #252526;
+}

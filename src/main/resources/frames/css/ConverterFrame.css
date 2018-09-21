@@ -1,0 +1,7 @@
+.container {
+    -fx-vgap: 12;
+}
+
+VBox {
+    -fx-background-color: #2a2a2b;
+}

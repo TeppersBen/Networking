@@ -1,5 +1,5 @@
 .navigation-box {
-    -fx-background-color: grey;
+    -fx-background-color: #373738;
 }
 
 .navigation-box > GridPane {
@@ -14,8 +14,9 @@
 
 JFXButton {
     -fx-pref-width: 100;
+    -fx-background-color: #313133;
 }
 
 JFXButton:hover {
-    -fx-background-color: #e0e0e0;
+    -fx-background-color: #3b3b3d;
 }
