@@ -16,6 +16,7 @@ public class ConvertorsFrame {
     @FXML private Label label_netmask_cidr_result_hosts;
     @FXML private Label label_netmask_cidr_result_subnets;
     @FXML private Label label_netmask_cidr_result_wildcard;
+    @FXML private JFXButton button_netmask_cidr;
 
     @FXML private Label label_ipv4;
     @FXML private JFXTextField txt_ipv4;
@@ -41,11 +42,17 @@ public class ConvertorsFrame {
     private void initNetmaskCidrSection() {
         label_netmask_cidr.setText(LanguageHandler.getKey("converter_netmask_label_NetmaskCIDR"));
         txt_netmask_cidr.setPromptText(EXAMPLE_SHORT + ": [24 | 255.255.255.0]");
-        //TODO implement function that checks wether the system is cidr or netmask[decimal/binary] label_netmask_cidr_result.setText(LanguageHandler.getKey("converter_netmask_label_CIDR"));
+        label_netmask_cidr_result.setText(LanguageHandler.getKey("converter_netmask_label_NetmaskCIDR")+": 255.255.255.255");
+        label_netmask_cidr_result_class.setText(LanguageHandler.getKey("converter_netmask_label_Class")+":");
+        label_netmask_cidr_result_hosts.setText(LanguageHandler.getKey("converter_netmask_label_Hosts")+":");
+        label_netmask_cidr_result_subnets.setText(LanguageHandler.getKey("converter_netmask_label_Subnets")+":");
+        label_netmask_cidr_result_wildcard.setText(LanguageHandler.getKey("converter_acl_wildcard")+":");
+        button_netmask_cidr.setText(LanguageHandler.getKey("converter_netmask_button_ConverterNetmask"));
     }
 
     @FXML private void convert_ipv4() {
         System.out.println("Convert IPV4");
     }
 
+    @FXML private void convert_netmask_cidr() { System.out.println("Convert netmask|cidr"); }
 }

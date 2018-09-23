@@ -5,3 +5,7 @@
 VBox {
     -fx-background-color: #2a2a2b;
 }
+
+.netmask-cidr-container {
+    -fx-min-width: 300;
+}
