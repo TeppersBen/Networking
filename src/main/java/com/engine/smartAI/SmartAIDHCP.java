@@ -2,13 +2,10 @@ package com.engine.smartAI;
 
 import com.engine.calculators.NetworkConverter;
 import com.engine.calculators.VLSMSpecializedCalculator;
-import com.engine.components.Console;
-import com.engine.components.TextArea;
-import com.engine.components.TextField;
 import com.engine.handlers.ValidatorHandler;
 
 public class SmartAIDHCP extends SmartAI {
-
+/*
 	public SmartAIDHCP(Console console) {
 		super(console);
 	}
@@ -73,5 +70,5 @@ public class SmartAIDHCP extends SmartAI {
 			else if (ValidatorHandler.isValidIPv4Address(ranges[i]))
 				console.println("Router(config)#ip dhcp excluded-address " + ranges[i]);
 		}
-	}
+	}*/
 }

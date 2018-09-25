@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -42,6 +39,38 @@
                     GridPane.columnIndex="1" GridPane.rowIndex="1"/>
             </GridPane>
             <JFXButton fx:id="button_netmask_cidr" onAction="#convert_netmask_cidr"/>
+        </VBox>
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="2">
+            <HBox>
+                <Label fx:id="label_requested_hosts"/>
+                <JFXTextField fx:id="txt_requested_hosts"/>
+            </HBox>
+            <GridPane>
+                <Label fx:id="label_requested_hosts_cidr"
+                       GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label fx:id="label_requested_hosts_netmask"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <Label fx:id="label_requested_hosts_class"
+                       GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                <Label fx:id="label_requested_hosts_subnets"
+                       GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label fx:id="label_requested_hosts_available"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label fx:id="label_requested_hosts_wildcard"
+                       GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            </GridPane>
+            <JFXButton fx:id="button_requested_hosts" onAction="#convert_requested_hosts"/>
+        </VBox>
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="3">
+            <HBox>
+                <Label fx:id="label_wildcard_first_ip"/>
+                <JFXTextField fx:id="txt_wildcard_first_ip"/>
+                <Label text="-"/>
+                <JFXTextField fx:id="txt_wildcard_last_ip"/>
+                <Label fx:id="label_wildcard_last_ip"/>
+            </HBox>
+            <Label fx:id="label_wildcard_result"/>
+            <JFXButton fx:id="button_wildcard" onAction="#convert_wildcard"/>
         </VBox>
     </GridPane>
 

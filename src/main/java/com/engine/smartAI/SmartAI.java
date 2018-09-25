@@ -1,9 +1,7 @@
 package com.engine.smartAI;
 
-import com.engine.components.Console;
-
 public class SmartAI {
-
+/*
 	protected Console console;
 	
 	public SmartAI(Console console) {
@@ -13,5 +11,5 @@ public class SmartAI {
 	public void clearConsole() {
 		console.clearText();
 	}
-	
+	*/
 }

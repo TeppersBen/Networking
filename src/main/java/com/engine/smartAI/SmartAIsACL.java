@@ -1,10 +1,9 @@
 package com.engine.smartAI;
 
 import com.engine.calculators.NetworkConverter;
-import com.engine.components.Console;
 
 public class SmartAIsACL extends SmartAI {
-
+/*
 	public SmartAIsACL(Console console) {
 		super(console);
 	}
@@ -40,5 +39,5 @@ public class SmartAIsACL extends SmartAI {
 		console.println("Router(config-if)#ip access-group " + listName + " out");
 		console.println("Router(config-if)#end");
 	}
-
+*/
 }
