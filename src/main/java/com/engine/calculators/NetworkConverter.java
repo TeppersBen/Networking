@@ -4,17 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NetworkConverter extends Convert {
-
-	private static final String[] KNOWN_NETMASKS = { "0.0.0.0", "128.0.0.0", "192.0.0.0", "224.0.0.0", "240.0.0.0", "248.0.0.0", "252.0.0.0", "254.0.0.0",
-			"255.0.0.0", "255.128.0.0", "255.192.0.0", "255.224.0.0", "255.240.0.0", "255.248.0.0", "255.252.0.0", "255.254.0.0",
-			"255.255.0.0", "255.255.128.0", "255.255.192.0", "255.255.224.0", "255.255.240.0", "255.255.248.0", "255.255.252.0", "255.255.254.0",
-			"255.255.255.0", "255.255.255.128", "255.255.255.192", "255.255.255.224", "255.255.255.240", "255.255.255.248", "255.255.255.252" ,"255.255.255.254", "255.255.255.255"};
 	
 	/**
-	 * Converts a netmask CIDR notation to a binary value.
-	 * @param netmask
+	 * Converts a netmask CIDR notation to a binary value.<br>
+	 * I.E.: 5 -> 11111000.00000000.00000000.00000000
+	 * @param netmask int
 	 * @return String of the binary value
-	 * @Example 5 -> 11111000.00000000.00000000.00000000
 	 */
 	public static String netmaskCIDRtoBinary(int netmask) {
 		StringBuilder result = new StringBuilder();
@@ -30,10 +25,10 @@ public class NetworkConverter extends Convert {
 	}
 	
 	/**
-	 * Converts a netmask IP to the current class it is in.
-	 * @param netmaskIP
+	 * Converts a netmask IP to the current class it is in.<br>
+	 * I.E.: 255.0.0.0 -> A
+	 * @param netmaskIP String
 	 * @return String of the current class.
-	 * @Example 255.0.0.0 -> A
 	 */
 	public static String getNetmaskClass(String netmaskIP) {
 		int x = 0;
@@ -58,10 +53,10 @@ public class NetworkConverter extends Convert {
 	}
 	
 	/**
-	 * Converts a decimal IPv4 notation to a binary value.
-	 * @param ip
+	 * Converts a decimal IPv4 notation to a binary value.<br>
+	 * I.E.: 192.168.0.1 -> 11000000.10101000.00000000.00000001
+	 * @param ip String
 	 * @return String of the binary value.
-	 * @Example 192.168.0.1 -> 11000000.10101000.00000000.00000001
 	 */
 	public static String decimalIPv4ToBinary(String ip) {
 		StringBuilder result = new StringBuilder();
@@ -74,10 +69,10 @@ public class NetworkConverter extends Convert {
 	}
 	
 	/**
-	 * Converts a binary IPv4 notation to a decimal value.
-	 * @param ip
+	 * Converts a binary IPv4 notation to a decimal value.<br>
+	 * I.E.: 00001010.00000000.00000000.00000001 -> 10.0.0.1
+	 * @param ip String
 	 * @return String of the decimal value.
-	 * @Example 00001010.00000000.00000000.00000001 -> 10.0.0.1
 	 */
 	public static String binaryIPv4ToDecimal(String ip) {
 		StringBuilder result = new StringBuilder();
@@ -90,10 +85,10 @@ public class NetworkConverter extends Convert {
 	}
 
 	/**
-	 * Converts a netmask CIDR notation to a decimal value.
-	 * @param netmask
+	 * Converts a netmask CIDR notation to a decimal value.<br>
+	 * I.E.: 24 -> 255.255.255.0
+	 * @param netmask int
 	 * @return String of the decimal value.
-	 * @Example 24 -> 255.255.255.0
 	 */
 	public static String netmaskCIDRtoDecimal(int netmask) {
 		StringBuilder result = new StringBuilder(netmaskCIDRtoBinary(netmask));
@@ -106,30 +101,30 @@ public class NetworkConverter extends Convert {
 	}
 
 	/**
-	 * Converts the netmask CIDR notation to max_possible_hosts in that CIDR.
-	 * @param netmask
+	 * Converts the netmask CIDR notation to max_possible_hosts in that CIDR.<br>
+	 * I.E.: 24 -> 254
+	 * @param netmask int
 	 * @return total usable hosts.
-	 * @Example 24 -> 254
 	 */
 	public static int getTotalValidHosts(int netmask) {
 		return ((int) Math.pow(2, 32 - netmask) - 2);
 	}
 
 	/**
-	 * Converts the netmask CIDR notation to max_possible_subnets in that CIDR.
-	 * @param netmask
+	 * Converts the netmask CIDR notation to max_possible_subnets in that CIDR.<br>
+	 * I.E.: 24 -> 1
+	 * @param netmask int
 	 * @return total usable subnets.
-	 * @Example 24 -> 1
 	 */
 	public static int getTotalValidSubnets(int netmask) {
 		return ((int) Math.pow(2, netmask % 8));
 	}
 
 	/**
-	 * Converts a netmask decimal notation to a CIDR notation.
-	 * @param netmask
+	 * Converts a netmask decimal notation to a CIDR notation.<br>
+	 * I.E.: 255.255.0.0 -> 16
+	 * @param netmask String
 	 * @return String of the CIDR notation.
-	 * @Example 255.255.0.0 -> 16
 	 */
 	public static String netmaskDecimalToCIDR(String netmask) {
 		String[] splitter = netmask.split("\\.");
@@ -143,11 +138,16 @@ public class NetworkConverter extends Convert {
 	
 	/**
 	 * Compares two binary values and uses the AND-binary-logic-controller.<br>
-	 * The two binary values have to be IPv4 binary addresses in order to complete this method.
-	 * @param a
-	 * @param b
+	 * The two binary values have to be IPv4 binary addresses in order to complete this method.<br>
+	 * <code>
+	 *     11110000.10101111.00010001.00000111<br>
+	 *     11110000.11111111.01110101.00000111<br>
+	 *     -----------------------------------<br>
+	 *     11110000.10101111.00010001.00000111
+	 * </code>
+	 * @param a String
+	 * @param b String
 	 * @return String of the compared binary value.
-	 * @Example 11110000.10101111.00010001.00000111 <br> 11110000.11111111.01110101.00000111 <br> --------------------------------------------- <br> 11110000.10101111.00010001.00000111
 	 */
 	public static String operatorAND(String a, String b) {
 		StringBuilder result = new StringBuilder();
@@ -164,26 +164,9 @@ public class NetworkConverter extends Convert {
 	}
 	
 	/**
-	 * Checks if the netmask decimal notation is valid.
-	 * @param netmask
-	 * @return true if netmask is valid.
-	 * @Example 255.255.128.0 -> true (valid) <br> 257.287.024.253 -> false (invalid)
-	 */
-	public static boolean isValidNetmask(String netmask) {
-		boolean valid = false;
-		for (int i = 0; i < KNOWN_NETMASKS.length; i++) {
-			if (valid == false)
-				if (KNOWN_NETMASKS[i].equalsIgnoreCase(netmask))
-					valid = true;
-		}
-		return valid;
-	}
-	
-	/**
 	 * Converts a Decimal Netmask to its Wildcard.
-	 * @param decimalNetmask - String of decimal subnet mask
-	 * @return string of Wildcard
-	 * @Example 255.255.0.0 > 0.0.255.255
+	 * @param decimalNetmask String of decimal subnet mask
+	 * @return String of Wildcard
 	 */
 	public static String getWildCardMask(String decimalNetmask) {
 		String[] segments = decimalNetmask.split("\\.");
@@ -195,21 +178,21 @@ public class NetworkConverter extends Convert {
 	}
 	
 	/**
-	 * Converts a CIDR notation to its Wildcard.
-	 * @param cidr - network range notation
+	 * Converts a CIDR notation to its Wildcard.<br>
+	 * 24 > 0.0.0.255
+	 * @param cidr network range notation
 	 * @return string of wildcard
-	 * @Example 24 > 0.0.0.255
 	 */
 	public static String getWildCardMask(int cidr) {
 		return getWildCardMask(netmaskCIDRtoDecimal(cidr));
 	}
 	
 	/**
-	 * Converts two ip addresses and returns the best possible wildcard.
-	 * @param firstIP - First IP address in the requested range
-	 * @param lastIP - Last IP address in the requested range
+	 * Converts two ip addresses and returns the best possible wildcard.<br>
+	 * <b>firstIP:</b> 10.0.1.16<br><b>lastIP:</b> 10.0.1.17<br><b>------------------<br>Wildcard:</b> 0.0.0.1
+	 * @param firstIP First IP address in the requested range
+	 * @param lastIP Last IP address in the requested range
 	 * @return wildcard of requested ACL range
-	 * @Example <b>firstIP:</b> 10.0.1.16<br><b>lastIP:</b> 10.0.1.17<br><b>------------------<br>Wildcard:</b> 0.0.0.1
 	 */
 	public static String getRequestedWildcard(String firstIP, String lastIP) {
 		String[] firstIPSegments = firstIP.split("\\.");

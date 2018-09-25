@@ -2,14 +2,19 @@ package com.engine.utils;
 
 public class NetworkValidator {
 
+    private static final String[] KNOWN_NETMASKS = { "0.0.0.0", "128.0.0.0", "192.0.0.0", "224.0.0.0", "240.0.0.0", "248.0.0.0", "252.0.0.0", "254.0.0.0",
+            "255.0.0.0", "255.128.0.0", "255.192.0.0", "255.224.0.0", "255.240.0.0", "255.248.0.0", "255.252.0.0", "255.254.0.0",
+            "255.255.0.0", "255.255.128.0", "255.255.192.0", "255.255.224.0", "255.255.240.0", "255.255.248.0", "255.255.252.0", "255.255.254.0",
+            "255.255.255.0", "255.255.255.128", "255.255.255.192", "255.255.255.224", "255.255.255.240", "255.255.255.248", "255.255.255.252" ,"255.255.255.254", "255.255.255.255"};
+
     /**
-     * Check whether the input is binary or decimal.<br>
-     * if thrown exception --Input is invalid (nor binary nor decimal)
+     * Check whether the input is binary or decimal.
+     * if thrown exception --Input is invalid (nor binary nor decimal).
      * if true --Input is binary
      * if false --Input is decimal
      * @param input
      * @return true if binary, false if decimal, exception if invalid
-     * @throws Exception
+     * @throws Exception Whenever the input is not a decimal nor binary IPv4
      */
     public static boolean isBinaryInput(String input) throws Exception {
         String[] segments = input.split("\\.");
@@ -23,6 +28,25 @@ public class NetworkValidator {
             }
             return true;
         } else throw new Exception("Invalid input detected");
+    }
+
+    /**
+     * Checks if the netmask decimal notation is valid.<br>
+     * I.E.: <br><code>
+     *     255.255.128.0 -> true (valid)<br>
+     * 	   257.287.024.253 -> false (invalid)
+     * </code>
+     * @param netmask String
+     * @return true if netmask is valid.
+     */
+    public static boolean isValidNetmask(String netmask) {
+        boolean valid = false;
+        for (int i = 0; i < KNOWN_NETMASKS.length; i++) {
+            if (valid == false)
+                if (KNOWN_NETMASKS[i].equalsIgnoreCase(netmask))
+                    valid = true;
+        }
+        return valid;
     }
 
 }
