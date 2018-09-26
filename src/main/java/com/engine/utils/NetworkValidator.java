@@ -49,4 +49,28 @@ public class NetworkValidator {
         return valid;
     }
 
+    /**
+     * Checks whether the input is a CIDR notation or a regular netmask notation.<br>
+     * if CIDR > true<br>
+     * if regular netmask notation > false<br>
+     * if invalid > Exception<br>
+     * @param input String
+     * @return true if CIDR<br>false if regular netmask notation<br>Exception if invalid
+     * @throws Exception whenever the input is not a CIDR- nor regular notation.
+     */
+    public static boolean isCIDRNotation(String input) throws Exception {
+        if (input.length() == 1 || input.length() == 2) {
+            if (Integer.parseInt(input) > 0 && Integer.parseInt(input) <= 24) {
+                return true;
+            }
+        } else if (input.split("\\.").length == 4) {
+            if (isValidNetmask(input)) {
+                return false;
+            } else {
+                throw new Exception("Invalid input detected");
+            }
+        }
+        throw new Exception("Invalid input detected");
+    }
+
 }

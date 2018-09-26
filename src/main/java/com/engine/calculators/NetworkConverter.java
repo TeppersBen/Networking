@@ -106,18 +106,18 @@ public class NetworkConverter extends Convert {
 	 * @param netmask int
 	 * @return total usable hosts.
 	 */
-	public static int getTotalValidHosts(int netmask) {
-		return ((int) Math.pow(2, 32 - netmask) - 2);
+	public static int getTotalValidHosts(int cidr) {
+		return ((int) Math.pow(2, 32 - cidr) - 2);
 	}
 
 	/**
-	 * Converts the netmask CIDR notation to max_possible_subnets in that CIDR.<br>
+	 * Converts the CIDR notation to max_possible_subnets in that CIDR.<br>
 	 * I.E.: 24 -> 1
 	 * @param netmask int
 	 * @return total usable subnets.
 	 */
-	public static int getTotalValidSubnets(int netmask) {
-		return ((int) Math.pow(2, netmask % 8));
+	public static int getTotalValidSubnets(int cidr) {
+		return ((int) Math.pow(2, cidr % 8));
 	}
 
 	/**

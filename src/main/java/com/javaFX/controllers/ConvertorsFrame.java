@@ -1,6 +1,7 @@
 package com.javaFX.controllers;
 
 import com.engine.calculators.NetworkConverter;
+import com.engine.calculators.VLSMSpecializedCalculator;
 import com.engine.handlers.LanguageHandler;
 import com.engine.utils.NetworkValidator;
 import com.jfoenix.controls.JFXButton;
@@ -102,16 +103,70 @@ public class ConvertorsFrame {
             }
         } catch (Exception ex) {
             //TODO popup alert --Invalid input
-            System.out.println("Input is invalid");
+            System.out.println(ex.getMessage());
         }
     }
 
     @FXML private void convert_netmask_cidr() {
         System.out.println("Convert netmask|cidr");
+        String ip = txt_netmask_cidr.getText();
+        try {
+            //cidr/netmask -- class -- host -- subnet -- wildcard
+            String[] data = new String[5];
+            if (NetworkValidator.isCIDRNotation(ip)) {
+                data[0] = NetworkConverter.netmaskCIDRtoDecimal(Integer.parseInt(ip));
+                label_netmask_cidr_result.setText(LanguageHandler.getKey("converter_netmask_label_Netmask")+": " + data[0]);
+            } else {
+                data[0] = NetworkConverter.netmaskDecimalToCIDR(ip);
+                label_netmask_cidr_result.setText(LanguageHandler.getKey("converter_netmask_label_CIDR")+": " + data[0]);
+                data[0] = ip;
+            }
+            data[1] = NetworkConverter.getNetmaskClass(data[0]);
+            data[2] = String.valueOf(
+                    NetworkConverter.getTotalValidHosts(
+                        Integer.parseInt(
+                            NetworkConverter.netmaskDecimalToCIDR(data[0])
+                        )
+                    )
+            );
+            data[3] = String.valueOf(
+                    NetworkConverter.getTotalValidSubnets(
+                            Integer.parseInt(
+                                    NetworkConverter.netmaskDecimalToCIDR(data[0])
+                            )
+                    )
+            );
+            data[4] = NetworkConverter.getWildCardMask(data[0]);
+            label_netmask_cidr_result_class.setText(LanguageHandler.getKey("converter_netmask_label_Class")+": " + data[1]);
+            label_netmask_cidr_result_hosts.setText(LanguageHandler.getKey("converter_netmask_label_Hosts")+": " + data[2]);
+            label_netmask_cidr_result_subnets.setText(LanguageHandler.getKey("converter_netmask_label_Subnets")+": " + data[3]);
+            label_netmask_cidr_result_wildcard.setText(LanguageHandler.getKey("converter_acl_wildcard")+": " + data[4]);
+        } catch (Exception ex) {
+            //TODO pup alert --Invalid input
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML private void convert_requested_hosts() {
         System.out.println("Convert requested hosts");
+
+        //cidr -- netmask -- class -- hosts -- subnets -- wildcard
+        String[] data = new String[6];
+        int hosts = Integer.parseInt(txt_requested_hosts.getText());
+
+        data[0] = VLSMSpecializedCalculator.getCIDR(hosts);
+        data[1] = VLSMSpecializedCalculator.getNetmask(hosts);
+        data[2] = VLSMSpecializedCalculator.getNetmaskClass(data[1]);
+        data[3] = VLSMSpecializedCalculator.getValidHost(hosts);
+        data[4] = String.valueOf(VLSMSpecializedCalculator.getTotalValidSubnets(Integer.parseInt(data[0])));
+        data[5] = VLSMSpecializedCalculator.getWildCardMask(Integer.parseInt(data[0]));
+
+        label_requested_hosts_cidr.setText(LanguageHandler.getKey("converter_hosts_label_CIDR")+": " + data[0]);
+        label_requested_hosts_netmask.setText(LanguageHandler.getKey("converter_hosts_label_Netmask")+": " + data[1]);
+        label_requested_hosts_class.setText(LanguageHandler.getKey("converter_hosts_label_Class")+": " + data[2]);
+        label_requested_hosts_available.setText(LanguageHandler.getKey("converter_hosts_label_Hosts")+": " + data[3]);
+        label_requested_hosts_subnets.setText(LanguageHandler.getKey("converter_hosts_label_Subnets")+": " + data[4]);
+        label_requested_hosts_wildcard.setText(LanguageHandler.getKey("converter_acl_wildcard")+": " + data[5]);
     }
 
     @FXML private void convert_wildcard() {
