@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7ec759fa-ab47-4eac-b00f-472e7aee78c6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/engine/calculators/NetworkConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/engine/calculators/NetworkConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/engine/utils/NetworkValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/engine/utils/NetworkValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/javaFX/controllers/ConvertorsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javaFX/controllers/ConvertorsFrame.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -65,17 +63,17 @@
         <counts>
           <entry key="css" value="1021" />
           <entry key="fxml" value="2003" />
-          <entry key="java" value="8194" />
+          <entry key="java" value="8379" />
           <entry key="properties" value="103" />
-          <entry key="txt" value="51" />
+          <entry key="txt" value="92" />
           <entry key="xml" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1021" />
-          <entry key="JAVA" value="8194" />
-          <entry key="PLAIN_TEXT" value="51" />
+          <entry key="JAVA" value="8379" />
+          <entry key="PLAIN_TEXT" value="92" />
           <entry key="Properties" value="103" />
           <entry key="XML" value="2044" />
         </counts>
@@ -151,12 +149,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/javaFX/controllers/ConvertorsFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="155" column="8" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
+            <state relative-caret-position="416">
+              <caret line="173" column="55" selection-start-line="173" selection-start-column="55" selection-end-line="173" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6889#6890#0" expanded="true" />
-                <element signature="e#6943#6944#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -497,7 +493,7 @@
     <property name="SearchEverywhereHistoryKey" value="netw&#9;FILE&#9;file://C:/Users/Ben_T/IdeaProjects/Networking/src/main/java/com/engine/calculators/NetworkConverter.java&#10;language.properties&#9;FILE&#9;file://C:/Users/Ben_T/IdeaProjects/Networking/src/main/resources/language/language.properties&#10;scenebuild&#9;ACTION&#9;OpenInSceneBuilder" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537968481452" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537969460530" />
     <property name="last_opened_file_path" value="C:/Program Files (x86)/Oracle/JavaFX Scene Builder 2.0/JavaFX Scene Builder 2.0.exe" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -569,7 +565,7 @@
       <workItem from="1537377270319" duration="305000" />
       <workItem from="1537377596984" duration="252000" />
       <workItem from="1537377873464" duration="745000" />
-      <workItem from="1537945237132" duration="6294000" />
+      <workItem from="1537945237132" duration="7263000" />
     </task>
     <task id="LOCAL-00001" summary="Preperation for IntelIJ">
       <created>1537374670711</created>
@@ -592,11 +588,18 @@
       <option name="project" value="LOCAL" />
       <updated>1537869426315</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Requested hosts implemented&#10;&#10;Docs changed">
+      <created>1537968548083</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1537968548083</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57767000" />
+    <option name="totallyTimeSpent" value="58736000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -653,7 +656,8 @@
     <MESSAGE value="Preperation for IntelIJ" />
     <MESSAGE value="Converter IPv4 implemented" />
     <MESSAGE value="Documentation modified" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentation modified" />
+    <MESSAGE value="Requested hosts implemented&#10;&#10;Docs changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Requested hosts implemented&#10;&#10;Docs changed" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -919,12 +923,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/javaFX/controllers/ConvertorsFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="155" column="8" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
+        <state relative-caret-position="416">
+          <caret line="173" column="55" selection-start-line="173" selection-start-column="55" selection-end-line="173" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6889#6890#0" expanded="true" />
-            <element signature="e#6943#6944#0" expanded="true" />
           </folding>
         </state>
       </provider>

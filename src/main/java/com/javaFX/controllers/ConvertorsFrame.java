@@ -171,5 +171,12 @@ public class ConvertorsFrame {
 
     @FXML private void convert_wildcard() {
         System.out.println("Convert wildcard");
+        //TODO check whether the ip's are valid or not.
+        label_wildcard_result.setText(
+                LanguageHandler.getKey("converter_acl_wildcard")+": " + NetworkConverter.getRequestedWildcard(
+                        txt_wildcard_first_ip.getText(),
+                        txt_wildcard_last_ip.getText()
+                )
+        );
     }
 }
