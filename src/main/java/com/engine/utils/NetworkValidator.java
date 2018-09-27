@@ -1,5 +1,7 @@
 package com.engine.utils;
 
+import com.engine.handlers.LanguageHandler;
+
 public class NetworkValidator {
 
     private static final String[] KNOWN_NETMASKS = { "0.0.0.0", "128.0.0.0", "192.0.0.0", "224.0.0.0", "240.0.0.0", "248.0.0.0", "252.0.0.0", "254.0.0.0",
@@ -24,10 +26,10 @@ public class NetworkValidator {
                     return false;
                 } else if (segments[i].length() == 8) {
                     return true;
-                } else throw new Exception("Invalid input detected");
+                } else throw new Exception(LanguageHandler.getKey("converter_IPv4_error_invalidIPv4Address"));
             }
             return true;
-        } else throw new Exception("Invalid input detected");
+        } else throw new Exception(LanguageHandler.getKey("converter_IPv4_error_invalidIPv4Address"));
     }
 
     /**

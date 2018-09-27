@@ -4,6 +4,7 @@ import com.engine.calculators.NetworkConverter;
 import com.engine.calculators.VLSMSpecializedCalculator;
 import com.engine.handlers.LanguageHandler;
 import com.engine.utils.NetworkValidator;
+import com.engine.utils.TickHandler;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -102,7 +103,15 @@ public class ConvertorsFrame {
                 label_ipv4_result.setText(LanguageHandler.getKey("converter_IPv4_label_Address")+": "+NetworkConverter.decimalIPv4ToBinary(ip));
             }
         } catch (Exception ex) {
-            //TODO popup alert --Invalid input
+            String previous = txt_ipv4.getText();
+            new TickHandler().setBefore(() -> {
+                txt_ipv4.setText(ex.getMessage());
+                button_ipv4.setDisable(true);
+                txt_ipv4.requestFocus();
+            }).setAfter(() -> {
+                txt_ipv4.setText(previous);
+                button_ipv4.setDisable(false);
+            }).setTicks(21).execute();
             System.out.println(ex.getMessage());
         }
     }
