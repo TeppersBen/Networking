@@ -25,7 +25,6 @@ public class FrameHandler {
         for (Frames frame : Frames.values()) {
             frames.put(frame, loadFrame(frame));
         }
-        switchFrame(Frames.WELCOME);
     }
 
     public enum Frames {
