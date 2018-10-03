@@ -16,10 +16,13 @@ public class Launcher extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		FrameHandler.primaryStage = primaryStage;
+		FrameHandler.initialize();
+
 		Parent root = FXMLLoader.load(getClass().getResource("/frames/fxmls/MainFrame.fxml"));
 		Scene scene = new Scene(root, 800, 600);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle(Settings.TITLE);
+
 		primaryStage.show();
 	}
 }
