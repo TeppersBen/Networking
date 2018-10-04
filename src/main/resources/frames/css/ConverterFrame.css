@@ -14,3 +14,7 @@ JFXTextField {
     -fx-prompt-text-fill: grey;
     -fx-text-fill: white;
 }
+
+JFXButton {
+    -fx-background-color: #202021;
+}
