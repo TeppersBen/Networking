@@ -43,6 +43,7 @@ public class ConvertorsFrame {
     @FXML private Label label_wildcard_result;
     @FXML private JFXButton button_wildcard;
 
+    private static final int ERROR_TICK_LENGTH = 21;
     private static final String EXAMPLE_SHORT = LanguageHandler.getKey("word_example(short)");
 
     @FXML
@@ -103,15 +104,7 @@ public class ConvertorsFrame {
                 label_ipv4_result.setText(LanguageHandler.getKey("converter_IPv4_label_Address")+": "+NetworkConverter.decimalIPv4ToBinary(ip));
             }
         } catch (Exception ex) {
-            String previous = txt_ipv4.getText();
-            new TickHandler().setBefore(() -> {
-                txt_ipv4.setText(ex.getMessage());
-                button_ipv4.setDisable(true);
-                txt_ipv4.requestFocus();
-            }).setAfter(() -> {
-                txt_ipv4.setText(previous);
-                button_ipv4.setDisable(false);
-            }).setTicks(21).execute();
+            executeAlertMessage(button_ipv4, txt_ipv4, ex.getMessage(), ERROR_TICK_LENGTH);
             System.out.println(ex.getMessage());
         }
     }
@@ -151,7 +144,7 @@ public class ConvertorsFrame {
             label_netmask_cidr_result_subnets.setText(LanguageHandler.getKey("converter_netmask_label_Subnets")+": " + data[3]);
             label_netmask_cidr_result_wildcard.setText(LanguageHandler.getKey("converter_acl_wildcard")+": " + data[4]);
         } catch (Exception ex) {
-            //TODO pup alert --Invalid input
+            executeAlertMessage(button_netmask_cidr, txt_netmask_cidr, ex.getMessage(), ERROR_TICK_LENGTH);
             System.out.println(ex.getMessage());
         }
     }
@@ -159,33 +152,67 @@ public class ConvertorsFrame {
     @FXML private void convert_requested_hosts() {
         System.out.println("Convert requested hosts");
 
-        //cidr -- netmask -- class -- hosts -- subnets -- wildcard
-        String[] data = new String[6];
-        int hosts = Integer.parseInt(txt_requested_hosts.getText());
+        try {
+            //cidr -- netmask -- class -- hosts -- subnets -- wildcard
+            String[] data = new String[6];
+            int hosts = Integer.parseInt(txt_requested_hosts.getText());
 
-        data[0] = VLSMSpecializedCalculator.getCIDR(hosts);
-        data[1] = VLSMSpecializedCalculator.getNetmask(hosts);
-        data[2] = VLSMSpecializedCalculator.getNetmaskClass(data[1]);
-        data[3] = VLSMSpecializedCalculator.getValidHost(hosts);
-        data[4] = String.valueOf(VLSMSpecializedCalculator.getTotalValidSubnets(Integer.parseInt(data[0])));
-        data[5] = VLSMSpecializedCalculator.getWildCardMask(Integer.parseInt(data[0]));
+            data[0] = VLSMSpecializedCalculator.getCIDR(hosts);
+            data[1] = VLSMSpecializedCalculator.getNetmask(hosts);
+            data[2] = VLSMSpecializedCalculator.getNetmaskClass(data[1]);
+            data[3] = VLSMSpecializedCalculator.getValidHost(hosts);
+            data[4] = String.valueOf(VLSMSpecializedCalculator.getTotalValidSubnets(Integer.parseInt(data[0])));
+            data[5] = VLSMSpecializedCalculator.getWildCardMask(Integer.parseInt(data[0]));
 
-        label_requested_hosts_cidr.setText(LanguageHandler.getKey("converter_hosts_label_CIDR")+": " + data[0]);
-        label_requested_hosts_netmask.setText(LanguageHandler.getKey("converter_hosts_label_Netmask")+": " + data[1]);
-        label_requested_hosts_class.setText(LanguageHandler.getKey("converter_hosts_label_Class")+": " + data[2]);
-        label_requested_hosts_available.setText(LanguageHandler.getKey("converter_hosts_label_Hosts")+": " + data[3]);
-        label_requested_hosts_subnets.setText(LanguageHandler.getKey("converter_hosts_label_Subnets")+": " + data[4]);
-        label_requested_hosts_wildcard.setText(LanguageHandler.getKey("converter_acl_wildcard")+": " + data[5]);
+            label_requested_hosts_cidr.setText(LanguageHandler.getKey("converter_hosts_label_CIDR") + ": " + data[0]);
+            label_requested_hosts_netmask.setText(LanguageHandler.getKey("converter_hosts_label_Netmask") + ": " + data[1]);
+            label_requested_hosts_class.setText(LanguageHandler.getKey("converter_hosts_label_Class") + ": " + data[2]);
+            label_requested_hosts_available.setText(LanguageHandler.getKey("converter_hosts_label_Hosts") + ": " + data[3]);
+            label_requested_hosts_subnets.setText(LanguageHandler.getKey("converter_hosts_label_Subnets") + ": " + data[4]);
+            label_requested_hosts_wildcard.setText(LanguageHandler.getKey("converter_acl_wildcard") + ": " + data[5]);
+        } catch (NumberFormatException ex) {
+            executeAlertMessage(button_requested_hosts, txt_requested_hosts, LanguageHandler.getKey("converter_hosts_error_invalidHosts"), ERROR_TICK_LENGTH);
+            System.out.println(ex.getMessage());
+        }
     }
+
 
     @FXML private void convert_wildcard() {
         System.out.println("Convert wildcard");
-        //TODO check whether the ip's are valid or not.
-        label_wildcard_result.setText(
-                LanguageHandler.getKey("converter_acl_wildcard")+": " + NetworkConverter.getRequestedWildcard(
-                        txt_wildcard_first_ip.getText(),
-                        txt_wildcard_last_ip.getText()
-                )
-        );
+        String wildcard = "";
+        String first_ip = txt_wildcard_first_ip.getText();
+        String last_ip = txt_wildcard_last_ip.getText();
+
+        try {
+            if (NetworkValidator.isBinaryInput(txt_wildcard_first_ip.getText())) {
+                first_ip = NetworkConverter.binaryToDecimal(first_ip);
+            }
+        } catch (Exception ex) {
+            executeAlertMessage(button_wildcard, txt_wildcard_first_ip, ex.getMessage(), ERROR_TICK_LENGTH);
+        }
+
+        try {
+            if (NetworkValidator.isBinaryInput(txt_wildcard_last_ip.getText())) {
+                last_ip = NetworkConverter.binaryToDecimal(last_ip);
+            }
+        } catch (Exception ex) {
+            executeAlertMessage(button_wildcard, txt_wildcard_last_ip, ex.getMessage(), ERROR_TICK_LENGTH);
+            return;
+        }
+
+        wildcard = NetworkConverter.getRequestedWildcard(first_ip, last_ip);
+        label_wildcard_result.setText(LanguageHandler.getKey("converter_acl_wildcard")+": " + wildcard);
+    }
+
+    private void executeAlertMessage(JFXButton button, JFXTextField text, String exceptionMessage, int tickLength) {
+        String previous = text.getText();
+        new TickHandler().setBefore(() -> {
+            text.setText(exceptionMessage);
+            button.setDisable(true);
+        }).setAfter(() -> {
+            text.setText(previous);
+            button.setDisable(false);
+        }).setTicks(tickLength).execute();
+        text.requestFocus();
     }
 }
